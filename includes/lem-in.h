@@ -15,9 +15,12 @@ typedef struct		s_point
 
 typedef struct		s_room
 {
+	int				dist;
+	int				ant_count;
 	char			*name;
 	t_point			coord;
 	struct s_room	*next;
+	struct s_room	*connections;
 }					t_room;
 
 
@@ -25,7 +28,8 @@ typedef struct		s_lemin
 {
 	int 			ants;
 	char 			**connections;
-	t_room			*rooms;
+//	t_room			*rooms;
+	t_room			*table[100];
 	t_room			*start;
 	t_room			*end;
 }					t_lemin;
@@ -40,5 +44,8 @@ int					coord_dup(t_room *rooms, t_point coord);
 
 t_room				*new_room(char *name, t_point coord);
 t_room				*room_exists(t_room *rooms, char *name);
+
+unsigned long		hashing_funct(char *str);
+void				make_connect(char **connections, t_room *table[]);
 
 #endif

@@ -8,10 +8,12 @@ t_room			*new_room(char *name, t_point coord)
 
 	room = (t_room*)ft_memalloc(sizeof(t_room));
 	room->name = ft_strdup(name);
+	room->dist = -1;
 	room->coord = coord;
 	return (room);
 }
 
+/*
 void			add_room(t_room **head, t_room *new)
 {
 	if (!new || !head)
@@ -19,6 +21,13 @@ void			add_room(t_room **head, t_room *new)
 	new->next = *head;
 	*head = new;
 }
+*/
+
+void			add_room(t_room **head, t_room *new)
+{
+
+}
+
 
 t_room			*room_exists(t_room *rooms, char *name)
 {

@@ -39,7 +39,7 @@ static void			get_room(t_lemin *lemin, char *line)
 	coord = (t_point){ft_atoi(room_info[1]), ft_atoi(room_info[2])};
 	if (room_exists(lemin->rooms, name) || coord_dup(lemin->rooms, coord))
 		error_check(DUP_ERROR);
-	add_room(&lemin->rooms, new_room(name, coord));
+	add_room(&lemin->rooms, new_room(name, coord));	// do we also add lemin->rooms or only hashtable ?!
 	ft_free_2darray((void**)room_info);
 }
 
@@ -85,7 +85,7 @@ void				get_file_info(t_lemin *lemin, char *file)
 			set_start_end(lemin, line, fd);
 		else if (line[0] == '#')
 			;
-		else if (ft_strchr(line, '-')) /* HOW WE DOING THIS? */
+		else if (ft_strchr(line, '-')) /* HOW WE DOING THIS? error check*/
 			 ft_lstadd(&con, ft_lstnew(line, ft_strlen(line) + 1));
 		else
 			get_room(lemin, line);
