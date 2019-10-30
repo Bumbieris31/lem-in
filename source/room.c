@@ -13,7 +13,7 @@ t_room			*new_room(char *name, t_point coord)
 	return (room);
 }
 
-/*
+
 void			add_room(t_room **head, t_room *new)
 {
 	if (!new || !head)
@@ -21,36 +21,36 @@ void			add_room(t_room **head, t_room *new)
 	new->next = *head;
 	*head = new;
 }
-*/
 
-void			add_room(t_room **head, t_room *new)
+
+t_room			*add_to_hastable(t_room **table, t_room *new, size_t index)
 {
-
+	if (!table[index])
+		table[index] = new;
+	else
+		add_room(&table[index], new);
+	return (new);
 }
 
-
-t_room			*room_exists(t_room *rooms, char *name)
+static int		compare_coord(t_point a, t_point b)
 {
-	if (!rooms)
-		return (NULL);
-	if (ft_strequ(rooms->name, name))
-		return (rooms);
-	return (room_exists(rooms->next, name));
-}
-
-int				coord_dup(t_room *rooms, t_point coord)
-{
-	if (!rooms)
-		return (0);
-	if (rooms->coord.x == coord.x && rooms->coord.y == coord.y)
+	if (a.x == b.x && a.y == b.y)
 		return (1);
-	return (coord_dup(rooms->next, coord));
+	return (0);
 }
 
-void			print_rooms(t_room *room)
+int				duplicate_room(t_room **table, char *name, t_point coord, size_t index)
 {
-	if (!room)
-		return ;
-	print_rooms(room->next);
-	ft_printf("%-5s %-2d %d\n", room->name, room->coord.x, room->coord.y);
+	t_room *tmp;
+
+	if (!table[index])
+		return (0);
+	tmp = table[index];
+	while (tmp)
+	{
+		if (compare_coord(coord, tmp->coord) || ft_strequ(name, tmp->name))
+			return (1); 
+		tmp = tmp->next;
+	}
+	return (0);
 }

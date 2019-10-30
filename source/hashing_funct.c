@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   hashing_funct.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 15:10:37 by abumbier          #+#    #+#             */
-/*   Updated: 2019/10/30 17:40:42 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   hashing_funct.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/10/30 15:10:37 by abumbier       #+#    #+#                */
+/*   Updated: 2019/10/30 18:11:57 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+#include <string.h>
 
-unsigned long	hashing_funct(char *str)
+size_t	hashing_funct(char *str)
 {
-	int				c;
-	unsigned long	hash;
+	int		c;
+	size_t	hash;
 
 	hash = 5381;
 	c = *str;

@@ -7,6 +7,8 @@
 # define DUP_ERROR	-3
 # define ANTS_ERROR	-4
 
+# include <string.h>
+
 typedef struct		s_point
 {
 	int				x;
@@ -28,24 +30,24 @@ typedef struct		s_lemin
 {
 	int 			ants;
 	char 			**connections;
-//	t_room			*rooms;
-	t_room			*table[100];
+	t_room			**table;
 	t_room			*start;
 	t_room			*end;
 }					t_lemin;
 
 void				lemin(char *file);
+void				print_file(char *file);
 void				error_check(int error);
-void				print_rooms(t_room *room);
 void				add_room(t_room **head, t_room *new);
 void				get_file_info(t_lemin *lemin, char *file);
-
-int					coord_dup(t_room *rooms, t_point coord);
-
-t_room				*new_room(char *name, t_point coord);
-t_room				*room_exists(t_room *rooms, char *name);
-
-unsigned long		hashing_funct(char *str);
 void				make_connect(char **connections, t_room *table[]);
+
+t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
+t_room				*new_room(char *name, t_point coord);
+
+int					duplicate_room(t_room **table, char *name,
+					t_point coord, size_t index);
+
+size_t				hashing_funct(char *str);
 
 #endif

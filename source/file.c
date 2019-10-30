@@ -1,6 +1,7 @@
 #include "lem-in.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <unistd.h>
 #include <fcntl.h>
 
 static int			valid_room(char **room_info)
@@ -27,8 +28,10 @@ static int			valid_room(char **room_info)
 	return (len != 3 ? ROOM_ERROR : 1);
 }
 
-static void			get_room(t_lemin *lemin, char *line)
+static t_room		*get_room(t_lemin *lemin, char *line)
 {
+	t_room	*room;
+	size_t	index;
 	char	**room_info;
 	char	*name;
 	t_point	coord;
@@ -37,23 +40,26 @@ static void			get_room(t_lemin *lemin, char *line)
 	error_check(valid_room(room_info));
 	name = room_info[0];
 	coord = (t_point){ft_atoi(room_info[1]), ft_atoi(room_info[2])};
-	if (room_exists(lemin->rooms, name) || coord_dup(lemin->rooms, coord))
+	index = hashing_funct(name);
+	if (duplicate_room(lemin->table, name, coord, index))
 		error_check(DUP_ERROR);
-	add_room(&lemin->rooms, new_room(name, coord));	// do we also add lemin->rooms or only hashtable ?!
+	room = add_to_hastable(lemin->table, new_room(name, coord), index);
 	ft_free_2darray((void**)room_info);
+	return(room);
 }
 
 static void			set_start_end(t_lemin *lemin, char *cmnd, int fd)
 {
-	char *line;
+	char	*line;
+	t_room	*room;
 
 	ft_get_next_line(fd, &line);
-	get_room(lemin, line);
+	room = get_room(lemin, line);
 	free(line);
 	if (ft_strequ(cmnd, "##start"))
-		lemin->start = lemin->rooms;
+		lemin->start = room;
 	else
-		lemin->end = lemin->rooms;
+		lemin->end = room;
 
 }
 
@@ -85,7 +91,7 @@ void				get_file_info(t_lemin *lemin, char *file)
 			set_start_end(lemin, line, fd);
 		else if (line[0] == '#')
 			;
-		else if (ft_strchr(line, '-')) /* HOW WE DOING THIS? error check*/
+		else if (ft_strchr(line, '-'))
 			 ft_lstadd(&con, ft_lstnew(line, ft_strlen(line) + 1));
 		else
 			get_room(lemin, line);
@@ -95,4 +101,5 @@ void				get_file_info(t_lemin *lemin, char *file)
 	lemin->connections = ft_strsplit(tmp, ' ');
 	free(tmp);
 	ft_lstdel(&con, ft_bzero);
+	close(fd);
 }
