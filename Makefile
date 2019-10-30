@@ -3,7 +3,7 @@ WHITE = $(shell printf "\e[39m")
 PLUS = $(GREEN)+$(WHITE)
 
 NAME = lem-in
-SOURCE = main lemin room file error hashing_funct print_file
+SOURCE = main lemin room file error hashing_funct print_file make_connect
 INCLUDES = -Iincludes -Ilibft/includes
 CFILES = $(SOURCE:%=source/%.c)
 OFILES = $(SOURCE:%=.objects/%.o)
@@ -13,7 +13,7 @@ FLAGS = -Wall -Wextra -Werror #ADD LATER
 all: $(NAME)
 
 $(NAME): $(LIB) .objects $(OFILES)
-	@gcc -o $(NAME) $(OFILES) $(LIB) $(INCLUDES) -g
+	@gcc -g -o $(NAME) $(OFILES) $(LIB) $(INCLUDES)
 	@echo "$(NAME) compiled successfully"
 
 .objects:

@@ -51,16 +51,13 @@ static t_room		*get_room(t_lemin *lemin, char *line)
 static void			set_start_end(t_lemin *lemin, char *cmnd, int fd)
 {
 	char	*line;
-	t_room	*room;
 
 	ft_get_next_line(fd, &line);
-	room = get_room(lemin, line);
-	free(line);
 	if (ft_strequ(cmnd, "##start"))
-		lemin->start = room;
+		lemin->start = get_room(lemin, line);
 	else
-		lemin->end = room;
-
+		lemin->end = get_room(lemin, line);
+	free(line);
 }
 
 static void			get_ants(t_lemin *lemin, int fd)

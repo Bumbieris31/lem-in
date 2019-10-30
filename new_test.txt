@@ -1,0 +1,13 @@
+3
+##start
+bim 1 0
+##end
+bam 5 82
+bum 9 16
+#comment
+hop 6 12
+bim-bum
+bum-hop
+hop-bam
+bum-bam
+#another comment

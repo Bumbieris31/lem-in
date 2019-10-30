@@ -6,11 +6,18 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:26:31 by abumbier          #+#    #+#             */
-/*   Updated: 2019/10/30 19:27:52 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/10/30 21:02:05 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+#include <stdlib.h>
+#include "libft.h"
+
+/*
+** @descr: Returns the room that matches the name passed in str parameter.
+** If such name doesn't exist, return the first node.
+*/
 
 static t_room	*find_room(char *str, t_room *table[], int ind)
 {
@@ -19,13 +26,17 @@ static t_room	*find_room(char *str, t_room *table[], int ind)
 	room = table[ind];
 	while (room->next)
 	{
-		if (ft_strequ(room->name), str)
+		if (ft_strequ(room->name, str))
 			break ;
 		else
 			room = room->next;
 	}
 	return (room);
 }
+
+/*
+** @descr: Adds room2 to room1->link at hte end of the list.
+*/
 
 void			bind_rooms(t_room *room1, t_room *room2)
 {
@@ -44,9 +55,15 @@ void			bind_rooms(t_room *room1, t_room *room2)
 		room1->link->next = (t_link*)malloc(sizeof(t_link));
 		connection = room1->link->next;
 	}
-	connection->name = ft_strcpy(room2->name);
+	connection->name = ft_strdup(room2->name);
 	connection->ptr = room2;
+	connection->next = 0;
 }
+
+/*
+** @descr: Finds the correct rooms from table and writes connection \
+** in each rooms link member.
+*/
 
 void			connect_two(char **rooms, t_room *table[])
 {
@@ -63,6 +80,10 @@ void			connect_two(char **rooms, t_room *table[])
 	bind_rooms(room2, room1);
 }
 
+/*
+** @descr: For every connection calls functions to create that connection.
+*/
+
 void			make_connect(char **connections, t_room *table[])
 {
 	int		i;
@@ -73,6 +94,7 @@ void			make_connect(char **connections, t_room *table[])
 		rooms = ft_strsplit(connections[i], '-');
 		connect_two(rooms, table);
 		i++;
-		// free rooms both ** and *
+		free(rooms[0]);
+		free(rooms[1]);
 	}
 }
