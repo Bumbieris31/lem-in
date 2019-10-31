@@ -26,11 +26,9 @@ void		lemin(char *file)
 	t_lemin *lemin;
 
 	lemin = (t_lemin*)ft_memalloc(sizeof(t_lemin));
-	lemin->table = (t_room**)ft_memalloc(sizeof(t_room*) * 10000);
+	lemin->table = (t_room**)ft_memalloc(sizeof(t_room*) * TABLE_SIZE);
 	get_file_info(lemin, file);
 	make_connect(lemin->connections, lemin->table);
 	print_file(file);
-	print_connect(lemin);
-	// while (1)
-	// 	;
+	// print_connect(lemin);
 }

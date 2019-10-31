@@ -7,6 +7,8 @@
 # define DUP_ERROR	-3
 # define ANTS_ERROR	-4
 
+# define TABLE_SIZE	10000
+
 # include <string.h>
 
 typedef struct		s_point
@@ -14,8 +16,6 @@ typedef struct		s_point
 	int				x;
 	int				y;
 }					t_point;
-
-struct				s_link;
 
 typedef struct		s_room
 {
