@@ -6,13 +6,11 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:26:31 by abumbier          #+#    #+#             */
-/*   Updated: 2019/10/31 16:34:55 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/10/31 16:39:58 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
-#include <stdlib.h>
-#include "libft.h"
 
 /*
 ** @descr: Returns the room that matches the name passed in str parameter.

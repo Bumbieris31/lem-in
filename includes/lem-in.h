@@ -7,15 +7,22 @@
 # define DUP_ERROR	-3
 # define ANTS_ERROR	-4
 
+# define TABLE_SIZE	10000
+
+# include "libft.h"
+# include "ft_printf.h"
 # include <string.h>
+# include <stdlib.h>
+# include <errno.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <unistd.h>
 
 typedef struct		s_point
 {
 	int				x;
 	int				y;
 }					t_point;
-
-struct				s_link;
 
 typedef struct		s_room
 {
@@ -42,8 +49,6 @@ typedef struct		s_lemin
 	t_room			*start;
 	t_room			*end;
 }					t_lemin;
-
-
 
 void				lemin(char *file);
 void				print_file(char *file);

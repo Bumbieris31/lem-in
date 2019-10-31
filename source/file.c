@@ -1,8 +1,4 @@
 #include "lem-in.h"
-#include "libft.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
 
 static int			valid_room(char **room_info)
 {
