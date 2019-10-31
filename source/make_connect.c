@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:26:31 by abumbier          #+#    #+#             */
-/*   Updated: 2019/10/30 21:02:05 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/10/31 16:34:55 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void			make_connect(char **connections, t_room *table[])
 		i++;
 		free(rooms[0]);
 		free(rooms[1]);
+		free(rooms);
 	}
 }

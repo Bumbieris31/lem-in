@@ -3,11 +3,12 @@
 #include "ft_printf.h"
 
 /* TESTING CONNECTIONS
+*/
 static void	print_connect(t_lemin *lemin)
 {
 	t_room	*room;
 	t_link	*link;
-	char	*str = "bum";
+	char	*str = "hop";
 	int		ind;
 
 	ind = hashing_funct(str);
@@ -19,7 +20,6 @@ static void	print_connect(t_lemin *lemin)
 		link = link->next;
 	}
 }
-*/
 
 void		lemin(char *file)
 {
