@@ -1,6 +1,4 @@
 #include "lem-in.h"
-#include "libft.h"
-#include "ft_printf.h"
 
 t_room			*new_room(char *name, t_point coord)
 {

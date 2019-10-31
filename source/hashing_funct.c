@@ -6,12 +6,11 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:10:37 by abumbier       #+#    #+#                */
-/*   Updated: 2019/10/31 14:49:28 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/10/31 15:56:20 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
-#include <string.h>
 
 size_t	hashing_funct(char *str)
 {

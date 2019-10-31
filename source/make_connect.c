@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   make_connect.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 15:26:31 by abumbier          #+#    #+#             */
-/*   Updated: 2019/10/30 21:02:05 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   make_connect.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
+/*   Updated: 2019/10/31 15:56:36 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
-#include <stdlib.h>
-#include "libft.h"
 
 /*
 ** @descr: Returns the room that matches the name passed in str parameter.

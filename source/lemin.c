@@ -1,6 +1,4 @@
 #include "lem-in.h"
-#include "libft.h"
-#include "ft_printf.h"
 
 /* TESTING CONNECTIONS
 static void	print_connect(t_lemin *lemin)

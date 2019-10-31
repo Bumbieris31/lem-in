@@ -1,8 +1,4 @@
 #include "lem-in.h"
-#include "libft.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
 
 void		print_file(char *file)
 {

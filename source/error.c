@@ -1,8 +1,4 @@
 #include "lem-in.h"
-#include "libft.h"
-#include "ft_printf.h"
-#include <stdlib.h>
-#include <errno.h>
 
 void			error_check(int error)
 {
