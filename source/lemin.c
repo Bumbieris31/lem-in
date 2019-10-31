@@ -1,12 +1,11 @@
 #include "lem-in.h"
 
 /* TESTING CONNECTIONS
-*/
 static void	print_connect(t_lemin *lemin)
 {
 	t_room	*room;
 	t_link	*link;
-	char	*str = "hop";
+	char	*str = "bam";
 	int		ind;
 
 	ind = hashing_funct(str);
@@ -14,10 +13,14 @@ static void	print_connect(t_lemin *lemin)
 	link = room->link;
 	while (link)
 	{
-		ft_printf("\n%s\n", link->ptr->name);
-		link = link->next;
+		ft_printf("\n%s\n", link->name);
+		if (link->next)
+			link = link->next;
+		else
+			link = 0;
 	}
 }
+*/
 
 void		lemin(char *file)
 {
@@ -27,6 +30,7 @@ void		lemin(char *file)
 	lemin->table = (t_room**)ft_memalloc(sizeof(t_room*) * TABLE_SIZE);
 	get_file_info(lemin, file);
 	make_connect(lemin->connections, lemin->table);
+	measure_distance();
 	print_file(file);
-	// print_connect(lemin);
+//	print_connect(lemin);
 }
