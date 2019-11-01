@@ -3,7 +3,7 @@ WHITE = $(shell printf "\e[39m")
 PLUS = $(GREEN)+$(WHITE)
 
 NAME = lem-in
-SOURCE = main lemin room file error hashing_funct print_file make_connect
+SOURCE = main lemin room file error hashing_funct print_file make_connect breadth_first dist
 INCLUDES = -Iincludes -Ilibft/includes
 CFILES = $(SOURCE:%=source/%.c)
 OFILES = $(SOURCE:%=.objects/%.o)
