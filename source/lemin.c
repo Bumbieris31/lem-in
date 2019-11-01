@@ -33,7 +33,7 @@ void		lemin(char *file)
 	get_file_info(lemin, file);
 	make_connect(lemin->connections, lemin->table);
 	set_dist(lemin);
-	shortest_path();
+	shortest_path(lemin);
 	// measure_distance();
 	// print_file(file);
 }
