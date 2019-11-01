@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/01 14:00:00 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/01 15:52:51 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			bind_rooms(t_room *room1, t_room *room2)
 		connection->next = (t_link*)malloc(sizeof(t_link));
 		connection = connection->next;
 	}
-	connection->name = ft_strdup(room2->name);
+	connection->name = room2->name;
 	connection->ptr = room2;
 	connection->next = 0;
 }

@@ -10,6 +10,8 @@
 
 # define TABLE_SIZE	10000
 
+# define MEM(x) (x*)ft_memalloc(sizeof(x))
+
 # include "libft.h"
 # include "ft_printf.h"
 # include <string.h>
