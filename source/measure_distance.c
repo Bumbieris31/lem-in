@@ -6,24 +6,40 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:17:00 by abumbier          #+#    #+#             */
-/*   Updated: 2019/10/31 19:31:43 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/01 17:37:03 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-static int	end_of_branch(t_link *room, char *name)
-{
-	
-}
+/*
+** @descr: Recursively goes through the map and writes down distance.
+*/
 
-void	write_connections(t_room *room, int dist, char *name)
+void	write_connections(t_room *room, t_room *start, int dist)
 {
-	// mark this link before base case
-	if (room->dist == -1 || room->dist > dist)
-		room->dist = dist;
-	// if cannot go to the next connection or connection is the previous room or room is final room {return}
-	write_connections(room->link->ptr, dist + 1, room->name); //how to get the next link->ptr?
+	t_link *connect;
+
+	connect = room->link;
+	room->dist = dist;
+	if (room == start)
+		return ;
+	while (connect)
+	{
+		while (connect->ptr->dist <= dist + 1 && connect->ptr->dist != -1)
+		{
+			if (connect->next)
+				connect = connect->next;
+			else
+				return ;
+		}
+		write_connections(connect->ptr, start, dist + 1);
+		if (connect->next)
+			connect = connect->next;
+		else
+			return ;
+	}
+	return ;
 }
 
 void	measure_distance(t_lemin *lemin)
@@ -32,6 +48,5 @@ void	measure_distance(t_lemin *lemin)
 
 	lemin->end->dist = 0;
 	room = lemin->end;
-	write_connections(room, 0, room->name)
-
+	write_connections(room, lemin->start, 0);
 }

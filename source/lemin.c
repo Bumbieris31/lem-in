@@ -30,7 +30,7 @@ void		lemin(char *file)
 	lemin->table = (t_room**)ft_memalloc(sizeof(t_room*) * TABLE_SIZE);
 	get_file_info(lemin, file);
 	make_connect(lemin->connections, lemin->table);
-	measure_distance();
+	measure_distance(lemin);
 	print_file(file);
 //	print_connect(lemin);
 }
