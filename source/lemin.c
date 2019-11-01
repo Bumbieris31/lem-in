@@ -1,27 +1,5 @@
 #include "lem-in.h"
 
-/* TESTING CONNECTIONS
-static void	print_connect(t_lemin *lemin)
-{
-	t_room	*room;
-	t_link	*link;
-	char	*str = "bam";
-	int		ind;
-
-	ind = hashing_funct(str);
-	room = lemin->table[ind];
-	link = room->link;
-	while (link)
-	{
-		ft_printf("\n%s\n", link->name);
-		if (link->next)
-			link = link->next;
-		else
-			link = 0;
-	}
-}
-*/
-
 static void		print_links(t_link *link)
 {
 	if (!link)
@@ -55,8 +33,7 @@ void		lemin(char *file)
 	get_file_info(lemin, file);
 	make_connect(lemin->connections, lemin->table);
 	set_dist(lemin);
+	shortest_path();
 	// measure_distance();
 	// print_file(file);
-	// print_connect(lemin);
-	// print_links(lemin->start->link);
 }
