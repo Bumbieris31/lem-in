@@ -18,6 +18,14 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+
+typedef enum		e_value
+{
+	NAME =			0,
+	X =				1,
+	Y =				2
+}					t_value;
+
 typedef struct		s_point
 {
 	int				x;

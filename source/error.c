@@ -1,5 +1,7 @@
 #include "lem-in.h"
 
+/* Checks if there is an error given and exits the program with an error message */
+
 void			error_check(int error)
 {
 	if (error < 0)

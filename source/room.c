@@ -1,5 +1,7 @@
 #include "lem-in.h"
 
+/* Create new t_room */
+
 t_room			*new_room(char *name, t_point coord)
 {
 	t_room *room;
@@ -11,6 +13,7 @@ t_room			*new_room(char *name, t_point coord)
 	return (room);
 }
 
+/* Add room to the start of a link list*/
 
 void			add_room(t_room **head, t_room *new)
 {
@@ -19,7 +22,6 @@ void			add_room(t_room **head, t_room *new)
 	new->next = *head;
 	*head = new;
 }
-
 
 t_room			*add_to_hastable(t_room **table, t_room *new, size_t index)
 {
@@ -36,6 +38,8 @@ static int		compare_coord(t_point a, t_point b)
 		return (1);
 	return (0);
 }
+
+/* Checker to see if coord or name already exists */
 
 int				duplicate_room(t_room **table, char *name, t_point coord, size_t index)
 {

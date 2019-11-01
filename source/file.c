@@ -1,5 +1,7 @@
 #include "lem-in.h"
 
+/* Checks if it's a valid room */
+
 static int			valid_room(char **room_info)
 {
 	int len;
@@ -24,6 +26,8 @@ static int			valid_room(char **room_info)
 	return (len != 3 ? ROOM_ERROR : 1);
 }
 
+/* Gets room info and makes a room struct and puts it in the hashtable */
+
 static t_room		*get_room(t_lemin *lemin, char *line)
 {
 	t_room	*room;
@@ -34,8 +38,8 @@ static t_room		*get_room(t_lemin *lemin, char *line)
 
 	room_info = ft_strsplit(line, ' ');
 	error_check(valid_room(room_info));
-	name = room_info[0];
-	coord = (t_point){ft_atoi(room_info[1]), ft_atoi(room_info[2])};
+	name = room_info[NAME];
+	coord = (t_point){ft_atoi(room_info[X]), ft_atoi(room_info[Y])};
 	index = hashing_funct(name);
 	if (duplicate_room(lemin->table, name, coord, index))
 		error_check(DUP_ERROR);
@@ -43,6 +47,8 @@ static t_room		*get_room(t_lemin *lemin, char *line)
 	ft_free_2darray((void**)room_info);
 	return(room);
 }
+
+/* Sets Start and End pointers to the correct rooms */
 
 static void			set_start_end(t_lemin *lemin, char *cmnd, int fd)
 {
@@ -56,16 +62,20 @@ static void			set_start_end(t_lemin *lemin, char *cmnd, int fd)
 	free(line);
 }
 
+/* Gets the amount of ants */
+
 static void			get_ants(t_lemin *lemin, int fd)
 {
 	char *line;
 
 	ft_get_next_line(fd, &line);
 	lemin->ants = ft_atoi(line);
-	free(line);
-	if (!lemin->ants)
+	if (!lemin->ants || ft_strlen(line) != ft_intlen(lemin->ants))
 		error_check(ANTS_ERROR);
+	free(line);
 }
+
+/* Reads the given file line by line and gets the room info */
 
 void				get_file_info(t_lemin *lemin, char *file)
 {

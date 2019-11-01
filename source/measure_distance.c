@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   measure_distance.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/31 18:17:00 by abumbier          #+#    #+#             */
-/*   Updated: 2019/10/31 19:31:43 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   measure_distance.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/10/31 18:17:00 by abumbier       #+#    #+#                */
+/*   Updated: 2019/11/01 13:18:49 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	measure_distance(t_lemin *lemin)
 
 	lemin->end->dist = 0;
 	room = lemin->end;
-	write_connections(room, 0, room->name)
+	write_connections(room, 0, room->name);
 
 }
