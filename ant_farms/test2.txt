@@ -23,5 +23,4 @@ h-i
 i-c
 i-j
 j-k
-k-c
 k-a

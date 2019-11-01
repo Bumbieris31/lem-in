@@ -1,12 +1,12 @@
 3
 ##start
-0 1 0
+start 1 0
 ##end
-1 5 82
-2 9 16
+end 5 82
+some1 9 16
 #comment
-3 6 12
-0-2
-2-3
-3-1
+some2 6 12
+start-some1
+some1-some2
+some2-end
 #another comment

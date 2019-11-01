@@ -1,12 +1,17 @@
 #include "lem-in.h"
+#include <stdio.h>		// delete
 
 static void	dist(t_room *room, char *start)
 {
 	t_link	*link;
 	int		tmp_dist;
+	static int	cond;
 
 	if (ft_strequ(room->name, start))
+	{
+		cond = 1;
 		return ;
+	}
 	link = room->link;
 	while (link)
 	{
@@ -18,6 +23,8 @@ static void	dist(t_room *room, char *start)
 		}
 		link = link->next;
 	}
+	if (cond != 1)
+		printf("shit");	// add error managment
 }
 
 void		set_dist(t_lemin *lemin)
