@@ -14,6 +14,8 @@ void			error_check(int error)
 			ft_putendl("DUPLICATE ERROR");
 		else if (error == ANTS_ERROR)
 			ft_putendl("ANT ERROR");
+		else if (error == CONN_ERROR)
+			ft_putendl("CONNECTION ERROR");
 		exit(-1);
 	}
 }

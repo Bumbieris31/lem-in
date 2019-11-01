@@ -6,6 +6,7 @@
 # define ROOM_ERROR	-2
 # define DUP_ERROR	-3
 # define ANTS_ERROR	-4
+# define CONN_ERROR	-5
 
 # define TABLE_SIZE	10000
 
@@ -16,14 +17,14 @@
 # include <errno.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <unistd.h>
-
 
 typedef enum		e_value
 {
 	NAME =			0,
 	X =				1,
-	Y =				2
+	Y =				2,
+	ROOM1 =			0,
+	ROOM2 =			1
 }					t_value;
 
 typedef struct		s_point
