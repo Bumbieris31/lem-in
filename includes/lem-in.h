@@ -67,6 +67,9 @@ void				error_check(int error);
 void				add_room(t_room **head, t_room *new);
 void				get_file_info(t_lemin *lemin, char *file);
 void				make_connect(char **connections, t_room *table[]);
+void				set_dist(t_lemin *lemin);
+
+t_link				*shortest_path(t_lemin *lemin);
 
 t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
 t_room				*new_room(char *name, t_point coord);

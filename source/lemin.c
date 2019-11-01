@@ -21,19 +21,25 @@ static void		print_dist(t_lemin *lemin)
 	}
 }
 
-void				set_dist(t_lemin *lemin);
-t_link				*shortest_path(t_lemin *lemin);
+static void		print_path(t_link *path)
+{
+	if (!path)
+		return ;
+	print_path(path->next);
+	ft_putendl(path->name);
+}
 
 void		lemin(char *file)
 {
 	t_lemin *lemin;
+	t_link	*path;
 
 	lemin = (t_lemin*)ft_memalloc(sizeof(t_lemin));
 	lemin->table = (t_room**)ft_memalloc(sizeof(t_room*) * TABLE_SIZE);
 	get_file_info(lemin, file);
 	make_connect(lemin->connections, lemin->table);
 	set_dist(lemin);
-	shortest_path(lemin);
-	// measure_distance();
+	path = shortest_path(lemin);
 	// print_file(file);
+	print_path(path);
 }

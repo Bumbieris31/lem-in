@@ -27,6 +27,7 @@ t_link				*shortest_path(t_lemin *lemin)
 
 	path = MEM(t_link);
 	path->ptr = lemin->start;
+	path->name = lemin->start->name;
 	tmp = path;
 	while (!ft_strequ(tmp->name, lemin->end->name))
 	{
@@ -35,14 +36,6 @@ t_link				*shortest_path(t_lemin *lemin)
 		tmp = tmp->next;
 		tmp->ptr = find_smallest_dist(find->ptr->link);
 		tmp->name = tmp->ptr->name;
-	}
-	
-	/* TESTING */
-	tmp = path;
-	while (tmp)
-	{
-		ft_printf("%s\n", tmp->name);
-		tmp = tmp->next;
 	}
 	return (path);
 }
