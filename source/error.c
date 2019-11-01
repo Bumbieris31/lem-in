@@ -1,5 +1,7 @@
 #include "lem-in.h"
 
+/* Checks if there is an error given and exits the program with an error message */
+
 void			error_check(int error)
 {
 	if (error < 0)
@@ -12,6 +14,8 @@ void			error_check(int error)
 			ft_putendl("DUPLICATE ERROR");
 		else if (error == ANTS_ERROR)
 			ft_putendl("ANT ERROR");
+		else if (error == CONN_ERROR)
+			ft_putendl("CONNECTION ERROR");
 		exit(-1);
 	}
 }

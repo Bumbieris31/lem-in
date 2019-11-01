@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   make_connect.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 15:26:31 by abumbier          #+#    #+#             */
-/*   Updated: 2019/10/31 18:14:58 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   make_connect.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
+/*   Updated: 2019/11/01 14:00:00 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
-#include <stdio.h>		//remove
 
 /*
 ** @descr: Returns the room that matches the name passed in str parameter.
@@ -71,10 +70,10 @@ void			connect_two(char **room_names, t_room *table[])
 	t_room	*room1;
 	t_room	*room2;
 
-	ind1 = hashing_funct(room_names[0]);
-	ind2 = hashing_funct(room_names[1]);
-	room1 = find_room(room_names[0], table, ind1);
-	room2 = find_room(room_names[1], table, ind2);
+	ind1 = hashing_funct(room_names[ROOM1]);
+	ind2 = hashing_funct(room_names[ROOM2]);
+	room1 = find_room(room_names[ROOM1], table, ind1);
+	room2 = find_room(room_names[ROOM2], table, ind2);
 	bind_rooms(room1, room2);
 	bind_rooms(room2, room1);
 }
@@ -92,10 +91,10 @@ void			make_connect(char **connections, t_room *table[])
 	while (connections[i])
 	{
 		rooms = ft_strsplit(connections[i], '-');
+		if (!rooms[ROOM1] || !rooms[ROOM2])
+			error_check(CONN_ERROR);
 		connect_two(rooms, table);
-		free(rooms[0]);
-		free(rooms[1]);
-		free(rooms);
+		ft_free_2darray((void**)rooms);
 		i++;
 	}
 }
