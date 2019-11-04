@@ -16,6 +16,8 @@ void			error_check(int error)
 			ft_putendl("ANT ERROR");
 		else if (error == CONN_ERROR)
 			ft_putendl("CONNECTION ERROR");
+		else if (error == NO_PATH_ERROR)
+			ft_putendl("NO PATH FOUND");
 		exit(-1);
 	}
 }

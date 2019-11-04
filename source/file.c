@@ -1,6 +1,8 @@
 #include "lem-in.h"
 
-/* Checks if it's a valid room */
+/*
+** Checks if it's a valid room
+*/
 
 static int			valid_room(char **room_info)
 {
@@ -26,7 +28,9 @@ static int			valid_room(char **room_info)
 	return (len != 3 ? ROOM_ERROR : 1);
 }
 
-/* Gets room info and makes a room struct and puts it in the hashtable */
+/*
+** Gets room info and makes a room struct and puts it in the hashtable
+*/
 
 static t_room		*get_room(t_lemin *lemin, char *line)
 {
@@ -48,7 +52,9 @@ static t_room		*get_room(t_lemin *lemin, char *line)
 	return(room);
 }
 
-/* Sets Start and End pointers to the correct rooms */
+/*
+** Sets Start and End pointers to the correct rooms
+*/
 
 static void			set_start_end(t_lemin *lemin, char *cmnd, int fd)
 {
@@ -62,7 +68,9 @@ static void			set_start_end(t_lemin *lemin, char *cmnd, int fd)
 	free(line);
 }
 
-/* Gets the amount of ants */
+/*
+** Gets the amount of ants
+*/
 
 static void			get_ants(t_lemin *lemin, int fd)
 {
@@ -75,13 +83,32 @@ static void			get_ants(t_lemin *lemin, int fd)
 	free(line);
 }
 
-/* Reads the given file line by line and gets the room info */
+/*
+** Add connections to the rooms
+*/
+
+static void			init_conncections(t_lemin *lemin, t_list **con)
+{
+	char *tmp;
+	char **connections;
+
+	tmp = ft_lstfold(*con, " ");
+	connections = ft_strsplit(tmp, ' ');
+	free(tmp);
+	ft_lstdel(con, ft_bzero);
+	make_connect(connections, lemin->table);
+	ft_free_2darray((void**)connections);
+
+}
+
+/*
+** Reads the given file line by line and gets the room info
+*/
 
 void				get_file_info(t_lemin *lemin, char *file)
 {
 	int		fd;
 	char	*line;
-	char	*tmp;
 	t_list	*con;
 
 	fd = open(file, O_RDONLY);
@@ -100,9 +127,6 @@ void				get_file_info(t_lemin *lemin, char *file)
 			get_room(lemin, line);
 		free(line);
 	}
-	tmp = ft_lstfold(con, " ");
-	lemin->connections = ft_strsplit(tmp, ' ');
-	free(tmp);
-	ft_lstdel(&con, ft_bzero);
 	close(fd);
+	init_conncections(lemin, &con);
 }
