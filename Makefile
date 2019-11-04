@@ -14,7 +14,7 @@ FLAGS = -Wall -Wextra -Werror #ADD LATER
 all: $(NAME)
 
 $(NAME): $(LIB) .objects $(OFILES)
-	@gcc -g -o $(NAME) $(OFILES) $(LIB) $(INCLUDES)
+	@gcc -o $(NAME) $(OFILES) $(LIB) $(INCLUDES) -g
 	@echo "$(NAME) compiled successfully"
 
 .objects:

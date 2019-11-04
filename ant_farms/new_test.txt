@@ -1,13 +1,22 @@
-3
+7
 ##start
-bim 1 0
+START 1 0
 ##end
-bam 5 82
-bum 9 16
+END 12 4
+short1 3 8
 #comment
-hop 6 12
-bim-bum
-bum-hop
-hop-bam
-bum-bam
+trash1 3 4
+short2 6 1
+trash2 6 8
+trash3 6 4
+short3 9 1
+START-trash1
+START-short1
+#trash1-short1
+short1-trash2
+short1-short2
+trash2-trash3
+trash3-short2
+short2-short3
+short3-END
 #another comment
