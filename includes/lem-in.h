@@ -9,8 +9,6 @@
 # define CONN_ERROR		-5
 # define NO_PATH_ERROR	-6
 
-# define TABLE_SIZE	10000
-
 # define MEM(x) (x*)ft_memalloc(sizeof(x))
 
 # include "libft.h"
@@ -40,9 +38,10 @@ typedef struct		s_room
 {
 	int				dist;
 	int				ant;
+	int				id;
 	char			*name;
 	t_point			coord;
-	struct s_room	*next;
+	// struct s_room	*next;
 	struct s_link	*link;
 }					t_room;
 
@@ -56,7 +55,8 @@ typedef struct		s_link
 typedef struct		s_lemin
 {
 	int 			ants;
-	t_room			**table;
+	int				size;
+	t_room			**rooms;
 	t_room			*start;
 	t_room			*end;
 }					t_lemin;
@@ -73,11 +73,9 @@ void				make_connect(char **connections, t_room *table[]);
 t_link				*shortest_path(t_room *start, t_room *end);
 
 t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
-t_room				*new_room(char *name, t_point coord);
+t_room				*new_room(char *name, t_point coord, int id);
 
-int					duplicate_room(t_room **table, char *name,
-					t_point coord, size_t index);
-
-size_t				hashing_funct(char *str);
+int					duplicate_room(t_room **rooms, char *name,
+					t_point coord, int size);
 
 #endif

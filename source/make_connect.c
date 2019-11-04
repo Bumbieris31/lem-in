@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/01 15:52:51 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/04 15:53:42 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,18 @@
 ** If such name doesn't exist, return the first node.
 */
 
-static t_room	*find_room(char *str, t_room *table[], int ind)
+static t_room	*find_room(char *str, t_room *table[])
 {
-	t_room	*room;
+	int		i;
 
-	room = table[ind];
-	while (room->next)
+	i = 0;
+	while (table[i])
 	{
-		if (ft_strequ(room->name, str))
-			break ;
-		else
-			room = room->next;
+		if (ft_strequ(table[i]->name, str))
+			return (table[i]);
+		i++;
 	}
-	return (room);
+	return (NULL);
 }
 
 /*
@@ -65,15 +64,15 @@ void			bind_rooms(t_room *room1, t_room *room2)
 
 void			connect_two(char **room_names, t_room *table[])
 {
-	int	ind1;
-	int	ind2;
+	// int	ind1;
+	// int	ind2;
 	t_room	*room1;
 	t_room	*room2;
 
-	ind1 = hashing_funct(room_names[ROOM1]);
-	ind2 = hashing_funct(room_names[ROOM2]);
-	room1 = find_room(room_names[ROOM1], table, ind1);
-	room2 = find_room(room_names[ROOM2], table, ind2);
+	// ind1 = hashing_funct(room_names[ROOM1]);
+	// ind2 = hashing_funct(room_names[ROOM2]);
+	room1 = find_room(room_names[ROOM1], table);
+	room2 = find_room(room_names[ROOM2], table);
 	bind_rooms(room1, room2);
 	bind_rooms(room2, room1);
 }

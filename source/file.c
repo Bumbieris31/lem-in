@@ -34,38 +34,35 @@ static int			valid_room(char **room_info)
 
 static t_room		*get_room(t_lemin *lemin, char *line)
 {
-	t_room	*room;
-	size_t	index;
-	char	**room_info;
-	char	*name;
-	t_point	coord;
+	t_room		*room;
+	char		**room_info;
+	char		*name;
+	t_point		coord;
+	static int	id;
 
 	room_info = ft_strsplit(line, ' ');
 	error_check(valid_room(room_info));
 	name = room_info[NAME];
 	coord = (t_point){ft_atoi(room_info[X]), ft_atoi(room_info[Y])};
-	index = hashing_funct(name);
-	if (duplicate_room(lemin->table, name, coord, index))
+	if (duplicate_room(lemin->rooms, name, coord, id))
 		error_check(DUP_ERROR);
-	room = add_to_hastable(lemin->table, new_room(name, coord), index);
+	lemin->rooms[id] = new_room(name, coord, id);
+	id++;
 	ft_free_2darray((void**)room_info);
-	return(room);
+	return(lemin->rooms[id - 1]);
 }
 
 /*
 ** Sets Start and End pointers to the correct rooms
 */
 
-static void			set_start_end(t_lemin *lemin, char *cmnd, int fd)
+static void			set_start_end(t_lemin *lemin, char *cmnd, t_list **file)
 {
-	char	*line;
-
-	ft_get_next_line(fd, &line);
+	*file = (*file)->next;
 	if (ft_strequ(cmnd, "##start"))
-		lemin->start = get_room(lemin, line);
+		lemin->start = get_room(lemin, (char*)(*file)->content);
 	else
-		lemin->end = get_room(lemin, line);
-	free(line);
+		lemin->end = get_room(lemin, (char*)(*file)->content);
 }
 
 /*
@@ -96,9 +93,30 @@ static void			init_conncections(t_lemin *lemin, t_list **con)
 	connections = ft_strsplit(tmp, ' ');
 	free(tmp);
 	ft_lstdel(con, ft_bzero);
-	make_connect(connections, lemin->table);
+	make_connect(connections, lemin->rooms);
 	ft_free_2darray((void**)connections);
 
+}
+
+static t_list			*copy_file(t_lemin *lemin, char *file, int *size)
+{
+	int		fd;
+	char	*line;
+	t_list	*copy;
+
+	fd = open(file, O_RDONLY);
+	error_check(fd);
+	get_ants(lemin, fd);
+	copy = NULL;
+	while (ft_get_next_line(fd, &line))
+	{
+		if (line[0] != '#' && !ft_strchr(line, '-'))
+			(*size)++;
+		ft_lstadd_back(&copy, ft_lstnew(line, ft_strlen(line) + 1));
+		free(line);
+	}
+	close(fd);
+	return (copy);
 }
 
 /*
@@ -107,26 +125,30 @@ static void			init_conncections(t_lemin *lemin, t_list **con)
 
 void				get_file_info(t_lemin *lemin, char *file)
 {
-	int		fd;
-	char	*line;
 	t_list	*con;
+	t_list	*copied_file;
+	t_list	*tmp;
+	int		size;
+	char	*line;
 
-	fd = open(file, O_RDONLY);
-	error_check(fd);
-	get_ants(lemin, fd);
+	size = 0;
+	copied_file = copy_file(lemin, file, &size);
 	con = NULL;
-	while (ft_get_next_line(fd, &line))
+	tmp = copied_file;
+	lemin->rooms = (t_room**)ft_memalloc(sizeof(t_room*) * (size + 1));
+	while (tmp)
 	{
+		line = (char*)tmp->content;
 		if (ft_strequ(line, "##start") || ft_strequ(line, "##end"))
-			set_start_end(lemin, line, fd);
+			set_start_end(lemin, line, &tmp);
 		else if (line[0] == '#')
 			;
 		else if (ft_strchr(line, '-'))
 			 ft_lstadd(&con, ft_lstnew(line, ft_strlen(line) + 1));
 		else
 			get_room(lemin, line);
-		free(line);
+		tmp = tmp->next;
 	}
-	close(fd);
 	init_conncections(lemin, &con);
+	ft_lstdel(&copied_file, ft_bzero);
 }
