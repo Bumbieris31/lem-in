@@ -50,8 +50,8 @@ void		lemin(char *file)
 	// print_file(file);
 	// move_ants(lemin, path);
 
-	print_rooms(lemin->rooms);
+	// print_rooms(lemin->rooms);
 	// print_links(lemin->rooms[0]->link);
 	// print_dist(lemin);
-	// print_path(path);
+	print_path(path);
 }
