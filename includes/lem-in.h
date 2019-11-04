@@ -39,6 +39,7 @@ typedef struct		s_room
 {
 	int				dist;
 	int				ant;
+	int				id;
 	char			*name;
 	t_point			coord;
 	struct s_room	*next;

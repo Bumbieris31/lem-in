@@ -23,7 +23,7 @@ static void	dist(t_room *room, char *start)
 		}
 		link = link->next;
 	}
-	if (cond != 1)
+	if (cond != 1)	//change to check if start->dist is -1
 		printf("shit");	// add error managment
 }
 
