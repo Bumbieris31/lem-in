@@ -19,14 +19,15 @@ static void		print_dist(t_lemin *lemin)
 			tmp = tmp->next;
 		}
 	}
+	ft_putendl("");
 }
 
 static void		print_path(t_link *path)
 {
 	if (!path)
 		return ;
-	print_path(path->next);
 	ft_putendl(path->name);
+	print_path(path->next);
 }
 
 void		lemin(char *file)
@@ -37,11 +38,10 @@ void		lemin(char *file)
 	lemin = (t_lemin*)ft_memalloc(sizeof(t_lemin));
 	lemin->table = (t_room**)ft_memalloc(sizeof(t_room*) * TABLE_SIZE);
 	get_file_info(lemin, file);
-	make_connect(lemin->connections, lemin->table);
 	set_dist(lemin);
-	print_dist(lemin);
 	path = shortest_path(lemin);
-	move_ants(lemin, path);
-	// print_file(file);
+	print_dist(lemin);
 	print_path(path);
+	// move_ants(lemin, path);
+	// print_file(file);
 }

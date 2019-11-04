@@ -2,11 +2,12 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# define FD_ERROR	-1
-# define ROOM_ERROR	-2
-# define DUP_ERROR	-3
-# define ANTS_ERROR	-4
-# define CONN_ERROR	-5
+# define FD_ERROR		-1
+# define ROOM_ERROR		-2
+# define DUP_ERROR		-3
+# define ANTS_ERROR		-4
+# define CONN_ERROR		-5
+# define NO_PATH_ERROR	-6
 
 # define TABLE_SIZE	10000
 
@@ -56,7 +57,6 @@ typedef struct		s_link
 typedef struct		s_lemin
 {
 	int 			ants;
-	char 			**connections;
 	t_room			**table;
 	t_room			*start;
 	t_room			*end;
@@ -65,11 +65,11 @@ typedef struct		s_lemin
 void				lemin(char *file);
 void				print_file(char *file);
 void				error_check(int error);
+void				set_dist(t_lemin *lemin);
 void				add_room(t_room **head, t_room *new);
+void				move_ants(t_lemin *lemin, t_link *path);
 void				get_file_info(t_lemin *lemin, char *file);
 void				make_connect(char **connections, t_room *table[]);
-void				set_dist(t_lemin *lemin);
-void				move_ants(t_lemin *lemin, t_link *path);
 
 t_link				*shortest_path(t_lemin *lemin);
 
