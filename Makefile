@@ -32,7 +32,7 @@ clean:
 	@rm -f $(OFILES)
 
 fclean: clean
-	@rm -r .objects
+	@rm -rf .objects
 	@make fclean -C libft
 	@rm -f $(NAME)
 
