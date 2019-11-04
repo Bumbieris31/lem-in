@@ -13,8 +13,12 @@ G 1 6
 H 1 7
 I 1 8
 J 1 9
+1 2 0
+2 2 1
 START-B
 START-A
+START-1
+START-2
 B-C
 A-C
 A-J

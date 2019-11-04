@@ -70,7 +70,7 @@ void				move_ants(t_lemin *lemin, t_link *path);
 void				get_file_info(t_lemin *lemin, char *file);
 void				make_connect(char **connections, t_room *table[]);
 
-t_link				*shortest_path(t_lemin *lemin);
+t_link				*shortest_path(t_room *start, t_room *end);
 
 t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
 t_room				*new_room(char *name, t_point coord);

@@ -39,7 +39,7 @@ void		lemin(char *file)
 	lemin->table = (t_room**)ft_memalloc(sizeof(t_room*) * TABLE_SIZE);
 	get_file_info(lemin, file);
 	set_dist(lemin);
-	path = shortest_path(lemin);
+	path = shortest_path(lemin->start, lemin->end);
 	print_dist(lemin);
 	print_path(path);
 	// move_ants(lemin, path);

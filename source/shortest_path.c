@@ -5,12 +5,14 @@ static t_room		*find_smallest_dist(t_link *tmp)
 	int		dist;
 	t_room	*room;
 
+	while (tmp->ptr->dist == -1)
+		tmp = tmp->next;
 	dist = tmp->ptr->dist;
 	room = tmp->ptr;
 	while (tmp->next)
 	{
 		tmp = tmp->next;
-		if (dist > tmp->ptr->dist)
+		if (dist > tmp->ptr->dist && tmp->ptr->dist != -1)
 		{
 			dist = tmp->ptr->dist;
 			room = tmp->ptr;
@@ -19,17 +21,17 @@ static t_room		*find_smallest_dist(t_link *tmp)
 	return (room);
 }
 
-t_link				*shortest_path(t_lemin *lemin)
+t_link				*shortest_path(t_room *start, t_room *end)
 {
 	t_link	*path;
 	t_link	*tmp;
 	t_link	*find;
 
 	path = MEM(t_link);
-	path->ptr = lemin->start;
-	path->name = lemin->start->name;
+	path->ptr = start;
+	path->name = start->name;
 	tmp = path;
-	while (!ft_strequ(tmp->name, lemin->end->name))
+	while (!ft_strequ(tmp->name, end->name))
 	{
 		find = tmp;
 		tmp->next = MEM(t_link);
