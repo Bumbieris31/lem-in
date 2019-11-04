@@ -28,6 +28,16 @@ static void		print_path(t_link *path)
 	print_path(path->next);
 }
 
+static void		print_rooms(t_room **rooms)
+{
+	int i = 0;
+	while (rooms[i])
+	{
+		ft_printf("ROOM : %s, ID : %d\n", rooms[i]->name, rooms[i]->id);
+		i++;
+	}
+}
+
 void		lemin(char *file)
 {
 	t_lemin *lemin;
@@ -37,9 +47,10 @@ void		lemin(char *file)
 	get_file_info(lemin, file);
 	set_dist(lemin);
 	path = shortest_path(lemin->start, lemin->end);
-	print_file(file);
-	move_ants(lemin, path);
+	// print_file(file);
+	// move_ants(lemin, path);
 
+	print_rooms(lemin->rooms);
 	// print_links(lemin->rooms[0]->link);
 	// print_dist(lemin);
 	// print_path(path);
