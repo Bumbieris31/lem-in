@@ -1,5 +1,6 @@
 #include "lem-in.h"
 
+/* *************** DEBUG ****************** */
 static void		print_links(t_link *link)
 {
 	if (!link)
@@ -20,12 +21,12 @@ static void		print_dist(t_lemin *lemin)
 	ft_putendl("");
 }
 
-static void		print_path(t_link *path)
+static void		print_path(t_room *room)
 {
-	if (!path)
+	if (!room)
 		return ;
-	ft_putendl(path->name);
-	print_path(path->next);
+	ft_printf("%s --> %s\n", room->from->name, room->name);
+	print_path(room->to);
 }
 
 static void		print_rooms(t_room **rooms)
@@ -37,21 +38,23 @@ static void		print_rooms(t_room **rooms)
 		i++;
 	}
 }
+/* *************************************** */
 
 void		lemin(char *file)
 {
 	t_lemin *lemin;
-	t_link	*path;
+	t_path	*paths;
 
 	lemin = (t_lemin*)ft_memalloc(sizeof(t_lemin));
 	get_file_info(lemin, file);
-	set_dist(lemin);
-	path = shortest_path(lemin->start, lemin->end);
+	paths = shortest_path(lemin->rooms, START, END);
 	// print_file(file);
 	// move_ants(lemin, path);
 
+	breadth_first(START->id, END->id, lemin->rooms, &paths);
+
 	// print_rooms(lemin->rooms);
 	// print_links(lemin->rooms[0]->link);
-	// print_dist(lemin);
-	print_path(path);
+	print_dist(lemin);
+	// print_path(paths->ptr);
 }
