@@ -6,13 +6,13 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:50:31 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/05 16:28:16 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/05 21:44:30 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void	split_path()
+t_path	*split_path() // returns new paths llist?
 {
 	
 /*
@@ -28,13 +28,28 @@ void	split_path()
  */
 }
 
-void	find_more_paths(t_path *paths)
+void	find_more_paths(t_lemin *lemin)
 {
-	while (paths)
-	{
+	int	fastest_network;
+	int	temp_network;
+	t_room	*check_path;
+	t_path	*new_paths;
 		//save path that might be split (when encounter a node with *from(mark path nodes with path_id?))
-		paths->ptr;
-		paths->next;
+	fastest_network = move_ants_in_all_paths(lemin);
+	check_path = find_smallest_dist(lemin->start->link);
+	while (check_path != 0)
+	{
+		new_paths = split_path();
+		temp_network = move_ants_in_all_paths(lemin); //with new_paths passed in
+		if (temp_network < fastest_network)
+		{
+			//del lemin->paths
+			lemin->paths = new_paths;
+		}
+		else
+		{
+			//free new_paths
+		}
 	}
 	/*
 	while (more paths can be taken from the start)

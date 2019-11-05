@@ -81,9 +81,11 @@ void				make_connect(char **connections, t_room *table[]);
 
 t_link				*shortest_path(t_room *start, t_room *end);
 
-t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
+t_room				*find_smallest_dist(t_link *tmp);
 t_room				*new_room(char *name, t_point coord, int id);
+t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
 
+int					move_ants_in_all_paths(t_lemin *lemin);
 int					duplicate_room(t_room **rooms, char *name,
 					t_point coord, int size);
 

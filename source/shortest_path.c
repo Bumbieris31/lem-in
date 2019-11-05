@@ -1,12 +1,22 @@
 #include "lem-in.h"
 
-static t_room		*find_smallest_dist(t_link *tmp)
+/*
+** @descr: Finds and return the room with the smallest distance var for any \
+** rooms *tmp connections.
+*/
+
+t_room		*find_smallest_dist(t_link *tmp)
 {
 	int		dist;
 	t_room	*room;
 
 	while (tmp->ptr->dist == -1)
-		tmp = tmp->next;
+	{
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			return (0);
+	}
 	dist = tmp->ptr->dist;
 	room = tmp->ptr;
 	while (tmp->next)
