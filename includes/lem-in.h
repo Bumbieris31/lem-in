@@ -34,6 +34,13 @@ typedef struct		s_point
 	int				y;
 }					t_point;
 
+typedef struct		s_path
+{
+	int				len;
+	t_room			*ptr;
+	struct s_path	*next;
+}					t_path;
+
 typedef struct		s_room
 {
 	int				dist;
@@ -41,7 +48,8 @@ typedef struct		s_room
 	int				id;
 	char			*name;
 	t_point			coord;
-	// struct s_room	*next;
+	struct s_room	*to;
+	struct s_room	*from;
 	struct s_link	*link;
 }					t_room;
 
@@ -59,6 +67,7 @@ typedef struct		s_lemin
 	t_room			**rooms;
 	t_room			*start;
 	t_room			*end;
+	t_path			*paths;
 }					t_lemin;
 
 void				lemin(char *file);
