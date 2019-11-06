@@ -128,14 +128,12 @@ void				get_file_info(t_lemin *lemin, char *file)
 	t_list	*con;
 	t_list	*copied_file;
 	t_list	*tmp;
-	int		size;
 	char	*line;
 
-	size = 0;
-	copied_file = copy_file(lemin, file, &size);
+	copied_file = copy_file(lemin, file, &lemin->size);
 	con = NULL;
 	tmp = copied_file;
-	lemin->rooms = (t_room**)ft_memalloc(sizeof(t_room*) * (size + 1));
+	lemin->rooms = (t_room**)ft_memalloc(sizeof(t_room*) * (lemin->size + 1));
 	while (tmp)
 	{
 		line = (char*)tmp->content;

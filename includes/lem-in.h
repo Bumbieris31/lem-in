@@ -12,6 +12,7 @@
 # define MEM(x)			(x*)ft_memalloc(sizeof(x))
 # define START			lemin->start
 # define END			lemin->end
+# define ROOMS			lemin->rooms
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -42,6 +43,7 @@ typedef struct		s_room
 	int				ant;
 	int				id;
 	int				path;
+	int				visited;
 	char			*name;
 	t_point			coord;
 	struct s_room	*to;
@@ -81,7 +83,7 @@ void				add_room(t_room **head, t_room *new);
 void				move_ants(t_lemin *lemin, t_link *path);
 void				get_file_info(t_lemin *lemin, char *file);
 void				make_connect(char **connections, t_room *table[]);
-void				breadth_first(int start, int end, t_room **rooms, t_path **paths);
+void				breadth_first(t_room **rooms, t_room *end);
 
 t_path				*shortest_path(t_room **rooms, t_room *start, t_room *end);
 

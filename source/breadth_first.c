@@ -14,46 +14,43 @@ static void			reset_dist(t_room **rooms, int end)
 	rooms[end]->from = NULL;
 }
 
-static void			set_dist(int start, int end, t_room *room, int backtrack)
+static void			add_to_queue(t_path **queue, t_room *room)
 {
-	t_link	*link;
-	int		tmp_dist;
-
-	if (room->id == start)
-		return ;
-	tmp_dist = room->dist + 1;
-	if (backtrack)
+	if (!*queue)
 	{
-		if (room->to->dist == -1 || room->to->dist > tmp_dist)
-		{
-			room->to->dist = tmp_dist;
-			set_dist(start, end, room->to, 0);
-		}
-		return ;
+		*queue = MEM(t_path);
+		(*queue)->ptr = room;
 	}
-	link = room->link;
-	while (link)
-	{
-		if (link->ptr->dist == -1 || link->ptr->dist > tmp_dist)
-		{
-			if (!link->ptr->to)
-			{
-				link->ptr->dist = tmp_dist;
-				set_dist(start, end, link->ptr, 0);
-			} else if (link->ptr->to->id == room->id)
-				;
-			else
-			{
-				link->ptr->dist = tmp_dist;
-				set_dist(start, end, link->ptr, 1);
-			}
-		}
-		link = link->next;
-	}
+	else
+		add_to_queue(&(*queue)->next, room);
 }
 
-void				breadth_first(int start, int end, t_room **rooms, t_path **paths)
+void				breadth_first(t_room **rooms, t_room *end)
 {
-	reset_dist(rooms, end);
-	set_dist(start, end, rooms[end], 0);
+	t_path	*queue;
+	t_path	*tmp;
+	t_link	*link;
+
+	reset_dist(rooms, end->id);
+	queue = MEM(t_path);
+	queue->ptr = end;
+	queue->ptr->dist = 0;
+	queue->ptr->visited = 1;
+	while (queue)
+	{
+		tmp = queue;
+		link = queue->ptr->link;
+		while (link)
+		{
+			if (!link->ptr->visited)
+			{
+				link->ptr->dist = queue->ptr->dist + 1;
+				link->ptr->visited = 1;
+				add_to_queue(&queue, link->ptr);
+			}
+			link = link->next;
+		}
+		queue = queue->next;
+		free(tmp);
+	}
 }

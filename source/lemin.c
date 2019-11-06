@@ -13,9 +13,10 @@ static void		print_dist(t_lemin *lemin)
 {
 	int i = 0;
 
+	ft_putendl("");
 	while (lemin->rooms[i])
 	{
-		ft_printf("%s dist = %d\n", lemin->rooms[i]->name, lemin->rooms[i]->dist);
+		ft_printf("%-5s dist = %d\n", lemin->rooms[i]->name, lemin->rooms[i]->dist);
 		i++;
 	}
 	ft_putendl("");
@@ -47,14 +48,12 @@ void		lemin(char *file)
 
 	lemin = (t_lemin*)ft_memalloc(sizeof(t_lemin));
 	get_file_info(lemin, file);
-	paths = shortest_path(lemin->rooms, START, END);
+	paths = shortest_path(ROOMS, START, END);
 	// print_file(file);
 	// move_ants(lemin, path);
 
-	breadth_first(START->id, END->id, lemin->rooms, &paths);
-
 	// print_rooms(lemin->rooms);
 	// print_links(lemin->rooms[0]->link);
-	print_dist(lemin);
-	// print_path(paths->ptr);
+	// print_dist(lemin);
+	print_path(paths->ptr);
 }
