@@ -53,15 +53,15 @@ typedef struct		s_room
 
 typedef struct		s_path
 {
-	int				len;
+	int				len;	// ARE WE USING THIS??? could all be the same struct
 	t_room			*ptr;
 	struct s_path	*next;
 }					t_path;
 
 typedef struct		s_link
 {
-	int				id;		// ARE WE USING THIS???
-	char			*name;	// ARE WE USING THIS???
+	int				id;		// ARE WE USING THIS??? could all be the same struct
+	char			*name;	// ARE WE USING THIS??? could all be the same struct
 	t_room			*ptr;
 	struct s_link	*next;
 }					t_link;

@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 14:45:47 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/01 15:44:03 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/06 19:59:34 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_node
+{
+	void			*content;
+	struct s_node	*next;
+}					t_node;
 
 void				ft_putnbr(long long n);
 void				ft_putstr(char const *s);
@@ -49,6 +55,11 @@ void				ft_lstadd_back(t_list **alst, t_list *new);
 void				ft_lstinsert(t_list *node, t_list *new);
 void				ft_free_2darray(void **array);
 void				ft_wait(int sec, long nano);
+void				ft_nodeadd(t_node **alst, t_node *new);
+void				ft_nodeadd_back(t_node **alst, t_node *new);
+void				ft_nodeiter(t_node *lst, void (*f)(void *));
+void				ft_nodedelone(t_node *lst, void (*del)(void*));
+void				ft_nodeclear(t_node **lst, void (*del)(void *));
 
 void				*ft_memset(void *b, int c, size_t len);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
@@ -94,6 +105,7 @@ int					ft_tolower(int c);
 int					ft_max(int a, int b);
 int					ft_min(int a, int b);
 int					ft_intlen(long long n);
+int					ft_nodesize(t_node *lst);
 int					ft_power(int x, size_t n);
 int					ft_countwords(char const *s, char c);
 int					ft_atoi(const char *str);
@@ -116,5 +128,9 @@ ssize_t				ft_strrchr_i(const char *s, int c);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_strsplit_list(const char *s, char c);
+
+t_node				*ft_nodelast(t_node *lst);
+t_node				*ft_nodenew(void *content);
+t_node				*ft_nodemap(t_node *lst, void *(*f)(void *));
 
 #endif
