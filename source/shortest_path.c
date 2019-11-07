@@ -1,31 +1,42 @@
 #include "lem-in.h"
 
-static int			find_smallest_dist(t_link *links)
+/*
+** @descr: Finds and return the room with the smallest distance var for any \
+** rooms *tmp connections.
+*/
+
+t_room		*find_smallest_dist(t_link *tmp)
 {
 	int		dist;
 	t_room	*room;
 
-	while (links->ptr->dist == -1)
-		links = links->next;
-	dist = links->ptr->dist;
-	room = links->ptr;
-	while (links->next)
+	while (tmp->ptr->dist == -1 || tmp->ptr->path)
 	{
-		links = links->next;
-		if (dist > links->ptr->dist && links->ptr->dist != -1)
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			return (0);
+	}
+	dist = tmp->ptr->dist;
+	room = tmp->ptr;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+		if (dist > tmp->ptr->dist && tmp->ptr->dist != -1)
 		{
-			dist = links->ptr->dist;
-			room = links->ptr;
+			dist = tmp->ptr->dist;
+			room = tmp->ptr;
 		}
 	}
-	return (room->id);
+	return (room);
 }
 
 t_link				*shortest_path(t_room **rooms, t_room *start, t_room *end)
 {
 	t_link		*path;
 	int			cur;
-	int			nxt;
+	t_link		*path;
+	t_room		*nxt;
 
 	breadth_first(rooms, end, start->id);
 	if (start->dist == -1)
@@ -38,9 +49,9 @@ t_link				*shortest_path(t_room **rooms, t_room *start, t_room *end)
 	{
 		nxt = find_smallest_dist(rooms[cur]->link);
 		rooms[cur]->path = 1;
-		rooms[cur]->to = rooms[nxt];
-		rooms[nxt]->from = rooms[cur];
-		cur = nxt;
+		rooms[cur]->to = rooms[nxt->id];
+		rooms[nxt->id]->from = rooms[cur];
+		cur = nxt->id;
 	}
 	return (path);
 }
