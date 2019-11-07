@@ -1,6 +1,6 @@
 #include "lem-in.h"
 
-static void			reset_dist(t_room **rooms, int end) // reset visited
+static void			reset_rooms(t_room **rooms, int end)
 {
 	int i;
 
@@ -8,54 +8,99 @@ static void			reset_dist(t_room **rooms, int end) // reset visited
 	while (rooms[i])
 	{
 		rooms[i]->dist = -1;
+		rooms[i]->visited = 0;
 		i++;
 	}
 	rooms[end]->dist = 0;
+	rooms[end]->path = 0;
 	rooms[end]->from = NULL;
 }
 
-static void			add_to_queue(t_path **queue, t_room *room)
+static void			add_to_queue(t_link **queue, t_room *room)
 {
 	if (!*queue)
 	{
-		*queue = MEM(t_path);
+		*queue = MEM(t_link);
 		(*queue)->ptr = room;
 	}
 	else
 		add_to_queue(&(*queue)->next, room);
 }
 
-static void			on_path()
+static void			free_queue(t_link *queue)
 {
-	
+	if (!queue)
+		return ;
+	free_queue(queue->next);
+	free(queue);
 }
 
-void				breadth_first(t_room **rooms, t_room *end)
+static int			against_path(t_room *from, t_room *towards)
 {
-	t_path	*queue;
-	t_path	*tmp;
+	if (towards->path && towards->to->id == from->id)
+		return (1);
+	return (0);
+}
+
+static void			on_path(t_link **queue, t_room *path, int dist)
+{
+	t_link *link;
+
+	link = path->link;
+	while (link)
+	{
+		if (!link->ptr->visited && link->ptr->path != path->path)
+		{
+			link->ptr->dist = dist;
+			link->ptr->visited = 1;
+			add_to_queue(queue, link->ptr);
+		}
+		link = link->next;
+	}
+	if (path->visited)
+		return ;
+	path->visited = 1;
+	path->dist = -2;
+	on_path(queue, path->to, dist);
+}
+
+void				breadth_first(t_room **rooms, t_room *end, int start)
+{
+	t_link	*queue;
+	t_link	*tmp;
 	t_link	*link;
 
-	reset_dist(rooms, end->id);
-	queue = MEM(t_path);
+	reset_rooms(rooms, end->id);
+	queue = MEM(t_link);
 	queue->ptr = end;
-	queue->ptr->dist = 0;
 	queue->ptr->visited = 1;
-	while (queue)// && queue->ptr->id != start->id)
+	while (queue)
 	{
 		tmp = queue;
-		link = queue->ptr->link;
-		while (link)
+		if (queue->ptr->path)
+			on_path(&queue, queue->ptr->to, queue->ptr->dist + 1);
+		else
 		{
-			if (!link->ptr->visited)
+			link = queue->ptr->link;
+			while (link)
 			{
-				link->ptr->dist = queue->ptr->dist + 1;
-				link->ptr->visited = 1;
-				add_to_queue(&queue, link->ptr);
+				if (against_path(queue->ptr, link->ptr))
+					;
+				else if (!link->ptr->visited)
+				{
+					link->ptr->dist = queue->ptr->dist + 1;
+					link->ptr->visited = 1;
+					add_to_queue(&queue, link->ptr);
+				}
+				link = link->next;
 			}
-			link = link->next;
 		}
 		queue = queue->next;
 		free(tmp);
+		if (queue->ptr->id == start)
+		{
+			free_queue(queue);
+			return ;
+		}
 	}
 }

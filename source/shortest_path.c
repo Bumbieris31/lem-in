@@ -21,15 +21,16 @@ static int			find_smallest_dist(t_link *links)
 	return (room->id);
 }
 
-t_path				*shortest_path(t_room **rooms, t_room *start, t_room *end)
+t_link				*shortest_path(t_room **rooms, t_room *start, t_room *end)
 {
-	t_path		*path;
+	t_link		*path;
 	int			cur;
 	int			nxt;
 
-	breadth_first(rooms, end);
-	path = MEM(t_path);
-	path->len = start->dist;
+	breadth_first(rooms, end, start->id);
+	if (start->dist == -1)
+		error_check(NO_PATH_ERROR);
+	path = MEM(t_link);
 	cur = find_smallest_dist(start->link);
 	path->ptr = rooms[cur];
 	rooms[cur]->from = start;

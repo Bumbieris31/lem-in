@@ -22,12 +22,16 @@ static void		print_dist(t_lemin *lemin)
 	ft_putendl("");
 }
 
-static void		print_path(t_room *room)
+static void		print_path(t_room *room, char *end)
 {
-	if (!room)
+	if (!room->to->to)
+	{
+		ft_printf("%s --> %s\n", room->from->name, room->name);
+		ft_printf("%s --> %s\n", room->name, end);
 		return ;
+	}
 	ft_printf("%s --> %s\n", room->from->name, room->name);
-	print_path(room->to);
+	print_path(room->to, end);
 }
 
 static void		print_rooms(t_room **rooms)
@@ -55,5 +59,9 @@ void		lemin(char *file)
 	// print_rooms(lemin->rooms);
 	// print_links(lemin->rooms[0]->link);
 	print_dist(lemin);
-	print_path(paths->ptr);
+	breadth_first(ROOMS, END, START->id);
+	print_dist(lemin);
+	// print_path(paths->ptr, END->name);
+	// while (1)
+	// 	;
 }

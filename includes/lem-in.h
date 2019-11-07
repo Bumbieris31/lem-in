@@ -54,6 +54,7 @@ typedef struct		s_room
 typedef struct		s_link
 {
 	int				id;
+	char			*name;
 	t_room			*ptr;
 	struct s_link	*next;
 }					t_link;
@@ -74,7 +75,7 @@ void				add_room(t_room **head, t_room *new);
 void				move_ants(t_lemin *lemin, t_link *path);
 void				get_file_info(t_lemin *lemin, char *file);
 void				make_connect(char **connections, t_room *table[]);
-void				breadth_first(t_room **rooms, t_room *end);
+void				breadth_first(t_room **rooms, t_room *end, int start);
 
 t_link				*shortest_path(t_room **rooms, t_room *start, t_room *end);
 
