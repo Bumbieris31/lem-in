@@ -4,7 +4,7 @@ PLUS = $(GREEN)+$(WHITE)
 
 NAME = lem-in
 SOURCE = main lemin room file error print_file make_connect \
-shortest_path move_ants breadth_first
+get_path move_ants breadth_first
 INCLUDES = -Iincludes -Ilibft/includes
 CFILES = $(SOURCE:%=source/%.c)
 OFILES = $(SOURCE:%=.objects/%.o)

@@ -64,11 +64,29 @@ static void			on_path(t_link **queue, t_room *path, int dist)
 	on_path(queue, path->to, dist);
 }
 
+static void			add_links_to_queue(t_link **queue)
+{
+	t_link	*link;
+
+	link = (*queue)->ptr->link;
+	while (link)
+	{
+		if (against_path((*queue)->ptr, link->ptr))
+			;
+		else if (!link->ptr->visited)
+		{
+			link->ptr->dist = (*queue)->ptr->dist + 1;
+			link->ptr->visited = 1;
+			add_to_queue(queue, link->ptr);
+		}
+		link = link->next;
+	}
+}
+
 void				breadth_first(t_room **rooms, t_room *end, int start)
 {
 	t_link	*queue;
 	t_link	*tmp;
-	t_link	*link;
 
 	reset_rooms(rooms, end->id);
 	queue = MEM(t_link);
@@ -80,21 +98,7 @@ void				breadth_first(t_room **rooms, t_room *end, int start)
 		if (queue->ptr->path)
 			on_path(&queue, queue->ptr->to, queue->ptr->dist + 1);
 		else
-		{
-			link = queue->ptr->link;
-			while (link)
-			{
-				if (against_path(queue->ptr, link->ptr))
-					;
-				else if (!link->ptr->visited)
-				{
-					link->ptr->dist = queue->ptr->dist + 1;
-					link->ptr->visited = 1;
-					add_to_queue(&queue, link->ptr);
-				}
-				link = link->next;
-			}
-		}
+			add_links_to_queue(&queue);
 		queue = queue->next;
 		free(tmp);
 		if (queue->ptr->id == start)

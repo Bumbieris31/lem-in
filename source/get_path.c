@@ -21,7 +21,7 @@ static int			find_smallest_dist(t_link *links)
 	return (room->id);
 }
 
-t_link				*shortest_path(t_room **rooms, t_room *start, t_room *end)
+t_link				*get_path(t_room **rooms, t_room *start, t_room *end)
 {
 	t_link		*path;
 	int			cur;
