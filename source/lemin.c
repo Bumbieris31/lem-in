@@ -52,16 +52,15 @@ void		lemin(char *file)
 
 	lemin = (t_lemin*)ft_memalloc(sizeof(t_lemin));
 	get_file_info(lemin, file);
-	paths = shortest_path(ROOMS, START, END);
 	// print_file(file);
 	// move_ants(lemin, path);
 
 	// print_rooms(lemin->rooms);
 	// print_links(lemin->rooms[0]->link);
+	paths = shortest_path(ROOMS, START, END);
 	print_dist(lemin);
-	breadth_first(ROOMS, END, START->id);
+	print_path(paths->ptr, END->name);
+	paths = shortest_path(ROOMS, START, END);
 	print_dist(lemin);
-	// print_path(paths->ptr, END->name);
-	// while (1)
-	// 	;
+	print_path(paths->ptr, END->name);
 }

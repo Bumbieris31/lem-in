@@ -64,6 +64,11 @@ static void			on_path(t_link **queue, t_room *path, int dist)
 	on_path(queue, path->to, dist);
 }
 
+static void			add_links_to_queue()
+{
+
+}
+
 void				breadth_first(t_room **rooms, t_room *end, int start)
 {
 	t_link	*queue;
@@ -81,6 +86,7 @@ void				breadth_first(t_room **rooms, t_room *end, int start)
 			on_path(&queue, queue->ptr->to, queue->ptr->dist + 1);
 		else
 		{
+			add_links_to_queue();
 			link = queue->ptr->link;
 			while (link)
 			{
