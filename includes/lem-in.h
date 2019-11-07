@@ -51,17 +51,9 @@ typedef struct		s_room
 	struct s_link	*link;
 }					t_room;
 
-typedef struct		s_path
-{
-	int				len;	// ARE WE USING THIS??? could all be the same struct
-	t_room			*ptr;
-	struct s_path	*next;
-}					t_path;
-
 typedef struct		s_link
 {
-	int				id;		// ARE WE USING THIS??? could all be the same struct
-	char			*name;	// ARE WE USING THIS??? could all be the same struct
+	int				id;
 	t_room			*ptr;
 	struct s_link	*next;
 }					t_link;
@@ -73,7 +65,6 @@ typedef struct		s_lemin
 	t_room			**rooms;
 	t_room			*start;
 	t_room			*end;
-	t_path			*paths;
 }					t_lemin;
 
 void				lemin(char *file);
@@ -85,7 +76,7 @@ void				get_file_info(t_lemin *lemin, char *file);
 void				make_connect(char **connections, t_room *table[]);
 void				breadth_first(t_room **rooms, t_room *end);
 
-t_path				*shortest_path(t_room **rooms, t_room *start, t_room *end);
+t_link				*shortest_path(t_room **rooms, t_room *start, t_room *end);
 
 t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
 t_room				*new_room(char *name, t_point coord, int id);

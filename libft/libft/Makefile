@@ -6,7 +6,7 @@
 #    By: fhignett <fhignett@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/09 15:24:52 by fhignett       #+#    #+#                 #
-#    Updated: 2019/11/06 19:50:23 by fhignett      ########   odam.nl          #
+#    Updated: 2019/11/07 12:09:09 by fhignett      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,7 @@ ft_countwords.c ft_print_byte.c ft_sort_int_tab.c ft_lstadd_back.c \
 ft_strsplit_list.c ft_lstinsert.c ft_lstfold.c ft_power.c ft_get_next_line.c \
 ft_sqrt.c ft_atoi_base.c ft_itoa_base.c ft_free_2darray.c ft_clamp.c \
 ft_intlen.c ft_putunsigned.c ft_map.c ft_wait.c ft_milsec.c ft_min.c ft_max.c \
-ft_strchr_i.c ft_strrchr_i.c ft_nodeadd_back.c ft_nodeadd.c ft_nodeclear.c \
-ft_nodedelone.c ft_nodeiter.c ft_nodelast.c ft_nodemap.c ft_nodenew.c \
-ft_nodesize.c
+ft_strchr_i.c ft_strrchr_i.c
 FILESO = $(FILESC:.c=.o)
 FLAGS = -Wall -Wextra -Werror
 

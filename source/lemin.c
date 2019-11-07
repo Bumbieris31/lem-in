@@ -44,7 +44,7 @@ static void		print_rooms(t_room **rooms)
 void		lemin(char *file)
 {
 	t_lemin *lemin;
-	t_path	*paths;
+	t_link	*paths;
 
 	lemin = (t_lemin*)ft_memalloc(sizeof(t_lemin));
 	get_file_info(lemin, file);
@@ -54,6 +54,6 @@ void		lemin(char *file)
 
 	// print_rooms(lemin->rooms);
 	// print_links(lemin->rooms[0]->link);
-	// print_dist(lemin);
+	print_dist(lemin);
 	print_path(paths->ptr);
 }
