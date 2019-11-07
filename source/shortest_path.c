@@ -10,7 +10,7 @@ t_room		*find_smallest_dist(t_link *tmp)
 	int		dist;
 	t_room	*room;
 
-	while (tmp->ptr->dist == -1)
+	while (tmp->ptr->dist == -1 || tmp->ptr->path)
 	{
 		if (tmp->next)
 			tmp = tmp->next;
@@ -31,23 +31,25 @@ t_room		*find_smallest_dist(t_link *tmp)
 	return (room);
 }
 
-t_link				*shortest_path(t_room *start, t_room *end)
+t_link				*shortest_path(t_room **rooms, t_room *start, t_room *end)
 {
-	t_link	*path;
-	t_link	*tmp;
-	t_link	*find;
+	int			cur;
+	t_link		*path;
+	t_room		*nxt;
 
+	breadth_first(rooms, end);
 	path = MEM(t_link);
-	path->ptr = start;
-	path->name = start->name;
-	tmp = path;
-	while (!ft_strequ(tmp->name, end->name))
+	path->len = start->dist;
+	cur = find_smallest_dist(start->link);
+	path->ptr = rooms[cur];
+	rooms[cur]->from = start;
+	while (rooms[cur]->id != end->id)
 	{
-		find = tmp;
-		tmp->next = MEM(t_link);
-		tmp = tmp->next;
-		tmp->ptr = find_smallest_dist(find->ptr->link);
-		tmp->name = tmp->ptr->name;
+		nxt = find_smallest_dist(rooms[cur]->link);
+		rooms[cur]->path = 1;
+		rooms[cur]->to = rooms[nxt->id];
+		rooms[nxt->id]->from = rooms[cur];
+		cur = nxt->id;
 	}
 	return (path);
 }

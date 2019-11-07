@@ -3,10 +3,10 @@
 start 1 0
 ##end
 end 5 82
-some1 9 16
+1 9 16
 #comment
-some2 6 12
-start-some1
-some1-some2
-some2-end
+2 6 12
+start-1
+1-2
+2-end
 #another comment

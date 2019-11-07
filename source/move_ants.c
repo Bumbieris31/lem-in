@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 20:27:38 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/05 21:36:25 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/07 13:12:34 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				move_ants_in_all_paths(t_lemin *lemin)	//add custom paths?
 	int		ant;
 	int		last_ant;
 	int		count;
-	t_path	*paths;
+	t_link	*paths;
 
 	paths = lemin->paths;	//chenge for custom paths?
 	ant = 1;
@@ -66,7 +66,7 @@ int				move_ants_in_all_paths(t_lemin *lemin)	//add custom paths?
 			if (ant < lemin->ants)
 				ant++;
 //			print_movement(path->ptr);
-			if (paths->next)
+			if (paths->next)	//if path is longer than amount of ants, skip it (or incrementally skip more and test?)
 				paths = paths->next;
 			else
 				break ;

@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/04 15:53:42 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/05 16:56:54 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void			bind_rooms(t_room *room1, t_room *room2)
 		connection = connection->next;
 	}
 	connection->name = room2->name;
+	connection->id = room2->id;
 	connection->ptr = room2;
 	connection->next = 0;
 }
@@ -64,13 +65,9 @@ void			bind_rooms(t_room *room1, t_room *room2)
 
 void			connect_two(char **room_names, t_room *table[])
 {
-	// int	ind1;
-	// int	ind2;
 	t_room	*room1;
 	t_room	*room2;
 
-	// ind1 = hashing_funct(room_names[ROOM1]);
-	// ind2 = hashing_funct(room_names[ROOM2]);
 	room1 = find_room(room_names[ROOM1], table);
 	room2 = find_room(room_names[ROOM2], table);
 	bind_rooms(room1, room2);
