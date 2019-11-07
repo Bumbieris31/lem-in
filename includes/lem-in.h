@@ -80,18 +80,17 @@ void				lemin(char *file);
 void				print_file(char *file);
 void				error_check(int error);
 void				add_room(t_room **head, t_room *new);
-void				move_ants(t_lemin *lemin, t_link *path);
+// void				move_ants(t_lemin *lemin, t_link *path);
 void				get_file_info(t_lemin *lemin, char *file);
 void				make_connect(char **connections, t_room *table[]);
 void				breadth_first(t_room **rooms, t_room *end, int start);
 
 t_link				*shortest_path(t_room **rooms, t_room *start, t_room *end);
 
-t_room				*find_smallest_dist(t_link *tmp);
 t_room				*new_room(char *name, t_point coord, int id);
 t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
 
-int					move_ants_in_all_paths(t_lemin *lemin);
+// int					move_ants_in_all_paths(t_lemin *lemin);
 int					duplicate_room(t_room **rooms, char *name,
 					t_point coord, int size);
 

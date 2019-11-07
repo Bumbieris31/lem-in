@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   move_ants.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 20:27:38 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/07 13:12:34 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   move_ants.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/01 20:27:38 by abumbier       #+#    #+#                */
+/*   Updated: 2019/11/07 18:28:04 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		print_movement(t_link *path)
 		ft_printf("L%d-%s ", path->ptr->ant, path->name);
 }
 */
-
+/*
 static void		print_movement(t_room *path)
 {
 	if (!path)
@@ -77,6 +77,7 @@ int				move_ants_in_all_paths(t_lemin *lemin)	//add custom paths?
 	}
 }
 
+ */
 /* 
 static void		incr_ants(t_link *path)
 {
@@ -91,7 +92,7 @@ static void		incr_ants(t_link *path)
 }
 */
 
-
+/*
 void	move_ants(t_lemin *lemin, t_link *path)
 {
 	int			ant;
@@ -115,3 +116,4 @@ void	move_ants(t_lemin *lemin, t_link *path)
 			ant++;
 	}
 }
+ */
