@@ -64,11 +64,6 @@ static void			on_path(t_link **queue, t_room *path, int dist)
 	on_path(queue, path->to, dist);
 }
 
-<<<<<<< HEAD
-static void			add_links_to_queue()
-{
-
-=======
 static void			add_links_to_queue(t_link **queue)
 {
 	t_link	*link;
@@ -86,7 +81,6 @@ static void			add_links_to_queue(t_link **queue)
 		}
 		link = link->next;
 	}
->>>>>>> flint
 }
 
 void				breadth_first(t_room **rooms, t_room *end, int start)
@@ -104,26 +98,7 @@ void				breadth_first(t_room **rooms, t_room *end, int start)
 		if (queue->ptr->path)
 			on_path(&queue, queue->ptr->to, queue->ptr->dist + 1);
 		else
-<<<<<<< HEAD
-		{
-			add_links_to_queue();
-			link = queue->ptr->link;
-			while (link)
-			{
-				if (against_path(queue->ptr, link->ptr))
-					;
-				else if (!link->ptr->visited)
-				{
-					link->ptr->dist = queue->ptr->dist + 1;
-					link->ptr->visited = 1;
-					add_to_queue(&queue, link->ptr);
-				}
-				link = link->next;
-			}
-		}
-=======
 			add_links_to_queue(&queue);
->>>>>>> flint
 		queue = queue->next;
 		free(tmp);
 		if (queue->ptr->id == start)
