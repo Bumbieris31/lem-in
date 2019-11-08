@@ -58,7 +58,6 @@ void		lemin(char *file)
 
 	// print_rooms(lemin->rooms);
 	// print_links(lemin->rooms[0]->link);
-	paths = shortest_path(ROOMS, START, END);
 	print_dist(lemin);
 	print_path(paths->ptr, END->name);
 	paths = get_path(ROOMS, START, END);
