@@ -44,4 +44,3 @@ t_link				*get_path(t_room **rooms, t_room *start, t_room *end)
 	}
 	return (path);
 }
-
