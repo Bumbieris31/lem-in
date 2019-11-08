@@ -71,6 +71,7 @@ typedef struct		s_lemin
 {
 	int 			ants;
 	int				size;
+	int				**winner_ids;
 	t_link			*paths;
 <<<<<<< HEAD
 =======
