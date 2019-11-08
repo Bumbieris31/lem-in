@@ -73,10 +73,6 @@ typedef struct		s_lemin
 	int				size;
 	int				**winner_ids;
 	t_link			*paths;
-<<<<<<< HEAD
-=======
-	t_link			*winner;
->>>>>>> flint
 	t_room			**rooms;
 	t_room			*start;
 	t_room			*end;
