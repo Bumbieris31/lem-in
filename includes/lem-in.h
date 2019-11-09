@@ -9,6 +9,9 @@
 # define CONN_ERROR		-5
 # define NO_PATH_ERROR	-6
 
+# define PRINT			1
+# define DONT_PRINT		0
+
 # define MEM(x)			(x*)ft_memalloc(sizeof(x))
 # define START			lemin->start
 # define END			lemin->end
