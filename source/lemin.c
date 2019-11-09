@@ -16,22 +16,32 @@ static void		print_dist(t_lemin *lemin)
 	ft_putendl("");
 	while (lemin->rooms[i])
 	{
-		ft_printf("%-5s dist = %d\n", lemin->rooms[i]->name, lemin->rooms[i]->dist);
+		ft_printf("%-5s dist = %-2d %d\n", lemin->rooms[i]->name, lemin->rooms[i]->dist, lemin->rooms[i]->path);
 		i++;
 	}
 	ft_putendl("");
 }
 
-static void		print_path(t_room *room, char *end)
+static void		print_path(t_link *path, t_room *end, char *start)
 {
-	if (!room->to->to)
+	t_room *tmp;
+
+	if (!path)
 	{
-		ft_printf("%s --> %s\n", room->from->name, room->name);
-		ft_printf("%s --> %s\n", room->name, end);
+		ft_putendl("NO PATH");
 		return ;
 	}
-	ft_printf("%s --> %s\n", room->from->name, room->name);
-	print_path(room->to, end);
+	tmp = path->ptr;
+	ft_printf("%-5s --> %s\n", start, tmp->name);
+	while (tmp->id != end->id)
+	{
+		ft_printf("%-5s --> ", tmp->name);
+		tmp = tmp->to;
+		if (tmp->id == end->id)
+			break ;
+		ft_printf("%s\n", tmp->name);
+	}
+	ft_printf("%s\n", end->name);
 }
 
 static void		print_rooms(t_room **rooms)
@@ -48,19 +58,21 @@ static void		print_rooms(t_room **rooms)
 void		lemin(char *file)
 {
 	t_lemin *lemin;
-	t_link	*paths;
 
-	lemin = (t_lemin*)ft_memalloc(sizeof(t_lemin));
+	lemin = MEM(t_lemin);
 	get_file_info(lemin, file);
-	paths = get_path(ROOMS, START, END);
+	PATHS = get_path(lemin);
+	if (!PATHS)
+		error_check(NO_PATH_ERROR);
+	
 	// print_file(file);
 	// move_ants(lemin, path);
 
-	// print_rooms(lemin->rooms);
-	// print_links(lemin->rooms[0]->link);
 	print_dist(lemin);
-	print_path(paths->ptr, END->name);
-	paths = get_path(ROOMS, START, END);
+	print_path(PATHS, END, START->name);
+
+	t_link *path = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
+
 	print_dist(lemin);
-	print_path(paths->ptr, END->name);
+	print_path(path, END, START->name);
 }

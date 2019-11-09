@@ -16,7 +16,6 @@ J 1 9
 K 2 0
 L 2 1
 M 2 2
-N 2 3
 START-B
 START-A
 B-C
@@ -24,19 +23,13 @@ A-C
 A-J
 C-D
 J-I
-I-D
 I-H
 H-G
-D-E
 E-F
 D-G
 F-END
 G-END
 K-E
 C-K
-START-L
-K-L
-M-K
-M-F
-N-M
-END-N
+L-START
+L-M

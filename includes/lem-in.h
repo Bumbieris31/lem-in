@@ -16,6 +16,7 @@
 # define START			lemin->start
 # define END			lemin->end
 # define ROOMS			lemin->rooms
+# define PATHS			lemin->paths
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -83,13 +84,14 @@ typedef struct		s_lemin
 void				lemin(char *file);
 void				print_file(char *file);
 void				error_check(int error);
+void				reset_rooms(t_room **rooms, int end);
 void				add_room(t_room **head, t_room *new);
 // void				move_ants(t_lemin *lemin, t_link *path);
 void				get_file_info(t_lemin *lemin, char *file);
 void				make_connect(char **connections, t_room *table[]);
 void				breadth_first(t_room **rooms, t_room *end, int start);
 
-t_link				*get_path(t_room **rooms, t_room *start, t_room *end);
+t_link				*get_path(t_lemin *lemin);
 
 t_room				*new_room(char *name, t_point coord, int id);
 t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
