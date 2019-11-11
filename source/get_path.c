@@ -1,4 +1,5 @@
 #include "lem-in.h"
+#include <stdio.h>
 
 static void			set_path_id(t_link *paths, t_room **rooms, int end, int start)
 {
