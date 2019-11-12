@@ -52,50 +52,65 @@ static t_room		*get_starting_room(t_link *link, int dist)
 	return (room);
 }
 
-static void			get_new_path(t_room **path, t_room **rooms, t_room *end, int backtrack) /* DOESN"T WORK, REWRITE!!!!!!!!!! */
+static t_room		*add_room_to_path(char *name, int id, int dist)
 {
-	t_room	*new;
-	t_link	*link;
-	int		dist;
-	int		path_option;
+	t_room *new;
 
-	if ((*path)->id == end->id)
-		return ;
 	new = MEM(t_room);
-	if (backtrack)
+	new->name = name;
+	new->id = id;
+	new->dist = dist;
+	return (new);
+}
+
+static t_room		*on_path(t_room *path, t_room **rooms, int dist)
+{
+	t_link	*link;
+	t_room	*room;
+
+	room = rooms[path->id];
+	path->to = add_room_to_path(room->from->name, room->from->id, room->from->dist);
+	path = path->to;
+	while (path->dist != dist)
 	{
-		new->name = rooms[(*path)->id]->from->name;
-		new->dist = (*path)->dist - 1;
-		new->id = rooms[(*path)->id]->from->id;
-		(*path)->to = new;
-		get_new_path(&(*path)->to, rooms, end, 0);
-		return ;
+		room = rooms[path->id];
+		path->to = add_room_to_path(room->from->name, room->from->id, room->from->dist);
+		path = path->to;
 	}
-	link = rooms[(*path)->id]->link;
-	while (link->ptr->dist == -1)
+	link = rooms[path->id]->link;
+	while (link && link->ptr->dist != (dist - 1))
 		link = link->next;
-	while (link)
+	path->to = add_room_to_path(link->ptr->name, link->ptr->id, dist - 1);
+	return (path);
+}
+
+static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
+{
+	int		dist;
+	t_room	*tmp;
+	t_link	*link;
+	t_room	*path_option;
+
+	tmp = *path;
+	while (tmp->id != end->id)
 	{
-		if (link->ptr->dist == ((*path)->dist - 1))
+		link = rooms[tmp->id]->link;
+		dist = tmp->dist - 1;
+		while (link && link->ptr->dist != dist)
 		{
-			new->name = link->ptr->name;
-			new->id = link->ptr->id;
-			new->dist = link->ptr->dist;
-			break ;
+			if (link->ptr->path)
+				path_option = link->ptr;
+			link = link->next;
 		}
-		else if (link->ptr->path && link->ptr->path != rooms[(*path)->id]->path)
-			path_option = link->ptr->id;
-		link = link->next;
+		if (!link)
+		{
+			tmp->to = add_room_to_path(path_option->name, path_option->id, -2);
+			tmp = on_path(tmp->to, rooms, dist); /* WHAT IF COMES ON NEW PATH? CAN THAT HAPPEN??? MAKE MAP TO TEST*/
+		}
+		else
+			tmp->to = add_room_to_path(link->ptr->name, link->ptr->id, dist);
+		tmp = tmp->to;
 	}
-	if (!new->name)
-	{
-		new->name = rooms[path_option]->name;
-		new->id = rooms[path_option]->id;
-		new->dist = (*path)->dist;
-		backtrack = 1;
-	}
-	(*path)->to = new;
-	get_new_path(&(*path)->to, rooms, end, backtrack);
 }
 
 t_link				*get_path(t_lemin *lemin)
@@ -112,6 +127,6 @@ t_link				*get_path(t_lemin *lemin)
 	path = MEM(t_link);
 	path->id = 1; /* THIS WAS FOR TESTING BUT MOVE TO PATH_SPLIT, DELETE LATER */
 	path->ptr = get_starting_room(START->link, START->dist);
-	get_new_path(&path->ptr, ROOMS, END, 0);
+	get_new_path(&path->ptr, ROOMS, END);
 	return (path);
 }

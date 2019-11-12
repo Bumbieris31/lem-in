@@ -72,7 +72,6 @@ void		lemin(char *file)
 	print_path(PATHS, END, START->name);
 
 	t_link *path = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
-
 	print_dist(lemin);
 	print_path(path, END, START->name);
 }
