@@ -96,9 +96,11 @@ static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
 	{
 		link = rooms[tmp->id]->link;
 		dist = tmp->dist - 1;
+		/* if (tmp->path) // START WITH CHECKING IF ON A PATH?
+			on_path() */
 		while (link && (link->ptr->dist != dist || link->ptr->path))
 		{
-			if (link->ptr->path && link->ptr->dist != -1)
+			if (link->ptr->path && link->ptr->dist != -1) /* ERROR HERE, IF CONNECTED TO 2 PATHS */
 				path_option = link->ptr;
 			link = link->next;
 		}
