@@ -53,6 +53,7 @@ static void			on_path(t_link **queue, t_room *path, int dist)
 		if (!link->ptr->visited && link->ptr->path != path->path)
 		{
 			link->ptr->dist = dist;
+			link->ptr->branch = path;
 			link->ptr->visited = 1;
 			add_to_queue(queue, link->ptr);
 		}

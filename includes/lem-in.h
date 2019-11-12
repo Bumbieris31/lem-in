@@ -52,6 +52,7 @@ typedef struct		s_room
 	t_point			coord;
 	struct s_room	*to;
 	struct s_room	*from;
+	struct s_room	*branch;
 	struct s_link	*link;
 }					t_room;
 

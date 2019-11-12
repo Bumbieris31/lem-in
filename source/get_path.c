@@ -89,7 +89,7 @@ static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
 	int		dist;
 	t_room	*tmp;
 	t_link	*link;
-	t_room	*path_option;
+	t_room	*branch;
 
 	tmp = *path;
 	while (tmp->id != end->id)
@@ -99,15 +99,12 @@ static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
 		/* if (tmp->path) // START WITH CHECKING IF ON A PATH?
 			on_path() */
 		while (link && (link->ptr->dist != dist || link->ptr->path))
-		{
-			if (link->ptr->path && link->ptr->dist != -1) /* ERROR HERE, IF CONNECTED TO 2 PATHS */
-				path_option = link->ptr;
 			link = link->next;
-		}
 		if (!link)
 		{
-			tmp->to = add_room_to_path(path_option->name, path_option->id, -2);
-			tmp = on_path(tmp->to, rooms, dist); /* WHAT IF COMES ON NEW PATH? CAN THAT HAPPEN??? MAKE MAP TO TEST*/
+			branch = rooms[tmp->id]->branch;
+			tmp->to = add_room_to_path(branch->name, branch->id, -2);
+			tmp = on_path(tmp->to, rooms, dist);
 		}
 		else
 			tmp->to = add_room_to_path(link->ptr->name, link->ptr->id, dist);
