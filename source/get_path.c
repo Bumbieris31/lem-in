@@ -96,9 +96,9 @@ static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
 	{
 		link = rooms[tmp->id]->link;
 		dist = tmp->dist - 1;
-		while (link && link->ptr->dist != dist)
+		while (link && (link->ptr->dist != dist || link->ptr->path))
 		{
-			if (link->ptr->path)
+			if (link->ptr->path && link->ptr->dist != -1)
 				path_option = link->ptr;
 			link = link->next;
 		}

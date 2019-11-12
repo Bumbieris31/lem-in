@@ -23,8 +23,12 @@ A-C
 A-J
 C-D
 J-I
-I-H
-H-G
+#I-H
+#H-G
+#BREAKS IF WE SWITCH D-I & C-I
+D-I
+C-I
+#-----------------------------
 E-F
 D-G
 F-END
