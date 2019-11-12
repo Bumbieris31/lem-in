@@ -80,7 +80,13 @@ static t_room		*on_path(t_room *path, t_room **rooms, int dist)
 	link = rooms[path->id]->link;
 	while (link && link->ptr->dist != (dist - 1))
 		link = link->next;
-	path->to = add_room_to_path(link->ptr->name, link->ptr->id, dist - 1);
+	if (!link)
+		room = rooms[path->id]->branch;
+	else
+		room = link->ptr;
+	path->to = add_room_to_path(room->name, room->id, dist - 1);
+	if (room->path)
+		path->to->path = 1;
 	return (path);
 }
 
@@ -94,20 +100,23 @@ static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
 	tmp = *path;
 	while (tmp->id != end->id)
 	{
-		link = rooms[tmp->id]->link;
-		dist = tmp->dist - 1;
-		/* if (tmp->path) // START WITH CHECKING IF ON A PATH?
-			on_path() */
-		while (link && (link->ptr->dist != dist || link->ptr->path))
-			link = link->next;
-		if (!link)
-		{
-			branch = rooms[tmp->id]->branch;
-			tmp->to = add_room_to_path(branch->name, branch->id, -2);
-			tmp = on_path(tmp->to, rooms, dist);
-		}
+		if (tmp->path) // START WITH CHECKING IF ON A PATH?
+			tmp = on_path(tmp, rooms, dist);
 		else
-			tmp->to = add_room_to_path(link->ptr->name, link->ptr->id, dist);
+		{
+			dist = tmp->dist - 1;
+			link = rooms[tmp->id]->link;
+			while (link && (link->ptr->dist != dist || link->ptr->path))
+				link = link->next;
+			if (!link)
+			{
+				branch = rooms[tmp->id]->branch;
+				tmp->to = add_room_to_path(branch->name, branch->id, -2);
+				tmp->to->path = 1;
+			}
+			else
+				tmp->to = add_room_to_path(link->ptr->name, link->ptr->id, dist);
+		}
 		tmp = tmp->to;
 	}
 }
