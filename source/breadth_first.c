@@ -45,7 +45,7 @@ static int			against_path(t_room *from, t_room *towards)
 
 static void			on_path(t_link **queue, t_room *path, int dist)
 {
-	t_link *link;
+	t_link *link; /* CHANGE DIST COUNTER, WHEN THERE IS A SIDE BRANCH PUT DIST, NOT WHEN IT GOES ON PATH, SEE NOTES */
 
 	link = path->link;
 	while (link)

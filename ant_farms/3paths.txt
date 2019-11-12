@@ -15,21 +15,20 @@ I 1 8
 J 1 9
 K 2 0
 L 2 1
-M 2 2
-START-B
 START-A
-B-C
-A-C
+START-D
+START-G
 A-J
-C-D
-J-I
-I-H
-H-G
+A-B
+D-E
+G-H
+H-I
+I-F
+E-B
 E-F
-D-G
 F-END
-G-END
-K-E
-C-K
-L-START
-L-M
+B-C
+C-END
+J-K
+K-L
+L-END
