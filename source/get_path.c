@@ -61,7 +61,7 @@ static t_room		*add_room_to_path(char *name, int id, int dist)
 	return (new);
 }
 
-static t_room		*on_path(t_room *path, t_room **rooms, int dist)
+static t_room		*on_path(t_room *path, t_room **rooms, int *dist)
 {
 	t_link	*link;
 	t_room	*room;
@@ -69,20 +69,23 @@ static t_room		*on_path(t_room *path, t_room **rooms, int dist)
 	room = rooms[path->id];
 	path->to = add_room_to_path(room->from->name, room->from->id, room->from->dist);
 	path = path->to;
-	while (path->dist != dist)
-	{
+	while (path->dist != *dist)
+	{		
 		room = rooms[path->id];
 		path->to = add_room_to_path(room->from->name, room->from->id, room->from->dist);
 		path = path->to;
 	}
 	link = rooms[path->id]->link;
-	while (link && link->ptr->dist != (dist - 1))
+	while (link && link->ptr->dist != (*dist - 1))
 		link = link->next;
 	if (!link)
+	{
 		room = rooms[path->id]->branch;
+		(*dist)--;
+	}
 	else
 		room = link->ptr;
-	path->to = add_room_to_path(room->name, room->id, dist - 1);
+	path->to = add_room_to_path(room->name, room->id, *dist - 1);
 	if (room->path)
 		path->to->path = 1;
 	return (path);
@@ -98,8 +101,9 @@ static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
 	tmp = *path;
 	while (tmp->id != end->id)
 	{
+
 		if (tmp->path)
-			tmp = on_path(tmp, rooms, dist);
+			tmp = on_path(tmp, rooms, &dist);
 		else
 		{
 			dist = tmp->dist - 1;
@@ -139,8 +143,6 @@ t_link				*get_path(t_lemin *lemin)
 	// 	return NULL;
 
 	path->ptr = get_starting_room(START->link, START->dist);
-	if (id == 3)////////
-		ft_printf("starting room : %s\n", path->ptr->name);//////////
 	
 	get_new_path(&path->ptr, ROOMS, END);
 	return (path);
