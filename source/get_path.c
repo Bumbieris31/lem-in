@@ -33,8 +33,6 @@ static t_room		*get_starting_room(t_link *link, int dist)
 {
 	t_room	*room;
 
-	while (link->ptr->dist == -1 || link->ptr->from)
-		link = link->next;
 	room = MEM(t_room);
 	while (link)
 	{
