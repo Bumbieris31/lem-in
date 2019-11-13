@@ -13,7 +13,6 @@ static void		print_dist(t_lemin *lemin)
 {
 	int i = 0;
 
-	ft_putendl("");
 	while (lemin->rooms[i])
 	{
 		ft_printf("%-5s dist = %-2d %d\n", lemin->rooms[i]->name, lemin->rooms[i]->dist, lemin->rooms[i]->path);
@@ -41,7 +40,7 @@ static void		print_path(t_link *path, t_room *end, char *start)
 			break ;
 		ft_printf("%s\n", tmp->name);
 	}
-	ft_printf("%s\n", end->name);
+	ft_printf("%s\n\n", end->name);
 }
 
 static void		print_rooms(t_room **rooms)
@@ -64,14 +63,17 @@ void		lemin(char *file)
 	PATHS = get_path(lemin);
 	if (!PATHS)
 		error_check(NO_PATH_ERROR);
-	
-	// print_file(file);
-	// move_ants(lemin, path);
-
 	print_dist(lemin);
 	print_path(PATHS, END, START->name);
 
-	t_link *path = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
+	PATHS->next = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
+	// t_link *path = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
 	print_dist(lemin);
-	print_path(path, END, START->name);
+	print_path(PATHS->next, END, START->name);
+
+	// path = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
+	PATHS->next->next = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
+	print_dist(lemin);
+	print_path(PATHS->next->next, END, START->name);
+
 }

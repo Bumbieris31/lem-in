@@ -43,10 +43,12 @@ static int			against_path(t_room *from, t_room *towards)
 	return (0);
 }
 
-static void			on_path(t_link **queue, t_room *path, int dist)
+static void			on_path(t_link **queue, t_room *path, int dist, int end)
 {
-	t_link *link; /* CHANGE DIST COUNTER, WHEN THERE IS A SIDE BRANCH PUT DIST, NOT WHEN IT GOES ON PATH, SEE NOTES */
+	t_link *link;
 
+	if (path->id == end)
+		return ;
 	link = path->link;
 	while (link)
 	{
@@ -63,7 +65,7 @@ static void			on_path(t_link **queue, t_room *path, int dist)
 		return ;
 	path->visited = 1;
 	path->dist = -2;
-	on_path(queue, path->to, dist);
+	on_path(queue, path->to, dist, end);
 }
 
 static void			add_links_to_queue(t_link **queue)
@@ -97,7 +99,7 @@ void				breadth_first(t_room **rooms, t_room *end, int start)
 	{
 		tmp = queue;
 		if (queue->ptr->to)
-			on_path(&queue, queue->ptr->to, queue->ptr->dist + 1);
+			on_path(&queue, queue->ptr->to, queue->ptr->dist + 1, end->id);
 		else
 			add_links_to_queue(&queue);
 		queue = queue->next;

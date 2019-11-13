@@ -33,8 +33,6 @@ static t_room		*get_starting_room(t_link *link, int dist)
 {
 	t_room	*room;
 
-	while (link->ptr->dist == -1 || link->ptr->from)
-		link = link->next;
 	room = MEM(t_room);
 	while (link)
 	{
@@ -100,7 +98,7 @@ static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
 	tmp = *path;
 	while (tmp->id != end->id)
 	{
-		if (tmp->path) // START WITH CHECKING IF ON A PATH?
+		if (tmp->path)
 			tmp = on_path(tmp, rooms, dist);
 		else
 		{
@@ -133,8 +131,17 @@ t_link				*get_path(t_lemin *lemin)
 	if (START->dist == -1)
 		return (NULL);
 	path = MEM(t_link);
-	path->id = 1; /* THIS WAS FOR TESTING BUT MOVE TO PATH_SPLIT, DELETE LATER */
+
+	static int id;
+	id++;
+	path->id = id; /* THIS WAS FOR TESTING BUT MOVE TO PATH_SPLIT, DELETE LATER */
+	// if (id == 3)
+	// 	return NULL;
+
 	path->ptr = get_starting_room(START->link, START->dist);
+	if (id == 3)////////
+		ft_printf("starting room : %s\n", path->ptr->name);//////////
+	
 	get_new_path(&path->ptr, ROOMS, END);
 	return (path);
 }
