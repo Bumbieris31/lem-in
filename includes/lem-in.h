@@ -58,8 +58,10 @@ typedef struct		s_room
 
 typedef struct		s_del
 {
-	t_room			*room_with_to;	// delete *to in this room && restore rwf in this rooms *to
-	t_room			*room_with_from;	// delete *from in this room && restore rwt in this rooms *from
+	// delete *to in this room && restore rwf in this rooms *to
+	t_room			*room_with_to;
+	// delete *from in this room && restore rwt in this rooms *from
+	t_room			*room_with_from;
 	struct s_del	*next;
 }					t_del;
 
@@ -76,6 +78,7 @@ typedef struct		s_lemin
 	int 			ants;
 	int				size;
 	int				**winner_ids;
+	t_del			*del_links;
 	t_link			*paths;
 	t_room			**rooms;
 	t_room			*start;

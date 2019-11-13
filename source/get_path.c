@@ -88,7 +88,7 @@ static t_room		*on_path(t_room *path, t_room **rooms, int dist)
 	return (path);
 }
 
-static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
+static void			get_new_path(t_room **path, t_lemin *lemin)
 {
 	int		dist;
 	t_room	*tmp;
@@ -96,19 +96,22 @@ static void			get_new_path(t_room **path, t_room **rooms, t_room *end)
 	t_room	*branch;
 
 	tmp = *path;
-	while (tmp->id != end->id)
+	while (tmp->id != lemin->end->id)
 	{
 		if (tmp->path)
-			tmp = on_path(tmp, rooms, dist);
+		{
+			tmp = on_path(tmp, lemin->rooms, dist);
+			save_links_to_delete();
+		}
 		else
 		{
 			dist = tmp->dist - 1;
-			link = rooms[tmp->id]->link;
+			link = lemin->rooms[tmp->id]->link;
 			while (link && (link->ptr->dist != dist || link->ptr->path))
 				link = link->next;
 			if (!link)
 			{
-				branch = rooms[tmp->id]->branch;
+				branch = lemin->rooms[tmp->id]->branch;
 				tmp->to = add_room_to_path(branch->name, branch->id, -2);
 				tmp->to->path = 1;
 			}
