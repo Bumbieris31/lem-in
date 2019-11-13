@@ -10,6 +10,7 @@ void				reset_rooms(t_room **rooms, int end)
 		rooms[i]->path = 0;
 		rooms[i]->to = NULL;
 		rooms[i]->from = NULL;
+		rooms[i]->branch = NULL;
 		rooms[i]->dist = -1;
 		rooms[i]->visited = 0;
 		i++;
