@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:14:34 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/14 18:06:27 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/14 19:11:31 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 /*
 ** By going through this link we can find rooms that belong to paths, which
 ** we will split.
+** The lemin->del_links will be 0 form most of the nodes only not when a \
+** new path is stepped upon.
 */
 
-void	save_links_to_delete(t_lemin *lemin, t_room *pre_link_room)
+void	save_links_to_delete(t_lemin *lemin, t_room *path)
 {
 	t_del	*temp_head;
 
-	if (!lemin->del_links)
-		lemin->del_links = MEM(t_del);
-	lemin->del_links->room_with_to = pre_link_room;
-	lemin->del_links->room_with_from = pre_link_room->to; // is there *to for path rooms?
-	
+	temp_head = MEM(t_del);
+	temp_head->room1 = lemin->rooms[path->id]->id;
+	temp_head->room2 = path->to->id;
+	temp_head->path_id = path->path;//only the last node will hold actual path_id; the rest will be 0
+	if (lemin->del_links)
+		temp_head->next = lemin->del_links;
+	lemin->del_links = temp_head;
 }

@@ -23,7 +23,7 @@ void	find_solution(t_lemin *lemin, t_link *new_path)
 				path_id++;
 			}
 			add_links_back();
-			free_deleted_links_and_set_to_null();
+			free_del_links_and_set_to_null();
 		}
 		else
 		{

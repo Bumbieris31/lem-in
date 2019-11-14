@@ -50,14 +50,14 @@ static t_room	*on_existing_path(t_room *path, t_lemin *lemin, int *dist)
 	/* GOES BACK ONE */
 	room = lemin->rooms[path->id]->from;
 	path->to = add_room_to_path(room->name, room->id, room->dist);
+	save_links_to_delete(lemin, path);
 	path = path->to;
-//	save_links_to_delete(lemin, lemin->rooms[path->id]);
 	while (path->dist != *dist)
 	{
-//		save_links_to_delete(lemin, lemin->rooms[path->id]);
 		/* GOES BACK UNTIL FINDING WAY OFF */
 		room = lemin->rooms[path->id]->from;
 		path->to = add_room_to_path(room->name, room->id, room->dist);
+		save_links_to_delete(lemin, path);
 		path = path->to;
 	}
 	link = lemin->rooms[path->id]->link;
