@@ -4,7 +4,7 @@ PLUS = $(GREEN)+$(WHITE)
 
 NAME = lem-in
 SOURCE = main lemin room file error print_file make_connect \
-get_path move_ants breadth_first
+get_path move_ants breadth_first reset
 INCLUDES = -Iincludes -Ilibft/includes
 CFILES = $(SOURCE:%=source/%.c)
 OFILES = $(SOURCE:%=.objects/%.o)
@@ -14,7 +14,7 @@ FLAGS = -Wall -Wextra -Werror #ADD LATER
 all: $(NAME)
 
 $(NAME): $(LIB) .objects $(OFILES)
-	@gcc -o $(NAME) $(OFILES) $(LIB) $(INCLUDES) -g
+	@$(CC) -o $(NAME) $(OFILES) $(LIB) $(INCLUDES) -g
 	@echo "$(NAME) compiled successfully"
 
 .objects:
@@ -25,7 +25,7 @@ $(LIB):
 	@echo "$(PLUS) $(LIB)"
 
 .objects/%.o: source/%.c includes/lem-in.h
-	@gcc -o $@ -c $< $(INCLUDES)
+	@$(CC) -o $@ -c $< $(INCLUDES) -g
 	@echo "$(PLUS) $@"
 
 clean:

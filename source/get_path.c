@@ -1,7 +1,6 @@
 #include "lem-in.h"
-#include <stdio.h>
 
-static void		set_path_id(t_link *paths, t_room **rooms, int end, int start)
+static void		set_path_id(t_link *paths, t_room **rooms, int end, int start) /* ONLY THE NEW PATHS? */
 {
 	t_link	*path;
 	t_room	*room;
@@ -134,24 +133,45 @@ static void		get_new_path(t_room **path, t_room **rooms, t_room *end)
 		tmp = tmp->to;
 	}
 }
-
+void		print_all_paths(t_link *paths, t_room *end, char *start);//////////////////
 t_link			*get_path(t_lemin *lemin)
 {
 	t_link		*path;
 	int			cur;
 	int			nxt;
 
+	/* ***** debug ***** */
+	static int id;
+	id++;
+
 	reset_rooms(ROOMS, END->id);
 	set_path_id(PATHS, ROOMS, END->id, START->id);
+
+	// if (id == 5)
+	// {
+		// ft_printf("------- %d\n", id);
+		// print_all_paths(PATHS, END, START->name);
+		// ft_putendl("");
+
+		// for (int i = 0; i < 13; i++)
+		// {
+		// 	ft_printf("%s -> ", ROOMS[i]->name);
+		// 	if (ROOMS[i]->to)
+		// 		ft_printf("%s\n", ROOMS[i]->to->name);
+		// 	else
+		// 		ft_putendl("");
+		// }
+		// ft_putendl("");
+	// }
+
 	breadth_first(ROOMS, END, START->id);
 	if (START->dist == -1)
 		return (NULL);
 	path = MEM(t_link);
+
 	/* ***** debug ***** */
-	static int id;
-	id++;
 	path->id = id; /* MOVE TO PATH_SPLIT*/
-	/* ***** debug ***** */
+
 	path->ptr = get_starting_room(START->link, START->dist);
 	get_new_path(&path->ptr, ROOMS, END);
 	return (path);

@@ -31,16 +31,28 @@ static void		print_path(t_link *path, t_room *end, char *start)
 		return ;
 	}
 	tmp = path->ptr;
-	ft_printf("%-5s --> %s : %d\n", start, tmp->name, tmp->dist);
+	ft_printf("%-5s --> %s : %d\n", start, tmp->name, path->id);
 	while (tmp->id != end->id)
 	{
 		ft_printf("%-5s --> ", tmp->name);
 		tmp = tmp->to;
 		if (tmp->id == end->id)
 			break ;
-		ft_printf("%s : %d\n", tmp->name, tmp->dist);
+		ft_printf("%s : %d\n", tmp->name, path->id);
 	}
 	ft_printf("%s\n\n", end->name);
+}
+
+void		print_all_paths(t_link *paths, t_room *end, char *start)
+{
+	t_link *path;
+
+	path = paths;
+	while (path)
+	{
+		print_path(path, end, start);
+		path = path->next;
+	}
 }
 
 static void		print_rooms(t_room **rooms)
@@ -54,23 +66,48 @@ static void		print_rooms(t_room **rooms)
 }
 /* *************************************** */
 
+static void	add_to_paths(t_link **paths, t_link *new_path)
+{
+	if (!paths || !new_path)
+		return ;
+	new_path->next = *paths;
+	*paths = new_path;
+}
+
 void		lemin(char *file)
 {
 	t_lemin *lemin;
+	t_link *new_path;
 
 	lemin = MEM(t_lemin);
 	get_file_info(lemin, file);
 	PATHS = get_path(lemin);
 	if (!PATHS)
 		error_check(NO_PATH_ERROR);
-	print_dist(lemin);
-	print_path(PATHS, END, START->name);
+	while (new_path)
+	{
+		new_path = get_path(lemin);
+	/*
+		if (lemin->deleted_links)
+		{
+			delete_links();
+			reset_rooms_in_overlapping_paths();
+			while (new_paths_found())
+			{
+				breadth_first();
+				get_path();
+				add_newpath_to_paths();
+			}
+			add_links_back();
+		}
+		else
+	*/
+			add_to_paths(&PATHS, new_path);
+		// check_paths_save_winner();
+		new_path = get_path(lemin);
+	}
 
-	PATHS->next = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
-	print_dist(lemin);
-	print_path(PATHS->next, END, START->name);
-
-	// PATHS->next->next = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
-	// print_dist(lemin);
-	// print_path(PATHS->next->next, END, START->name);
+	// printt_file();
+	// print_winner();
+	// free_everything();
 }
