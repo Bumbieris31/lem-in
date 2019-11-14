@@ -60,6 +60,7 @@ typedef struct		s_del
 {
 	t_room			*room_with_to;	// delete *to in this room && restore rwf in this rooms *to
 	t_room			*room_with_from;	// delete *from in this room && restore rwt in this rooms *from
+	int				path_id;
 	struct s_del	*next;
 }					t_del;
 
@@ -89,8 +90,10 @@ void				reset_rooms(t_room **rooms, int end);
 void				add_room(t_room **head, t_room *new);
 // void				move_ants(t_lemin *lemin, t_link *path);
 void				get_file_info(t_lemin *lemin, char *file);
+void				find_solution(t_lemin *lemin, t_link *new_path);
 void				make_connect(char **connections, t_room *table[]);
 void				breadth_first(t_room **rooms, t_room *end, int start);
+void				add_to_paths(t_link **paths, t_link *new_path, int path_id);
 
 t_link				*get_path(t_lemin *lemin);
 
@@ -100,5 +103,6 @@ t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
 // int					move_ants_in_all_paths(t_lemin *lemin);
 int					duplicate_room(t_room **rooms, char *name,
 					t_point coord, int size);
+int					**check_paths_save_winner(t_lemin *lemin);
 
 #endif

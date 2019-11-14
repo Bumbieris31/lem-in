@@ -66,12 +66,13 @@ static void		print_rooms(t_room **rooms)
 }
 /* *************************************** */
 
-static void	add_to_paths(t_link **paths, t_link *new_path)
+void	add_to_paths(t_link **paths, t_link *new_path, int path_id)
 {
 	if (!paths || !new_path)
 		return ;
 	new_path->next = *paths;
 	*paths = new_path;
+	(*paths)->id = path_id;
 }
 
 void		lemin(char *file)
@@ -84,29 +85,8 @@ void		lemin(char *file)
 	PATHS = get_path(lemin);
 	if (!PATHS)
 		error_check(NO_PATH_ERROR);
-	while (new_path)
-	{
-		new_path = get_path(lemin);
-	/*
-		if (lemin->deleted_links)
-		{
-			delete_links();
-			reset_rooms_in_overlapping_paths();
-			while (new_paths_found())
-			{
-				breadth_first();
-				get_path();
-				add_newpath_to_paths();
-			}
-			add_links_back();
-		}
-		else
-	*/
-			add_to_paths(&PATHS, new_path);
-		// check_paths_save_winner();
-		new_path = get_path(lemin);
-	}
-
+	PATHS->id = 1;
+	find_solution(lemin, new_path);
 	// printt_file();
 	// print_winner();
 	// free_everything();
