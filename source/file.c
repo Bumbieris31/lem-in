@@ -142,7 +142,7 @@ void				get_file_info(t_lemin *lemin, char *file)
 		else if (line[0] == '#')
 			;
 		else if (ft_strchr(line, '-'))
-			 ft_lstadd(&con, ft_lstnew(line, ft_strlen(line) + 1));
+			ft_lstadd(&con, ft_lstnew(line, ft_strlen(line) + 1));
 		else
 			get_room(lemin, line);
 		tmp = tmp->next;
