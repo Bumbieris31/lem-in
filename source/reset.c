@@ -1,6 +1,6 @@
 #include "lem-in.h"
 
-void			reset_path(t_room **rooms, t_room *path)
+static void		reset_path(t_room **rooms, t_room *path)
 {
 	if (!path)
 		return ;
@@ -10,16 +10,29 @@ void			reset_path(t_room **rooms, t_room *path)
 	rooms[path->id]->path = 0;
 }
 
-void				reset_rooms(t_room **rooms, int end)
+void			reset_overlap(t_room **rooms, t_link *paths, t_del *del_links)
+{
+	t_del	*deltmp;
+	t_link	*pathtmp;
+
+	deltmp = del_links;
+	while (deltmp)
+	{
+		pathtmp = paths;
+		while (pathtmp->id != deltmp->path_id)
+			pathtmp = pathtmp->next;
+		reset_path(rooms, paths->ptr);
+		deltmp = deltmp->next;
+	}
+}
+
+void			reset_rooms(t_room **rooms, int end)
 {
 	int i;
 
 	i = 0;
 	while (rooms[i])
 	{
-		rooms[i]->path = 0; /* DON'T NEED THIS? */
-		rooms[i]->to = NULL; /* DON'T NEED THIS? */
-		rooms[i]->from = NULL; /* DON'T NEED THIS? */
 		rooms[i]->branch = NULL;
 		rooms[i]->dist = -1;
 		rooms[i]->visited = 0;

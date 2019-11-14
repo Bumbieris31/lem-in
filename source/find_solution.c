@@ -10,14 +10,10 @@ void	find_solution(t_lemin *lemin, t_link *new_path)
 	{
 		new_path = get_path(lemin);
 	/*
-		if (lemin->deleted_links)
+		if (lemin->del_links)
 		{
 			delete_links();
-			reset_path(ROOMS, new_path);
-			while (overlapping_paths)
-			{
-				reset_path(ROOMS, overlapping_path);
-			}
+			reset_overlap(ROOMS, PATHS, lemin->del_links);
 			delete_paths_from_paths();
 			while (new_paths_found())
 			{

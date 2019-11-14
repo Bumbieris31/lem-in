@@ -1,33 +1,5 @@
 #include "lem-in.h"
 
-static void		set_path_id(t_link *paths, t_room **rooms, int end, int start) /* ONLY THE NEW PATHS? */
-{
-	t_link	*path;
-	t_room	*room;
-	int		cur;
-	int		nxt;
-
-	path = paths;
-	while (path)
-	{
-		room = path->ptr;
-		cur = room->id;
-		rooms[cur]->from = rooms[start];
-		while (room->id != end)
-		{
-			nxt = room->to->id;
-			rooms[cur]->path = path->id;
-			rooms[cur]->to = rooms[nxt];
-			rooms[nxt]->from = rooms[cur];
-			room = room->to;
-			cur = nxt;
-		}
-		path = path->next;
-	}
-	rooms[end]->path = 0;
-	rooms[end]->from = NULL;
-}
-
 static t_room	*get_starting_room(t_link *link, int dist)
 {
 	t_room	*room;
@@ -138,16 +110,42 @@ static void		get_new_path(t_room **path, t_lemin *lemin)
 	}
 }
 
+static void		set_path_id(t_link *paths, t_room **rooms, int end, int start)
+{
+	t_link	*path;
+	t_room	*room;
+	int		cur;
+	int		nxt;
+
+	path = paths;
+	while (path)
+	{
+		room = path->ptr;
+		cur = room->id;
+		if (rooms[cur]->path != path->id)
+		{
+			rooms[cur]->from = rooms[start];
+			while (room->id != end)
+			{
+				nxt = room->to->id;
+				rooms[cur]->path = path->id;
+				rooms[cur]->to = rooms[nxt];
+				rooms[nxt]->from = rooms[cur];
+				room = room->to;
+				cur = nxt;
+			}
+		}
+		path = path->next;
+	}
+	rooms[end]->path = 0;
+	rooms[end]->from = NULL;
+}
+
 t_link			*get_path(t_lemin *lemin)
 {
 	t_link		*path;
 	int			cur;
 	int			nxt;
-
-	// /* ***** debug ***** */
-	// static int id;
-	// id++;
-	// /* ***** debug ***** */
 
 	reset_rooms(ROOMS, END->id);
 	set_path_id(PATHS, ROOMS, END->id, START->id);
@@ -155,11 +153,6 @@ t_link			*get_path(t_lemin *lemin)
 	if (START->dist == -1)
 		return (NULL);
 	path = MEM(t_link);
-
-	// /* ***** debug ***** */
-	// path->id = id; /* MOVE TO PATH_SPLIT */
-	// /* ***** debug ***** */
-
 	path->ptr = get_starting_room(START->link, START->dist);
 	get_new_path(&path->ptr, lemin);
 	return (path);

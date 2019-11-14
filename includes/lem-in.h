@@ -95,6 +95,7 @@ void				find_solution(t_lemin *lemin, t_link *new_path);
 void				make_connect(char **connections, t_room *table[]);
 void				breadth_first(t_room **rooms, t_room *end, int start);
 void				add_to_paths(t_link **paths, t_link *new_path, int path_id);
+void				reset_overlap(t_room **rooms, t_link *paths, t_del *del_links);
 
 t_link				*get_path(t_lemin *lemin);
 
