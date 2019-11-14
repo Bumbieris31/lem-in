@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/05 16:56:54 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/14 18:49:47 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			bind_rooms(t_room *room1, t_room *room2)
 
 	if (room1->link == 0)
 	{
-		room1->link = (t_link*)malloc(sizeof(t_link));
+		room1->link = MEM(t_link);
 		connection = room1->link;
 	}
 	else
@@ -49,7 +49,7 @@ void			bind_rooms(t_room *room1, t_room *room2)
 		connection = room1->link;
 		while (connection->next)
 			connection = connection->next;
-		connection->next = (t_link*)malloc(sizeof(t_link));
+		connection->next = MEM(t_link);
 		connection = connection->next;
 	}
 	connection->name = room2->name;

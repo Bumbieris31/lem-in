@@ -82,12 +82,12 @@ void		lemin(char *file)
 
 	lemin = MEM(t_lemin);
 	get_file_info(lemin, file);
-	PATHS = get_path(lemin);
-	if (!PATHS)
-		error_check(NO_PATH_ERROR);
-	PATHS->id = 1;
-	find_solution(lemin, new_path);
-	print_all_paths(PATHS, END, START->name);
+	// PATHS = get_path(lemin);
+	// if (!PATHS)
+	// 	error_check(NO_PATH_ERROR);
+	// PATHS->id = 1;
+	// find_solution(lemin, new_path);
+	// print_all_paths(PATHS, END, START->name);
 	// printt_file();
 	// print_winner();
 	// free_everything();

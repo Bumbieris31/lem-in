@@ -58,8 +58,8 @@ typedef struct		s_room
 
 typedef struct		s_del
 {
-	int				room_id;	// delete *to in this room && restore rwf in this rooms *to
-	int				del_id;	// delete *from in this room && restore rwt in this rooms *from
+	int				room1;
+	int				room2;
 	int				path_id;
 	struct s_del	*next;
 }					t_del;
@@ -91,11 +91,15 @@ void				reset_rooms(t_room **rooms, int end);
 void				add_room(t_room **head, t_room *new);
 // void				move_ants(t_lemin *lemin, t_link *path);
 void				get_file_info(t_lemin *lemin, char *file);
+void				add_links(t_room **rooms, t_del *del_links);
+void				delete_links(t_room **rooms, t_del *del_links);
 void				find_solution(t_lemin *lemin, t_link *new_path);
 void				make_connect(char **connections, t_room *table[]);
 void				breadth_first(t_room **rooms, t_room *end, int start);
 void				add_to_paths(t_link **paths, t_link *new_path, int path_id);
 void				reset_overlap(t_room **rooms, t_link *paths, t_del *del_links);
+
+
 
 t_link				*get_path(t_lemin *lemin);
 
