@@ -75,11 +75,15 @@ static t_room	*on_existing_path(t_room *path, t_room **rooms, int *dist)
 	t_link	*link;
 	t_room	*room;
 
+	/* GOES BACK ONE */
 	room = rooms[path->id]->from;
 	path->to = add_room_to_path(room->name, room->id, room->dist);
+	// save delete
 	path = path->to;
 	while (path->dist != *dist)
 	{		
+		// save_delete rooms[path->id]
+		/* GOES BACK UNTIL FINDING WAY OFF */
 		room = rooms[path->id]->from;
 		path->to = add_room_to_path(room->name, room->id, room->dist);
 		path = path->to;
@@ -113,22 +117,22 @@ static void		find_path(t_link *link, int dist, t_room **rooms, t_room *tmp)
 		tmp->to = add_room_to_path(link->ptr->name, link->ptr->id, dist);
 }
 
-static void		get_new_path(t_room **path, t_room **rooms, t_room *end)
+static void		get_new_path(t_room **path, t_lemin *lemin)
 {
 	int		dist;
 	t_room	*tmp;
 	t_link	*link;
 
 	tmp = *path;
-	while (tmp->id != end->id)
+	while (tmp->id != lemin->end->id)
 	{
 		if (tmp->path)
-			tmp = on_existing_path(tmp, rooms, &dist);
+			tmp = on_existing_path(tmp, lemin->rooms, &dist);
 		else
 		{
 			dist = tmp->dist - 1;
-			link = rooms[tmp->id]->link;
-			find_path(link, dist, rooms, tmp);
+			link = lemin->rooms[tmp->id]->link;
+			find_path(link, dist, lemin->rooms, tmp);
 		}
 		tmp = tmp->to;
 	}
@@ -157,6 +161,6 @@ t_link			*get_path(t_lemin *lemin)
 	// /* ***** debug ***** */
 
 	path->ptr = get_starting_room(START->link, START->dist);
-	get_new_path(&path->ptr, ROOMS, END);
+	get_new_path(&path->ptr, lemin);
 	return (path);
 }

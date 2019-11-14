@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_paths.c                                     :+:      :+:    :+:   */
+/*   create_best_paths.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:54:57 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/11 19:08:52 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/14 15:15:52 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	recreate_rooms(t_link *paths, t_lemin *lemin, int i, int j)
 	}
 }
 
-t_link	*create_paths(t_lemin *lemin)
+t_link	*create_best_paths(t_lemin *lemin)
 {
 	int		i;
 	int		j;

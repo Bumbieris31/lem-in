@@ -77,6 +77,7 @@ typedef struct		s_lemin
 	int 			ants;
 	int				size;
 	int				**winner_ids;
+	t_del			*del_links;
 	t_link			*paths;
 	t_room			**rooms;
 	t_room			*start;
