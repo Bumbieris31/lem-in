@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 15:24:15 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/14 17:32:25 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/14 17:40:35 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void		free_lemin_struct(t_lemin	*lemin)
 	{
 		if (lemin->rooms[i])
 		{
+			// free name and t_link links if there are any
 			free(lemin->rooms[i]);
-
 		}
 		i--;
 	}

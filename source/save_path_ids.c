@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 17:14:43 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/08 17:33:25 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/14 17:57:12 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int		**save_path_ids(t_link *paths)
 
 	i = 0;
 	path_count = path_counter(paths);
-	path_ids = (int**)malloc(sizeof(int*) * (path_count + 1));
+	path_ids = (int**)ft_memalloc(sizeof(int*) * (path_count + 1));
 	while (paths)
 	{
 		path_len = path_length(paths->ptr);
-		path_ids[i] = (int*)malloc(sizeof(int) * path_len);
+		path_ids[i] = (int*)ft_memalloc(sizeof(int) * path_len);
 		write_path(paths->ptr, path_ids[i], path_len);
 		i++;
 		if (!paths->next)

@@ -70,28 +70,28 @@ static t_room	*check_link(t_room *path, t_room **rms, int *dst, t_link *link)
 	return (link->ptr);
 }
 
-static t_room	*on_existing_path(t_room *path, t_room **rooms, int *dist)
+static t_room	*on_existing_path(t_room *path, t_lemin *lemin, int *dist)
 {
 	t_link	*link;
 	t_room	*room;
 
 	/* GOES BACK ONE */
-	room = rooms[path->id]->from;
+	room = lemin->rooms[path->id]->from;
 	path->to = add_room_to_path(room->name, room->id, room->dist);
-	// save delete
 	path = path->to;
+//	save_links_to_delete(lemin, lemin->rooms[path->id]);
 	while (path->dist != *dist)
-	{		
-		// save_delete rooms[path->id]
+	{
+//		save_links_to_delete(lemin, lemin->rooms[path->id]);
 		/* GOES BACK UNTIL FINDING WAY OFF */
-		room = rooms[path->id]->from;
+		room = lemin->rooms[path->id]->from;
 		path->to = add_room_to_path(room->name, room->id, room->dist);
 		path = path->to;
 	}
-	link = rooms[path->id]->link;
+	link = lemin->rooms[path->id]->link;
 	while (link && link->ptr->dist != (*dist - 1))
 		link = link->next;
-	room = check_link(path, rooms, dist, link);
+	room = check_link(path, lemin->rooms, dist, link);
 	path->to = add_room_to_path(room->name, room->id, *dist - 1);
 	if (room->path)
 	{
@@ -127,7 +127,7 @@ static void		get_new_path(t_room **path, t_lemin *lemin)
 	while (tmp->id != lemin->end->id)
 	{
 		if (tmp->path)
-			tmp = on_existing_path(tmp, lemin->rooms, &dist);
+			tmp = on_existing_path(tmp, lemin, &dist);
 		else
 		{
 			dist = tmp->dist - 1;
