@@ -1,23 +1,5 @@
 #include "lem-in.h"
 
-void				reset_rooms(t_room **rooms, int end)
-{
-	int i;
-
-	i = 0;
-	while (rooms[i])
-	{
-		rooms[i]->path = 0;
-		rooms[i]->to = NULL;
-		rooms[i]->from = NULL;
-		rooms[i]->branch = NULL;
-		rooms[i]->dist = -1;
-		rooms[i]->visited = 0;
-		i++;
-	}
-	rooms[end]->dist = 0;
-}
-
 static void			add_to_queue(t_link **queue, t_room *room)
 {
 	if (!*queue)
@@ -105,7 +87,7 @@ void				breadth_first(t_room **rooms, t_room *end, int start)
 			add_links_to_queue(&queue);
 		queue = queue->next;
 		free(tmp);
-		if (queue->ptr->id == start)
+		if (queue && queue->ptr->id == start)
 		{
 			free_queue(queue);
 			return ;

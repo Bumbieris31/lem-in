@@ -1,7 +1,6 @@
 #include "lem-in.h"
-#include <stdio.h>
 
-static void		set_path_id(t_link *paths, t_room **rooms, int end, int start)
+static void		set_path_id(t_link *paths, t_room **rooms, int end, int start) /* ONLY THE NEW PATHS? */
 {
 	t_link	*path;
 	t_room	*room;
@@ -145,17 +144,22 @@ t_link			*get_path(t_lemin *lemin)
 	int			cur;
 	int			nxt;
 
+	// /* ***** debug ***** */
+	// static int id;
+	// id++;
+	// /* ***** debug ***** */
+
 	reset_rooms(ROOMS, END->id);
 	set_path_id(PATHS, ROOMS, END->id, START->id);
 	breadth_first(ROOMS, END, START->id);
 	if (START->dist == -1)
 		return (NULL);
 	path = MEM(t_link);
-	/* ***** debug ***** */
-	static int id;
-	id++;
-	path->id = id; /* MOVE TO PATH_SPLIT*/
-	/* ***** debug ***** */
+
+	// /* ***** debug ***** */
+	// path->id = id; /* MOVE TO PATH_SPLIT */
+	// /* ***** debug ***** */
+
 	path->ptr = get_starting_room(START->link, START->dist);
 	get_new_path(&path->ptr, lemin);
 	return (path);
