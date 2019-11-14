@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 21:42:05 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/08 19:29:28 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/13 17:18:17 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ void	find_optimal_paths(t_lemin *lemin)
 			// save new path ids
 			temp_path_ids = save_path_ids(lemin->paths);
 		}
+		else
+		{
+			// REATTATCH links if there was split
+		}
+		
 		new_path = get_path(lemin);
 	}
 	lemin->winner_ids = temp_path_ids;

@@ -1,7 +1,7 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-static void			set_path_id(t_link *paths, t_room **rooms, int end, int start)
+static void		set_path_id(t_link *paths, t_room **rooms, int end, int start)
 {
 	t_link	*path;
 	t_room	*room;
@@ -29,7 +29,7 @@ static void			set_path_id(t_link *paths, t_room **rooms, int end, int start)
 	rooms[end]->from = NULL;
 }
 
-static t_room		*get_starting_room(t_link *link, int dist)
+static t_room	*get_starting_room(t_link *link, int dist)
 {
 	t_room	*room;
 
@@ -50,7 +50,7 @@ static t_room		*get_starting_room(t_link *link, int dist)
 	return (room);
 }
 
-static t_room		*add_room_to_path(char *name, int id, int dist)
+static t_room	*add_room_to_path(char *name, int id, int dist)
 {
 	t_room *new;
 
@@ -61,68 +61,85 @@ static t_room		*add_room_to_path(char *name, int id, int dist)
 	return (new);
 }
 
-static t_room		*on_path(t_room *path, t_room **rooms, int dist)
+static t_room	*check_link(t_room *path, t_room **rms, int *dst, t_link *link)
+{
+	if (!link)
+	{
+		(*dst)--;
+		return (rms[path->id]->branch);
+	}
+	return (link->ptr);
+}
+
+static t_room	*on_existing_path(t_room *path, t_room **rooms, int *dist)
 {
 	t_link	*link;
 	t_room	*room;
 
-	room = rooms[path->id];
-	path->to = add_room_to_path(room->from->name, room->from->id, room->from->dist);
+	/* GOES BACK ONE */
+	room = rooms[path->id]->from;
+	path->to = add_room_to_path(room->name, room->id, room->dist);
+	// save delete
 	path = path->to;
-	while (path->dist != dist)
-	{
-		room = rooms[path->id];
-		path->to = add_room_to_path(room->from->name, room->from->id, room->from->dist);
+	while (path->dist != *dist)
+	{		
+		// save_delete rooms[path->id]
+		/* GOES BACK UNTIL FINDING WAY OFF */
+		room = rooms[path->id]->from;
+		path->to = add_room_to_path(room->name, room->id, room->dist);
 		path = path->to;
 	}
 	link = rooms[path->id]->link;
-	while (link && link->ptr->dist != (dist - 1))
+	while (link && link->ptr->dist != (*dist - 1))
 		link = link->next;
-	if (!link)
-		room = rooms[path->id]->branch;
-	else
-		room = link->ptr;
-	path->to = add_room_to_path(room->name, room->id, dist - 1);
+	room = check_link(path, rooms, dist, link);
+	path->to = add_room_to_path(room->name, room->id, *dist - 1);
 	if (room->path)
+	{
 		path->to->path = 1;
+		path->to->dist = -2;
+	}
 	return (path);
 }
 
-static void			get_new_path(t_room **path, t_lemin *lemin)
+static void		find_path(t_link *link, int dist, t_room **rooms, t_room *tmp)
+{
+	t_room	*branch;
+
+	while (link && (link->ptr->dist != dist || link->ptr->path))
+		link = link->next;
+	if (!link)
+	{
+		branch = rooms[tmp->id]->branch;
+		tmp->to = add_room_to_path(branch->name, branch->id, -2);
+		tmp->to->path = 1;
+	}
+	else
+		tmp->to = add_room_to_path(link->ptr->name, link->ptr->id, dist);
+}
+
+static void		get_new_path(t_room **path, t_lemin *lemin)
 {
 	int		dist;
 	t_room	*tmp;
 	t_link	*link;
-	t_room	*branch;
 
 	tmp = *path;
 	while (tmp->id != lemin->end->id)
 	{
 		if (tmp->path)
-		{
-			tmp = on_path(tmp, lemin->rooms, dist);
-			save_links_to_delete();
-		}
+			tmp = on_existing_path(tmp, lemin->rooms, &dist);
 		else
 		{
 			dist = tmp->dist - 1;
 			link = lemin->rooms[tmp->id]->link;
-			while (link && (link->ptr->dist != dist || link->ptr->path))
-				link = link->next;
-			if (!link)
-			{
-				branch = lemin->rooms[tmp->id]->branch;
-				tmp->to = add_room_to_path(branch->name, branch->id, -2);
-				tmp->to->path = 1;
-			}
-			else
-				tmp->to = add_room_to_path(link->ptr->name, link->ptr->id, dist);
+			find_path(link, dist, lemin->rooms, tmp);
 		}
 		tmp = tmp->to;
 	}
 }
 
-t_link				*get_path(t_lemin *lemin)
+t_link			*get_path(t_lemin *lemin)
 {
 	t_link		*path;
 	int			cur;
@@ -134,17 +151,12 @@ t_link				*get_path(t_lemin *lemin)
 	if (START->dist == -1)
 		return (NULL);
 	path = MEM(t_link);
-
+	/* ***** debug ***** */
 	static int id;
 	id++;
-	path->id = id; /* THIS WAS FOR TESTING BUT MOVE TO PATH_SPLIT, DELETE LATER */
-	// if (id == 3)
-	// 	return NULL;
-
+	path->id = id; /* MOVE TO PATH_SPLIT*/
+	/* ***** debug ***** */
 	path->ptr = get_starting_room(START->link, START->dist);
-	if (id == 3)////////
-		ft_printf("starting room : %s\n", path->ptr->name);//////////
-	
-	get_new_path(&path->ptr, ROOMS, END);
+	get_new_path(&path->ptr, lemin);
 	return (path);
 }

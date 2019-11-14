@@ -59,9 +59,10 @@ typedef struct		s_room
 typedef struct		s_del
 {
 	// delete *to in this room && restore rwf in this rooms *to
-	t_room			*room_with_to;
+	t_room			*link_to_from;
 	// delete *from in this room && restore rwt in this rooms *from
 	t_room			*room_with_from;
+	int				path_id;
 	struct s_del	*next;
 }					t_del;
 

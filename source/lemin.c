@@ -31,14 +31,14 @@ static void		print_path(t_link *path, t_room *end, char *start)
 		return ;
 	}
 	tmp = path->ptr;
-	ft_printf("%-5s --> %s\n", start, tmp->name);
+	ft_printf("%-5s --> %s : %d\n", start, tmp->name, tmp->dist);
 	while (tmp->id != end->id)
 	{
 		ft_printf("%-5s --> ", tmp->name);
 		tmp = tmp->to;
 		if (tmp->id == end->id)
 			break ;
-		ft_printf("%s\n", tmp->name);
+		ft_printf("%s : %d\n", tmp->name, tmp->dist);
 	}
 	ft_printf("%s\n\n", end->name);
 }
@@ -67,13 +67,10 @@ void		lemin(char *file)
 	print_path(PATHS, END, START->name);
 
 	PATHS->next = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
-	// t_link *path = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
 	print_dist(lemin);
 	print_path(PATHS->next, END, START->name);
 
-	// path = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
-//	PATHS->next->next = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
-//	print_dist(lemin);
-//	print_path(PATHS->next->next, END, START->name);
-
+	// PATHS->next->next = get_path(lemin); /* GIVES NULL IF CAN'T FIND AN EXTRA PATH */
+	// print_dist(lemin);
+	// print_path(PATHS->next->next, END, START->name);
 }
