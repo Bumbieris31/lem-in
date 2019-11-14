@@ -43,7 +43,7 @@ static void		print_path(t_link *path, t_room *end, char *start)
 	ft_printf("%s\n\n", end->name);
 }
 
-void		print_all_paths(t_link *paths, t_room *end, char *start)
+void			print_all_paths(t_link *paths, t_room *end, char *start)
 {
 	t_link *path;
 
@@ -87,6 +87,7 @@ void		lemin(char *file)
 		error_check(NO_PATH_ERROR);
 	PATHS->id = 1;
 	find_solution(lemin, new_path);
+	print_all_paths(PATHS, END, START->name);
 	// printt_file();
 	// print_winner();
 	// free_everything();
