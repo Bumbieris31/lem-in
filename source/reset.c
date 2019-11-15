@@ -14,14 +14,21 @@ void			reset_overlap(t_room **rooms, t_link *paths, t_del *del_links)
 {
 	t_del	*deltmp;
 	t_link	*pathtmp;
+	int		prev_reset_path;
 
 	deltmp = del_links;
+	prev_reset_path = 0;
 	while (deltmp)
 	{
-		pathtmp = paths;
-		while (pathtmp->id != deltmp->path_id)
-			pathtmp = pathtmp->next;
-		reset_path(rooms, paths->ptr);
+		if (prev_reset_path != deltmp->path_id)
+		{
+			pathtmp = paths;
+			while (pathtmp && pathtmp->id != deltmp->path_id)
+				pathtmp = pathtmp->next;
+			if (pathtmp && pathtmp->id == deltmp->path_id)
+				reset_path(rooms, pathtmp->ptr);
+			prev_reset_path = deltmp->path_id;
+		}
 		deltmp = deltmp->next;
 	}
 }
