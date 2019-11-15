@@ -147,7 +147,6 @@ t_link			*get_path(t_lemin *lemin)
 	int			cur;
 	int			nxt;
 
-	reset_rooms(ROOMS, END->id);
 	set_path_id(PATHS, ROOMS, END->id, START->id);
 	breadth_first(ROOMS, END, START->id);
 	if (START->dist == -1)
@@ -155,5 +154,6 @@ t_link			*get_path(t_lemin *lemin)
 	path = MEM(t_link);
 	path->ptr = get_starting_room(START->link, START->dist);
 	get_new_path(&path->ptr, lemin);
+	reset_rooms(ROOMS, END->id);
 	return (path);
 }

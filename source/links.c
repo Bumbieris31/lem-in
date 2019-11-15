@@ -6,7 +6,7 @@ static t_link	*delete_link(t_link *link, int del_link)
 
 	if (!link)
 		return (NULL);
-	if (link->ptr->id == del_link)
+	if (link->id == del_link)
 	{
 		ret = link->next;
 		free(link);
@@ -48,7 +48,7 @@ static void		add_link(t_link **link, t_room *room)
 
 }
 
-void			add_links(t_room **rooms, t_del *del_links)
+void			add_links_back(t_room **rooms, t_del *del_links)
 {
 	t_del	*deltmp;
 	int		id1;
@@ -63,4 +63,13 @@ void			add_links(t_room **rooms, t_del *del_links)
 		add_link(&rooms[id2]->link, rooms[id1]);
 		deltmp = deltmp->next;
 	}
+}
+
+void			free_del_links(t_del **del_links)
+{
+	if (!*del_links)
+		return ;
+	free_del_links(&(*del_links)->next);
+	free(*del_links);
+	*del_links = NULL;
 }
