@@ -53,7 +53,6 @@ void			find_solution(t_lemin *lemin, t_link *new_path)
 	while (new_path)
 	{
 		new_path = get_path(lemin);
-	/*
 		if (lemin->del_links)
 		{
 			delete_links(ROOMS, lemin->del_links);
@@ -65,17 +64,14 @@ void			find_solution(t_lemin *lemin, t_link *new_path)
 				add_to_paths(&PATHS, new_path, path_id);
 				path_id++;
 			}
-
 			add_links_back(ROOMS, lemin->del_links);
 			free_del_links(&lemin->del_links);
 		}
 		else
 		{
-
-	*/
 			add_to_paths(&PATHS, new_path, path_id);
 			path_id++;
-		// }
+		}
 		// temp_path_ids = check_paths_save_winner(lemin);
 	}
 	// lemin->winner_ids = temp_path_ids;
