@@ -21,7 +21,7 @@ static void		print_dist(t_lemin *lemin)
 	ft_putendl("");
 }
 
-static void		print_path(t_link *path, t_room *end, char *start)
+void		print_path(t_link *path, t_room *end, char *start)
 {
 	t_room *tmp;
 
@@ -78,7 +78,6 @@ void	add_to_paths(t_link **paths, t_link *new_path, int path_id)
 void		lemin(char *file)
 {
 	t_lemin *lemin;
-	t_link *new_path;
 
 	lemin = MEM(t_lemin);
 	get_file_info(lemin, file);
@@ -86,9 +85,10 @@ void		lemin(char *file)
 	if (!PATHS)
 		error_check(NO_PATH_ERROR);
 	PATHS->id = 1;
-	find_solution(lemin, new_path);
+	find_solution(lemin);
 	print_all_paths(PATHS, END, START->name);
+
 	// printt_file();
 	// print_winner();
-	free_lemin_struct(lemin);
+	// free_lemin_struct(lemin);
 }

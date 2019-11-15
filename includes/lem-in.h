@@ -95,12 +95,12 @@ void				add_room(t_room **head, t_room *new);
 void				get_file_info(t_lemin *lemin, char *file);
 void				add_links(t_room **rooms, t_del *del_links);
 void				delete_links(t_room **rooms, t_del *del_links);
-void				find_solution(t_lemin *lemin, t_link *new_path);
+void				find_solution(t_lemin *lemin);
 void				add_links_back(t_room **rooms, t_del *del_links);
 void				make_connect(char **connections, t_room *table[]);
 void				save_links_to_delete(t_lemin *lemin, t_room *path);
 void				breadth_first(t_room **rooms, t_room *end, int start);
-void				delete_paths_from_paths(t_link *paths, t_del *del_links);
+void				delete_paths_from_paths(t_link **paths, t_del *del_links);
 void				add_to_paths(t_link **paths, t_link *new_path, int path_id);
 void				reset_overlap(t_room **rooms, t_link *paths, t_del *del_links);
 
@@ -114,4 +114,8 @@ int					duplicate_room(t_room **rooms, char *name,
 					t_point coord, int size);
 int					**check_paths_save_winner(t_lemin *lemin);
 
+
+/* DEBUG */
+void			print_all_paths(t_link *paths, t_room *end, char *start);
+/* DEBUG */
 #endif

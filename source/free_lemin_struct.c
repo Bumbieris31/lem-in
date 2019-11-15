@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   free_lemin_struct.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/14 15:24:15 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/15 14:11:03 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   free_lemin_struct.c                                :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/14 15:24:15 by abumbier       #+#    #+#                */
+/*   Updated: 2019/11/15 15:53:37 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	free_path_rooms(t_room *room)
 {
 	if (room->to)
 		free_path_rooms(room->to);
-	if (room)
-		free(room);
+	// ft_printf("%s\n", room->name);
+	free(room);
 }
 
 static void	free_paths(t_link *paths)
