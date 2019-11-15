@@ -90,5 +90,5 @@ void		lemin(char *file)
 	print_all_paths(PATHS, END, START->name);
 	// printt_file();
 	// print_winner();
-	// free_everything();
+	free_lemin_struct(lemin);
 }

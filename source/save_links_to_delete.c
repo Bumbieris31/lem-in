@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:14:34 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/14 19:11:31 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/15 15:01:10 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	save_links_to_delete(t_lemin *lemin, t_room *path)
 	t_del	*temp_head;
 
 	temp_head = MEM(t_del);
-	temp_head->room1 = lemin->rooms[path->id]->id;
+	temp_head->room1 = ROOMS[path->id]->id;
 	temp_head->room2 = path->to->id;
-	temp_head->path_id = path->path;//only the last node will hold actual path_id; the rest will be 0
+	temp_head->path_id = ROOMS[path->id]->path;
 	if (lemin->del_links)
 		temp_head->next = lemin->del_links;
 	lemin->del_links = temp_head;

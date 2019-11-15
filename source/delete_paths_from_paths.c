@@ -1,44 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   delete_paths_from_paths.c                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/11/14 22:28:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/15 14:31:57 by fhignett      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   delete_paths_from_paths.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:28:31 by abumbier          #+#    #+#             */
+/*   Updated: 2019/11/15 15:00:49 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-static void	find_and_remove_path(t_lemin *lemin, int id)
+static t_link	*delete_path(t_link *path, int path_id)
 {
-	t_link	*paths;
+	t_link *ret;
 
-	paths = lemin->paths;
-	while (paths->id != id)
+	if (!path)
+		return (NULL);
+	if (path->id == path_id)
 	{
-		if (paths->next)
-			paths = paths->next;
-		else
-			break ;
+		ret = path->next;
+		free_path_rooms(path->ptr);
+		free(path);
+		return (ret);
 	}
-	if (paths->id == id)
-		free_path_rooms(paths->ptr);
+	path->next = delete_path(path->next, path_id);
+	return (path);
 }
 
-void	delete_paths_from_paths(t_lemin *lemin)
+void	delete_paths_from_paths(t_link *paths, t_del *del_links)
 {
 	t_del	*temp_del;
+	int		prev_del_path;
 
-	temp_del = lemin->del_links;
-	while (temp_del->next)
+	temp_del = del_links;
+	prev_del_path = 0;
+	while (temp_del)
 	{
-		if (temp_del->path_id != 0) //still check if path_ids are the same as in lemin->paths->id
-			find_and_remove_path(lemin, temp_del->path_id);
+		if (prev_del_path != temp_del->path_id)
+		{
+			paths = delete_path(paths, temp_del->path_id);
+			prev_del_path = temp_del->path_id;
+		}
 		temp_del = temp_del->next;
 	}
-	if (temp_del->path_id != 0)
-		find_and_remove_path(lemin, temp_del->path_id);
 }

@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/08 18:50:30 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/15 15:11:09 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ int				move_ants_in_all_paths(t_lemin *lemin, int print)
 		count++;
 		ft_putchar('\n');
 	}
+	return (count);
 }
