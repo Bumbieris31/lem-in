@@ -87,7 +87,8 @@ typedef struct		s_lemin
 void				lemin(char *file);
 void				print_file(char *file);
 void				error_check(int error);
-void				free_del_links(t_del **del_links);
+void				free_path_rooms(t_room *room);
+void				free_lemin_struct(t_lemin	*lemin);
 void				reset_rooms(t_room **rooms, int end);
 void				add_room(t_room **head, t_room *new);
 // void				move_ants(t_lemin *lemin, t_link *path);
@@ -98,6 +99,7 @@ void				delete_links(t_room **rooms, t_del *del_links);
 void				find_solution(t_lemin *lemin, t_link *new_path);
 void				add_links_back(t_room **rooms, t_del *del_links);
 void				make_connect(char **connections, t_room *table[]);
+void				save_links_to_delete(t_lemin *lemin, t_room *path);
 void				breadth_first(t_room **rooms, t_room *end, int start);
 void				add_to_paths(t_link **paths, t_link *new_path, int path_id);
 void				reset_overlap(t_room **rooms, t_link *paths, t_del *del_links);
