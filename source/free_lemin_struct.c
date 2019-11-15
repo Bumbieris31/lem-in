@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 15:24:15 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/14 17:40:35 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/15 14:11:03 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	free_winner_ids(int **winner_ids)
 		free(winner_ids);
 }
 
-static void	free_path_rooms(t_room *room)
+void	free_path_rooms(t_room *room)
 {
 	if (room->to)
 		free_path_rooms(room->to);
