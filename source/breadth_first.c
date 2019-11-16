@@ -35,11 +35,11 @@ static void			on_path(t_link **queue, t_room *path, int dist, int end)
 	link = path->link;
 	while (link)
 	{
-		if (!link->ptr->visited && link->ptr->path != path->path)
+		if (link->on && !link->ptr->visited && link->ptr->path != path->path)
 		{
 			link->ptr->dist = dist;
 			link->ptr->branch = path;
-			link->ptr->visited = 1;
+			link->ptr->visited = ON;
 			add_to_queue(queue, link->ptr);
 		}
 		link = link->next;
@@ -53,17 +53,17 @@ static void			on_path(t_link **queue, t_room *path, int dist, int end)
 
 static void			add_links_to_queue(t_link **queue)
 {
-	t_link	*link;
+	t_link *link;
 
 	link = (*queue)->ptr->link;
 	while (link)
 	{
-		if (against_path((*queue)->ptr, link->ptr))
+		if (!link->on || against_path((*queue)->ptr, link->ptr))
 			;
 		else if (!link->ptr->visited)
 		{
 			link->ptr->dist = (*queue)->ptr->dist + 1;
-			link->ptr->visited = 1;
+			link->ptr->visited = ON;
 			add_to_queue(queue, link->ptr);
 		}
 		link = link->next;
@@ -76,8 +76,9 @@ void				breadth_first(t_room **rooms, t_room *end, int start)
 	t_link	*tmp;
 
 	queue = MEM(t_link);
+	end->dist = 0;
 	queue->ptr = end;
-	queue->ptr->visited = 1;
+	queue->ptr->visited = ON;
 	while (queue)
 	{
 		tmp = queue;

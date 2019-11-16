@@ -33,7 +33,7 @@ void			reset_overlap(t_room **rooms, t_link *paths, t_del *del_links)
 	}
 }
 
-void			reset_rooms(t_room **rooms, int end)
+void			reset_rooms(t_room **rooms)
 {
 	int i;
 
@@ -45,5 +45,4 @@ void			reset_rooms(t_room **rooms, int end)
 		rooms[i]->visited = 0;
 		i++;
 	}
-	rooms[end]->dist = 0;
 }

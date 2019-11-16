@@ -6,7 +6,7 @@ t_room			*new_room(char *name, t_point coord, int id)
 {
 	t_room *room;
 
-	room = (t_room*)ft_memalloc(sizeof(t_room));
+	room = MEM(t_room);
 	room->name = ft_strdup(name);
 	room->dist = -1;
 	room->id = id;

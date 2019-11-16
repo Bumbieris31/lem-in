@@ -6,9 +6,7 @@ void			error_check(int error)
 {
 	if (error < 0)
 	{
-		if (error == FD_ERROR)
-			ft_printf("%s\n", strerror(errno));
-		else if (error == ROOM_ERROR)
+		if (error == ROOM_ERROR)
 			ft_putendl("ROOM ERROR");
 		else if (error == DUP_ERROR)
 			ft_putendl("DUPLICATE ERROR");

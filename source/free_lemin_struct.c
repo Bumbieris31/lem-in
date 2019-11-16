@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 15:24:15 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/15 15:53:37 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/16 17:44:21 by flintlouis    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_path_rooms(t_room *room)
 	free(room);
 }
 
-static void	free_paths(t_link *paths)
+void	free_paths(t_link *paths)
 {
 	free_path_rooms(paths->ptr);
 	while (paths->next)

@@ -2,13 +2,6 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# define FD_ERROR		-1
-# define ROOM_ERROR		-2
-# define DUP_ERROR		-3
-# define ANTS_ERROR		-4
-# define CONN_ERROR		-5
-# define NO_PATH_ERROR	-6
-
 # define PRINT			1
 # define DONT_PRINT		0
 
@@ -22,9 +15,7 @@
 # include "ft_printf.h"
 # include <string.h>
 # include <stdlib.h>
-# include <errno.h>
 # include <unistd.h>
-# include <fcntl.h>
 
 typedef enum		e_value
 {
@@ -32,7 +23,14 @@ typedef enum		e_value
 	X =				1,
 	Y =				2,
 	ROOM1 =			0,
-	ROOM2 =			1
+	ROOM2 =			1,
+	ON =			1,
+	OFF =			0,
+	ROOM_ERROR =	-1,
+	DUP_ERROR =		-2,
+	ANTS_ERROR =	-3,
+	CONN_ERROR =	-4,
+	NO_PATH_ERROR =	-5
 }					t_value;
 
 typedef struct		s_point
@@ -66,6 +64,7 @@ typedef struct		s_del
 
 typedef struct		s_link
 {
+	int				on;
 	int				id;
 	char			*name;
 	t_room			*ptr;
@@ -78,29 +77,31 @@ typedef struct		s_lemin
 	int				size;
 	int				**winner_ids;
 	t_del			*del_links;
+	t_list			*map;
 	t_link			*paths;
 	t_room			**rooms;
 	t_room			*start;
 	t_room			*end;
 }					t_lemin;
 
-void				lemin(char *file);
-void				print_file(char *file);
+void				lemin(void);
 void				error_check(int error);
+void				free_paths(t_link *paths);
+void				reset_rooms(t_room **rooms);
+void				get_map_info(t_lemin *lemin);
 void				free_path_rooms(t_room *room);
+void				find_solution(t_lemin *lemin);
+void				print_map(t_list **map, int ants);
 void				free_del_links(t_del **del_links);
 void				free_lemin_struct(t_lemin	*lemin);
-void				reset_rooms(t_room **rooms, int end);
 void				add_room(t_room **head, t_room *new);
-void				get_file_info(t_lemin *lemin, char *file);
 void				add_links(t_room **rooms, t_del *del_links);
-void				delete_links(t_room **rooms, t_del *del_links);
-void				find_solution(t_lemin *lemin);
 void				add_links_back(t_room **rooms, t_del *del_links);
 void				make_connect(char **connections, t_room *table[]);
 void				save_links_to_delete(t_lemin *lemin, t_room *path);
 void				breadth_first(t_room **rooms, t_room *end, int start);
 void				delete_paths_from_paths(t_link **paths, t_del *del_links);
+void				switch_link_on_off(t_link *link, int del_link, int on_off);
 void				add_to_paths(t_link **paths, t_link *new_path, int path_id);
 void				reset_overlap(t_room **rooms, t_link *paths, t_del *del_links);
 
@@ -114,8 +115,4 @@ int					duplicate_room(t_room **rooms, char *name,
 					t_point coord, int size);
 int					**check_paths_save_winner(t_lemin *lemin);
 
-
-/* DEBUG */
-void			print_all_paths(t_link *paths, t_room *end, char *start);
-/* DEBUG */
 #endif

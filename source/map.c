@@ -98,24 +98,20 @@ static void			init_conncections(t_lemin *lemin, t_list **con)
 
 }
 
-static t_list			*copy_file(t_lemin *lemin, char *file, int *size)
+static t_list			*copy_map(t_lemin *lemin, int *size)
 {
-	int		fd;
 	char	*line;
 	t_list	*copy;
 
-	fd = open(file, O_RDONLY);
-	error_check(fd);
-	get_ants(lemin, fd);
+	get_ants(lemin, 0);
 	copy = NULL;
-	while (ft_get_next_line(fd, &line))
+	while (ft_get_next_line(0, &line))
 	{
 		if (line[0] != '#' && !ft_strchr(line, '-'))
 			(*size)++;
 		ft_lstadd_back(&copy, ft_lstnew(line, ft_strlen(line) + 1));
 		free(line);
 	}
-	close(fd);
 	return (copy);
 }
 
@@ -123,16 +119,16 @@ static t_list			*copy_file(t_lemin *lemin, char *file, int *size)
 ** Reads the given file line by line and gets the room info
 */
 
-void				get_file_info(t_lemin *lemin, char *file)
+void				get_map_info(t_lemin *lemin)
 {
 	t_list	*con;
-	t_list	*copied_file;
+	t_list	*copied_map;
 	t_list	*tmp;
 	char	*line;
 
-	copied_file = copy_file(lemin, file, &lemin->size);
+	copied_map = copy_map(lemin, &lemin->size);
 	con = NULL;
-	tmp = copied_file;
+	tmp = copied_map;
 	lemin->rooms = (t_room**)ft_memalloc(sizeof(t_room*) * (lemin->size + 1));
 	while (tmp)
 	{
@@ -148,5 +144,5 @@ void				get_file_info(t_lemin *lemin, char *file)
 		tmp = tmp->next;
 	}
 	init_conncections(lemin, &con);
-	ft_lstdel(&copied_file, ft_bzero);
+	lemin->map = copied_map;
 }
