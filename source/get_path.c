@@ -151,6 +151,7 @@ t_link			*get_path(t_lemin *lemin)
 	path = MEM(t_link);
 	path->ptr = get_starting_room(START->link, START->dist);
 	get_new_path(&path->ptr, lemin);
+	path->on = START->dist;
 	reset_rooms(ROOMS);
 	return (path);
 }

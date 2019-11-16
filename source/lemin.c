@@ -3,7 +3,6 @@
 /* *************** DEBUG ****************** */
 static void print_links(t_lemin *lemin)
 {
-	ft_putendl("*--------*");
 	for (int i = 0; i < lemin->size; i++)
 	{
 		t_link *link;
@@ -16,7 +15,6 @@ static void print_links(t_lemin *lemin)
 			link = link->next;
 		}
 	}
-	ft_putendl("*--------*");
 }
 
 void		print_dist(t_lemin *lemin)
@@ -46,20 +44,19 @@ void		print_path(t_link *path, t_room *end, char *start)
 	{
 		ft_printf("%-5s --> ", tmp->name);
 		tmp = tmp->to;
-		// if (tmp->id == end->id)
-		// 	break ;
 		ft_printf("%-3s : %d\n", tmp->name, path->id);
 	}
 	ft_putendl("");
 }
 
-void			print_all_paths(t_link *paths, t_room *end, char *start)
+void		print_all_paths(t_link *paths, t_room *end, char *start)
 {
 	t_link *path;
 
 	path = paths;
 	while (path)
 	{
+		ft_printf("PATH LEN : %d\n", path->on);
 		print_path(path, end, start);
 		path = path->next;
 	}
@@ -101,6 +98,11 @@ void		lemin(void)
 	if (!PATHS)
 		error_check(NO_PATH_ERROR);
 	PATHS->id = 1;
+	if (PATHS->on == 1)
+	{
+		START->to = END;
+		START->path = 1;
+	}
 	find_solution(lemin);
 	print_all_paths(PATHS, END, START->name);
 	// print_map(&lemin->map, lemin->ants);
