@@ -98,7 +98,7 @@ void		lemin(void)
 	if (!PATHS)
 		error_check(NO_PATH_ERROR);
 	PATHS->id = 1;
-	if (PATHS->on == 1)
+	if (PATHS->ptr->id == END->id)
 	{
 		START->to = END;
 		START->path = 1;
