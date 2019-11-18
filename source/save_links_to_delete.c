@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   save_links_to_delete.c                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/13 13:14:34 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/15 15:01:10 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   save_links_to_delete.c                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/13 13:14:34 by abumbier       #+#    #+#                */
+/*   Updated: 2019/11/16 23:23:17 by flintlouis    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,18 @@
 
 void	save_links_to_delete(t_lemin *lemin, t_room *path)
 {
-	t_del	*temp_head;
+	t_del	*del_link;
+	int		room1;
+	int		room2;
 
-	temp_head = MEM(t_del);
-	temp_head->room1 = ROOMS[path->id]->id;
-	temp_head->room2 = path->to->id;
-	temp_head->path_id = ROOMS[path->id]->path;
-	if (lemin->del_links)
-		temp_head->next = lemin->del_links;
-	lemin->del_links = temp_head;
+	del_link = MEM(t_del);
+	room1 = path->id;
+	room2 = path->to->id;
+	del_link->room1 = room1;
+	del_link->room2 = room2;
+	del_link->path_id = ROOMS[room1]->path;
+	del_link->next = lemin->del_links;
+	lemin->del_links = del_link;
+	switch_link_on_off(ROOMS[room1]->link, room2, OFF);
+	switch_link_on_off(ROOMS[room2]->link, room1, OFF);
 }

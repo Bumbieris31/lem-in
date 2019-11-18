@@ -1,51 +1,15 @@
 #include "lem-in.h"
 
-static t_link	*delete_link(t_link *link, int del_link)
+void	switch_link_on_off(t_link *link, int del_link, int on_off)
 {
-	t_link *ret;
-
 	if (!link)
-		return (NULL);
+		return ;
 	if (link->id == del_link)
 	{
-		ret = link->next;
-		free(link);
-		return (ret);
-	}
-	link->next = delete_link(link->next, del_link);
-	return (link);
-}
-
-void			delete_links(t_room **rooms, t_del *del_links)
-{
-	t_del	*deltmp;
-	int		id1;
-	int		id2;
-
-	deltmp = del_links;
-	while (deltmp)
-	{
-		id1 = deltmp->room1;
-		id2 = deltmp->room2;
-		rooms[id1]->link = delete_link(rooms[id1]->link, id2);
-		rooms[id2]->link = delete_link(rooms[id2]->link, id1);
-		deltmp = deltmp->next;
-	}
-}
-
-static void		add_link(t_link **link, t_room *room)
-{
-	t_link *new;
-
-	if (!link || !room)
+		link->on = on_off;
 		return ;
-	new = MEM(t_link);
-	new->id = room->id;
-	new->name = room->name;
-	new->ptr = room;
-	new->next = *link;
-	*link = new;
-
+	}
+	switch_link_on_off(link->next, del_link, on_off);
 }
 
 void			add_links_back(t_room **rooms, t_del *del_links)
@@ -59,8 +23,8 @@ void			add_links_back(t_room **rooms, t_del *del_links)
 	{
 		id1 = deltmp->room1;
 		id2 = deltmp->room2;
-		add_link(&rooms[id1]->link, rooms[id2]);
-		add_link(&rooms[id2]->link, rooms[id1]);
+		switch_link_on_off(rooms[id1]->link, id2, ON);
+		switch_link_on_off(rooms[id2]->link, id1, ON);
 		deltmp = deltmp->next;
 	}
 }

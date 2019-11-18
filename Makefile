@@ -3,7 +3,7 @@ WHITE = $(shell printf "\e[39m")
 PLUS = $(GREEN)+$(WHITE)
 
 NAME = lem-in
-SOURCE = main lemin room file error print_file make_connect \
+SOURCE = main lemin room map error print_map make_connect \
 get_path breadth_first reset check_paths_save_winner \
 find_solution links save_links_to_delete move_all_ants_in_paths \
 delete_paths_from_paths free_lemin_struct save_path_ids \
@@ -18,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror #ADD LATER
 all: $(NAME)
 
 $(NAME): $(LIB) .objects $(OFILES)
-	@$(CC) -o $(NAME) $(OFILES) $(LIB) $(INCLUDES) -g
+	@$(CC) -o $(NAME) $(OFILES) $(LIB) $(INCLUDES) -O3 -funroll-loops -g
 	@echo "$(NAME) compiled successfully"
 
 .objects:
@@ -29,7 +29,7 @@ $(LIB):
 	@echo "$(PLUS) $(LIB)"
 
 .objects/%.o: source/%.c includes/lem-in.h
-	@$(CC) -o $@ -c $< $(INCLUDES) -g
+	@$(CC) -o $@ -c $< $(INCLUDES) -O3 -funroll-loops -g
 	@echo "$(PLUS) $@"
 
 clean:

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   make_connect.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 15:26:31 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/14 19:14:08 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   make_connect.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
+/*   Updated: 2019/11/16 23:27:22 by flintlouis    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void			bind_rooms(t_room *room1, t_room *room2)
 	connection->id = room2->id;
 	connection->ptr = room2;
 	connection->next = 0;
+	connection->on = ON;
 }
 
 /*
@@ -70,6 +71,8 @@ void			connect_two(char **room_names, t_room *table[])
 
 	room1 = find_room(room_names[ROOM1], table);
 	room2 = find_room(room_names[ROOM2], table);
+	if (!room1 || !room2)
+		error_check(CONN_ERROR);
 	bind_rooms(room1, room2);
 	bind_rooms(room2, room1);
 }

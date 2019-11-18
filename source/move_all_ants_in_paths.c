@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/15 19:36:36 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/18 14:58:04 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int				move_ants_in_all_paths(t_lemin *lemin, int print)
 	{
 		move_one_position(lemin, &ant, &last_ant, print);
 		count++;
-		ft_putchar('\n');
+		if (print)
+			ft_putchar('\n');
 		i++;
 	}
 	return (count);
