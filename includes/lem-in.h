@@ -116,6 +116,7 @@ int					move_ants_in_all_paths(t_lemin *lemin, int print);
 int					duplicate_room(t_room **rooms, char *name,
 					t_point coord, int size);
 int					**check_paths_save_winner(t_lemin *lemin);
+int					**save_path_ids(t_link *paths);
 
 
 /* DEBUG */
