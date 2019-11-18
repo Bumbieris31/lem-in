@@ -31,9 +31,9 @@ void			find_solution(t_lemin *lemin)
 			path_id++;
 		}
 		new_path = get_path(lemin);
-//		temp_path_ids = check_paths_save_winner(lemin);
+		temp_path_ids = check_paths_save_winner(lemin);
 	}
-//	lemin->winner_ids = temp_path_ids;
+	lemin->winner_ids = temp_path_ids;
 //	free_paths(lemin->paths);
 //	lemin->paths = create_best_paths(lemin);
 //	ft_printf("LINE COUNT: %d\n", move_ants_in_all_paths(lemin, PRINT));

@@ -138,16 +138,26 @@ static void		set_path_id(t_link *paths, t_room **rooms, int end, int start)
 	rooms[end]->from = NULL;
 }
 
+void		print_all_paths(t_link *paths, t_room *end, char *start);
+void		print_dist(t_lemin *lemin);
 t_link			*get_path(t_lemin *lemin)
 {
 	t_link		*path;
 	int			cur;
 	int			nxt;
 
+
 	set_path_id(PATHS, ROOMS, END->id, START->id);
 	breadth_first(ROOMS, END, START->id);
 	if (START->dist == -1)
 		return (NULL);
+	static int i;
+	i++;
+	if (i == 17)
+	{
+		print_dist(lemin);
+		exit(0);
+	}
 	path = MEM(t_link);
 	path->ptr = get_starting_room(START->link, START->dist);
 	get_new_path(&path->ptr, lemin);
