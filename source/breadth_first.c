@@ -76,6 +76,7 @@ void				breadth_first(t_room **rooms, t_room *end, int start)
 	t_link	*tmp;
 
 	queue = MEM(t_link);
+	end->dist = 0;
 	queue->ptr = end;
 	queue->ptr->visited = 1;
 	while (queue)

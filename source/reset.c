@@ -45,5 +45,4 @@ void			reset_rooms(t_room **rooms, int end)
 		rooms[i]->visited = 0;
 		i++;
 	}
-	rooms[end]->dist = 0;
 }

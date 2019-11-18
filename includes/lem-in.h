@@ -66,6 +66,7 @@ typedef struct		s_del
 
 typedef struct		s_link
 {
+	int				size;
 	int				id;
 	char			*name;
 	t_room			*ptr;
@@ -87,6 +88,7 @@ typedef struct		s_lemin
 void				lemin(char *file);
 void				print_file(char *file);
 void				error_check(int error);
+void				free_paths(t_link *paths);
 void				free_path_rooms(t_room *room);
 void				free_del_links(t_del **del_links);
 void				free_lemin_struct(t_lemin	*lemin);
@@ -105,6 +107,7 @@ void				add_to_paths(t_link **paths, t_link *new_path, int path_id);
 void				reset_overlap(t_room **rooms, t_link *paths, t_del *del_links);
 
 t_link				*get_path(t_lemin *lemin);
+t_link				*create_best_paths(t_lemin *lemin);
 
 t_room				*new_room(char *name, t_point coord, int id);
 t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);

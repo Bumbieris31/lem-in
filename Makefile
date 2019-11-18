@@ -6,7 +6,8 @@ NAME = lem-in
 SOURCE = main lemin room file error print_file make_connect \
 get_path breadth_first reset check_paths_save_winner \
 find_solution links save_links_to_delete move_all_ants_in_paths \
-delete_paths_from_paths free_lemin_struct
+delete_paths_from_paths free_lemin_struct save_path_ids \
+create_best_paths
 
 INCLUDES = -Iincludes -Ilibft/includes
 CFILES = $(SOURCE:%=source/%.c)

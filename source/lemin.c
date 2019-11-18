@@ -55,15 +55,12 @@ void			print_all_paths(t_link *paths, t_room *end, char *start)
 	}
 }
 
-static void		print_rooms(t_room **rooms)
+void print_rooms(t_lemin *lemin)
 {
-	int i = 0;
-	while (rooms[i])
-	{
-		ft_printf("ROOM : %s, ID : %d\n", rooms[i]->name, rooms[i]->id);
-		i++;
-	}
+	for (int i = 0; i < lemin->size; i++)
+		ft_printf("%s : %d\n", ROOMS[i]->name, ROOMS[i]->dist);
 }
+
 /* *************************************** */
 
 void	add_to_paths(t_link **paths, t_link *new_path, int path_id)
@@ -86,8 +83,14 @@ void		lemin(char *file)
 		error_check(NO_PATH_ERROR);
 	PATHS->id = 1;
 	find_solution(lemin);
-	print_all_paths(PATHS, END, START->name);
 
+	print_all_paths(PATHS, END, START->name);
+	t_link *path = PATHS;
+	while (path)
+	{
+		ft_printf("size : %d\n", path->size);
+		path = path->next;
+	}
 	// printt_file();
 	// print_winner();
 	// free_lemin_struct(lemin);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   check_paths_save_winner.c                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/11/07 21:42:05 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/14 16:11:30 by fhignett      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   check_paths_save_winner.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/07 21:42:05 by abumbier          #+#    #+#             */
+/*   Updated: 2019/11/15 20:01:28 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int		**check_paths_save_winner(t_lemin *lemin)
 
 	fastest_paths = -1;
 	temp_path_ids = 0;
-	// temp_paths = move_ants_in_all_paths(lemin, DONT_PRINT);
+	temp_paths = move_ants_in_all_paths(lemin, DONT_PRINT);
 	if (temp_paths < fastest_paths || fastest_paths == -1)
 	{
 		fastest_paths = temp_paths;
 		// free path id arrays;
 		free_old_ids(temp_path_ids);
 		// save new path ids
-		// temp_path_ids = save_path_ids(lemin->paths);
+		temp_path_ids = save_path_ids(lemin->paths);
 	}
 	return (temp_path_ids);
 }

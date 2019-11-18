@@ -28,12 +28,6 @@ static void		print_del_links(t_lemin *lemin)
 	}
 }
 
-static void print_rooms(t_lemin *lemin)
-{
-	for (int i = 0; i < lemin->size; i++)
-		ft_printf("%s : %d\n", ROOMS[i]->name, ROOMS[i]->path);
-}
-
 void		print_path(t_link *path, t_room *end, char *start);
 
 /* DEBUG */
@@ -70,8 +64,10 @@ void			find_solution(t_lemin *lemin)
 			path_id++;
 		}
 		new_path = get_path(lemin);
-		//	temp_path_ids = check_paths_save_winner(lemin);
+		temp_path_ids = check_paths_save_winner(lemin);
 	}
-	// ft_printf("LINE COUNT: %d\n", move_ants_in_all_paths(lemin, PRINT));
-	// lemin->winner_ids = temp_path_ids;
+	lemin->winner_ids = temp_path_ids;
+//	free_paths(lemin->paths);
+//	lemin->paths = create_best_paths(lemin);
+//	ft_printf("LINE COUNT: %d\n", move_ants_in_all_paths(lemin, PRINT));
 }
