@@ -10,6 +10,7 @@
 # define END			lemin->end
 # define ROOMS			lemin->rooms
 # define PATHS			lemin->paths
+# define WINNER			lemin->winner
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -71,11 +72,19 @@ typedef struct		s_link
 	struct s_link	*next;
 }					t_link;
 
+typedef struct		s_path
+{
+	int				lines;
+	t_link			*winner;
+}					t_path;
+
+
 typedef struct		s_lemin
 {
 	int 			ants;
 	int				size;
 	int				**winner_ids;
+	t_path			*winner;
 	t_del			*del_links;
 	t_list			*map;
 	t_link			*paths;
@@ -88,6 +97,7 @@ void				lemin(void);
 void				error_check(int error);
 void				free_paths(t_link *paths);
 void				reset_rooms(t_room **rooms);
+void				count_lines(t_lemin *lemin);
 void				get_map_info(t_lemin *lemin);
 void				free_path_rooms(t_room *room);
 void				find_solution(t_lemin *lemin);
@@ -115,4 +125,15 @@ int					duplicate_room(t_room **rooms, char *name,
 					t_point coord, int size);
 int					**check_paths_save_winner(t_lemin *lemin);
 
+
+/* ************ DEBUG ************ */
+
+void		print_links(t_lemin *lemin);
+void		print_dist(t_lemin *lemin);
+void		print_path(t_link *path, t_room *end, char *start);
+void		print_all_paths(t_link *paths, t_room *end, char *start);
+void		print_del_links(t_lemin *lemin);
+void		print_rooms(t_lemin *lemin);
+
+/* ******************************* */
 #endif
