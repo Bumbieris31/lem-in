@@ -106,12 +106,12 @@ void				free_del_links(t_del **del_links);
 void				free_lemin_struct(t_lemin	*lemin);
 void				add_room(t_room **head, t_room *new);
 void				add_links(t_room **rooms, t_del *del_links);
-void				add_links_back(t_room **rooms, t_del *del_links);
+void				add_delete_links(t_room **rooms, t_del *del_links, int on_off);
 void				make_connect(char **connections, t_room *table[]);
 void				save_links_to_delete(t_lemin *lemin, t_room *path);
 void				breadth_first(t_room **rooms, t_room *end, int start);
 void				delete_paths_from_paths(t_link **paths, t_del *del_links);
-void				switch_link_on_off(t_link *link, int del_link, int on_off);
+void				switch_link_on_off(t_link *link, int connect, int on_off);
 void				add_to_paths(t_link **paths, t_link *new_path, int path_id);
 void				reset_overlap(t_room **rooms, t_link *paths, t_del *del_links);
 

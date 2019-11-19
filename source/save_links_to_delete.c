@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/13 13:14:34 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/16 23:23:17 by flintlouis    ########   odam.nl         */
+/*   Updated: 2019/11/19 21:51:03 by flintlouis    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	save_links_to_delete(t_lemin *lemin, t_room *path)
 	del_link->path_id = ROOMS[room1]->path;
 	del_link->next = lemin->del_links;
 	lemin->del_links = del_link;
-	switch_link_on_off(ROOMS[room1]->link, room2, OFF);
-	switch_link_on_off(ROOMS[room2]->link, room1, OFF);
+	// switch_link_on_off(ROOMS[room1]->link, room2, OFF);
+	// switch_link_on_off(ROOMS[room2]->link, room1, OFF);
 }
