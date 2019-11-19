@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 22:28:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/15 15:55:58 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/18 17:12:17 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static t_link	*delete_path(t_link *path, int path_id)
 {
 	t_link *ret;
 
-	
 	if (!path)
 		return (NULL);
 	if (path->id == path_id)

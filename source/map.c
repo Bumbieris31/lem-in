@@ -98,17 +98,12 @@ static void			init_conncections(t_lemin *lemin, t_list **con)
 
 }
 
-static t_list			*copy_map(t_lemin *lemin, int *size, char *file)
+static t_list			*copy_map(t_lemin *lemin, int *size)
 {
 	char	*line;
 	t_list	*copy;
-	int fd;
+	int		fd;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1) {
-		ft_putendl("INVALID FILE");
-		exit(1);
-	}
 	get_ants(lemin, fd);
 	copy = NULL;
 	while (ft_get_next_line(fd, &line))
@@ -126,14 +121,14 @@ static t_list			*copy_map(t_lemin *lemin, int *size, char *file)
 ** Reads the given file line by line and gets the room info
 */
 
-void				get_map_info(t_lemin *lemin, char *file)
+void				get_map_info(t_lemin *lemin)
 {
 	t_list	*con;
 	t_list	*copied_map;
 	t_list	*tmp;
 	char	*line;
 
-	copied_map = copy_map(lemin, &lemin->size, file);
+	copied_map = copy_map(lemin, &lemin->size);
 	con = NULL;
 	tmp = copied_map;
 	lemin->rooms = (t_room**)ft_memalloc(sizeof(t_room*) * (lemin->size + 1));

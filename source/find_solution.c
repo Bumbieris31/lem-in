@@ -19,6 +19,7 @@ void			find_solution(t_lemin *lemin)
 			while (new_path)
 			{
 				add_to_paths(&PATHS, new_path, path_id);
+				count_lines(lemin);
 				path_id++;
 				new_path = get_path(lemin);
 			}
@@ -28,6 +29,7 @@ void			find_solution(t_lemin *lemin)
 		else
 		{
 			add_to_paths(&PATHS, new_path, path_id);
+			count_lines(lemin);
 			path_id++;
 		}
 		new_path = get_path(lemin);
