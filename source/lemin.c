@@ -26,7 +26,8 @@ void		lemin(void)
 		START->path = 1;
 	}
 	count_lines(lemin);
-	find_solution(lemin);
+	if (lemin->ants > 1)
+		find_solution(lemin);
 	print_all_paths(PATHS, END, START->name);
 	ft_printf("ANTS : %d\nLINES : %d\n", lemin->ants, WINNER->lines	);
 	// print_map(&lemin->map, lemin->ants);
