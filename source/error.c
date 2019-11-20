@@ -1,6 +1,16 @@
-#include "lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   error.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/20 18:56:59 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/20 18:57:00 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
-/* Checks if there is an error given and exits the program with an error message */
+#include "lem-in.h"
 
 void			error_check(int error)
 {

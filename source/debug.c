@@ -61,16 +61,6 @@ void		print_all_paths(t_link *paths, t_room *end, char *start)
 	}
 }
 
-void		print_del_links(t_lemin *lemin)
-{
-	t_del *tmp = lemin->del_links;
-	while (tmp)
-	{
-		ft_printf("room1 %s, room2 %s, path_id %d\n", ROOMS[tmp->room1]->name, ROOMS[tmp->room2]->name, tmp->path_id);
-		tmp = tmp->next;
-	}
-}
-
 void		print_rooms(t_lemin *lemin)
 {
 	for (int i = 0; i < lemin->size; i++)

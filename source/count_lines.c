@@ -16,6 +16,6 @@ void		count_lines(t_lemin *lemin)
 		path = path->next;
 	}
 	lines = lines / path_amount;
-	if (WINNER->lines == 0 || lines < WINNER->lines)
-		lemin->winner->lines = lines;
+	if (lemin->lines == 0 || lines < lemin->lines)
+		lemin->lines = lines;
 }

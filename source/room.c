@@ -1,37 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   room.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/20 18:47:07 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/20 18:53:19 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem-in.h"
 
-/* Create new t_room */
-
-t_room			*new_room(char *name, t_point coord, int id)
+t_room		*new_room(char *name, int id, int dist)
 {
 	t_room *room;
 
 	room = MEM(t_room);
-	room->name = ft_strdup(name);
-	room->dist = -1;
+	room->name = name;
+	room->dist = dist;
 	room->id = id;
-	room->coord = coord;
 	return (room);
 }
 
-static int		compare_coord(t_point a, t_point b)
+static int	compare_coord(t_point a, t_point b)
 {
 	if (a.x == b.x && a.y == b.y)
 		return (1);
 	return (0);
 }
 
-/* Checker to see if coord or name already exists */
-
-int				duplicate_room(t_room **rooms, char *name, t_point coord, int size)
+int			duplicate_room(t_room **rooms, char *name, t_point coord, int size)
 {
 	int i;
 
 	i = 0;
 	while (i < size)
 	{
-		if (compare_coord(coord, rooms[i]->coord) || ft_strequ(name, rooms[i]->name))
-			return (1); 
+		if (compare_coord(coord, rooms[i]->coord)
+		|| ft_strequ(name, rooms[i]->name))
+			return (1);
 		i++;
 	}
 	return (0);

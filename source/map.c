@@ -46,7 +46,7 @@ static t_room		*get_room(t_lemin *lemin, char *line)
 	coord = (t_point){ft_atoi(room_info[X]), ft_atoi(room_info[Y])};
 	if (duplicate_room(lemin->rooms, name, coord, id))
 		error_check(DUP_ERROR);
-	lemin->rooms[id] = new_room(name, coord, id);
+	lemin->rooms[id] = new_room(ft_strdup(name), id, -1);
 	id++;
 	ft_free_2darray((void**)room_info);
 	return(lemin->rooms[id - 1]);
@@ -69,11 +69,11 @@ static void			set_start_end(t_lemin *lemin, char *cmnd, t_list **file)
 ** Gets the amount of ants
 */
 
-static void			get_ants(t_lemin *lemin, int fd)
+static void			get_ants(t_lemin *lemin)
 {
 	char *line;
 
-	ft_get_next_line(fd, &line);
+	ft_get_next_line(0, &line);
 	lemin->ants = ft_atoi(line);
 	if (!lemin->ants || ft_strlen(line) != ft_intlen(lemin->ants))
 		error_check(ANTS_ERROR);
@@ -103,7 +103,7 @@ static t_list			*copy_map(t_lemin *lemin, int *size)
 	char	*line;
 	t_list	*copy;
 
-	get_ants(lemin, 0);
+	get_ants(lemin);
 	copy = NULL;
 	while (ft_get_next_line(0, &line))
 	{

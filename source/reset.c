@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   reset.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/20 18:46:50 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/20 18:46:51 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem-in.h"
 
 void		reset_path(t_room **rooms, t_room *path)
@@ -10,30 +22,7 @@ void		reset_path(t_room **rooms, t_room *path)
 	rooms[path->id]->path = 0;
 }
 
-void			reset_overlap(t_room **rooms, t_link *paths, t_del *del_links)
-{
-	t_del	*deltmp;
-	t_link	*pathtmp;
-	int		prev_reset_path;
-
-	deltmp = del_links;
-	prev_reset_path = 0;
-	while (deltmp)
-	{
-		if (prev_reset_path != deltmp->path_id)
-		{
-			pathtmp = paths;
-			while (pathtmp && pathtmp->id != deltmp->path_id)
-				pathtmp = pathtmp->next;
-			if (pathtmp && pathtmp->id == deltmp->path_id)
-				reset_path(rooms, pathtmp->ptr);
-			prev_reset_path = deltmp->path_id;
-		}
-		deltmp = deltmp->next;
-	}
-}
-
-void			reset_rooms(t_room **rooms)
+void		reset_rooms(t_room **rooms)
 {
 	int i;
 
@@ -45,4 +34,21 @@ void			reset_rooms(t_room **rooms)
 		rooms[i]->visited = 0;
 		i++;
 	}
+}
+
+t_link		*delete_path(t_link *path, int path_id)
+{
+	t_link *ret;
+
+	if (!path)
+		return (NULL);
+	if (path->id == path_id)
+	{
+		ret = path->next;
+		free_path_rooms(path->ptr);
+		free(path);
+		return (ret);
+	}
+	path->next = delete_path(path->next, path_id);
+	return (path);
 }
