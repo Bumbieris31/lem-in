@@ -2,7 +2,6 @@
 
 int				main(int argc, char **argv)
 {
-	if (argc == 2)
-		lemin(argv[1]);
+	lemin();
 	return (0);
 }

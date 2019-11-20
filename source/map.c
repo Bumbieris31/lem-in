@@ -102,18 +102,16 @@ static t_list			*copy_map(t_lemin *lemin, int *size)
 {
 	char	*line;
 	t_list	*copy;
-	int		fd;
 
-	get_ants(lemin, fd);
+	get_ants(lemin, 0);
 	copy = NULL;
-	while (ft_get_next_line(fd, &line))
+	while (ft_get_next_line(0, &line))
 	{
 		if (line[0] != '#' && !ft_strchr(line, '-'))
 			(*size)++;
 		ft_lstadd_back(&copy, ft_lstnew(line, ft_strlen(line) + 1));
 		free(line);
 	}
-	close(fd);
 	return (copy);
 }
 

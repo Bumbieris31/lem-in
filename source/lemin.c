@@ -9,7 +9,7 @@ void	add_to_paths(t_link **paths, t_link *new_path, int path_id)
 	(*paths)->id = path_id;
 }
 
-void		lemin(char *file)
+void		lemin()
 {
 	t_lemin *lemin;
 
@@ -29,7 +29,7 @@ void		lemin(char *file)
 	if (lemin->ants > 1)
 		find_solution(lemin);
 	print_all_paths(PATHS, END, START->name);
-	ft_printf("ANTS : %d\nLINES : %d\n", lemin->ants, WINNER->lines	);
+	ft_printf("ANTS : %d\nLINES : %d\n", lemin->ants, WINNER->lines);
 	// print_map(&lemin->map, lemin->ants);
 	// print_winner();
 	// free_lemin_struct(lemin);

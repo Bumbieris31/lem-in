@@ -1,0 +1,579 @@
+END dist : 0
+Uom4 dist : 1
+Kkm6 dist : 1
+Cak0 dist : 1
+Snh2 dist : 1
+J_z4 dist : 2
+Omf2 dist : 2
+Oni4 dist : 2
+A_b6 dist : 2
+Drr0 dist : 3
+Zeq3 dist : 3
+A_c0 dist : 3
+Kro6 dist : 3
+Rgh1 dist : 4
+Ypw4 dist : 4
+Qot6 dist : 4
+Wya7 dist : 4
+Zmj7 dist : 5
+Biw7 dist : 5
+Pel6 dist : 5
+Dqz6 dist : 5
+Mwt8 dist : 5
+Thm7 dist : 6
+Usu8 dist : 6
+Ae_9 dist : 6
+Uua7 dist : 6
+Y_j7 dist : 7
+Din1 dist : 7
+Wwz8 dist : 7
+Dyh6 dist : 7
+Dbq1 dist : 8
+Hyl1 dist : 8
+Hgd9 dist : 8
+Ovu8 dist : 8
+Nzn1 dist : 9
+Soy6 dist : 9
+Tey1 dist : 9
+Wmc7 dist : 9
+Zuv7 dist : 10
+W_m2 dist : 10
+F_t4 dist : 10
+Rtm3 dist : 10
+K_k0 dist : 11
+Dbv9 dist : 11
+Tdu1 dist : 11
+Dyl5 dist : 11
+Pmv4 dist : 12
+Qaf0 dist : 12
+Xxk6 dist : 12
+Qus8 dist : 12
+Gwd7 dist : 13
+Xfa4 dist : 13
+I_g3 dist : 13
+Cpk3 dist : 13
+Xvc3 dist : 13
+Ejn1 dist : 13
+Kwp3 dist : 14
+R_j4 dist : 14
+Ggi1 dist : 14
+Fjz4 dist : 14
+Tjr8 dist : 14
+Pzx4 dist : 15
+Zis0 dist : 15
+Woi7 dist : 15
+Mmc6 dist : 15
+Dsh0 dist : 15
+Nbi8 dist : 16
+Tb_9 dist : 16
+Zes3 dist : 16
+Buk4 dist : 16
+Cww5 dist : 17
+Tst6 dist : 17
+Pss1 dist : 17
+Wmr4 dist : 17
+S_t5 dist : 17
+Jki3 dist : 18
+Jcq8 dist : 18
+Gye8 dist : 18
+G_z6 dist : 18
+Jys5 dist : 19
+Vjk9 dist : 19
+Yrj6 dist : 19
+Jnc5 dist : 19
+Hzl0 dist : 20
+Snx0 dist : 20
+Wi_4 dist : 20
+Prs8 dist : 20
+Zgn5 dist : 21
+Bij7 dist : 21
+Ftw3 dist : 21
+Mpa4 dist : 21
+H__7 dist : 22
+Xre4 dist : 22
+Xpd6 dist : 22
+Caw5 dist : 22
+Mpu0 dist : 23
+Ckt3 dist : 23
+Ovh6 dist : 23
+Cis8 dist : 23
+Ysp5 dist : 23
+Plr1 dist : 24
+K_p5 dist : 24
+Cka6 dist : 24
+Cn_5 dist : 24
+Mos7 dist : 25
+Ziw6 dist : 25
+Xjl4 dist : 25
+Ynr1 dist : 25
+Pmb3 dist : 26
+Jyl7 dist : 26
+Qec6 dist : 26
+Qse7 dist : 26
+N_h9 dist : 27
+Wby0 dist : 27
+Huj4 dist : 27
+Uhr1 dist : 27
+Gco5 dist : 27
+Mhe3 dist : 28
+Ugz8 dist : 28
+Ocu2 dist : 28
+Xrf4 dist : 28
+Taf1 dist : 29
+Ysu2 dist : 29
+V_j2 dist : 29
+Oqk6 dist : 29
+Git4 dist : 29
+Iks1 dist : 30
+Vba9 dist : 30
+Qei6 dist : 30
+Kfs5 dist : 30
+Ato1 dist : 31
+Gqk4 dist : 31
+Qpb0 dist : 31
+Tk_8 dist : 31
+Pwv8 dist : 31
+Edg1 dist : 31
+Mnx0 dist : 32
+Svc0 dist : 32
+Swk1 dist : 32
+R_v7 dist : 32
+Hwl3 dist : 33
+Ufu1 dist : 33
+Kud7 dist : 33
+Hcm9 dist : 33
+Cdr6 dist : 34
+Iog3 dist : 34
+Slm3 dist : 34
+Opr5 dist : 34
+Ocj1 dist : 35
+S_k6 dist : 35
+Cni8 dist : 35
+Mse8 dist : 35
+Aki5 dist : 36
+Szm0 dist : 36
+Afc2 dist : 36
+Dlj9 dist : 36
+Pl_6 dist : 37
+Hox2 dist : 37
+Qth5 dist : 37
+Jgh7 dist : 37
+Bew7 dist : 38
+Dyf9 dist : 38
+Qex9 dist : 38
+Arp6 dist : 38
+Rh_7 dist : 39
+Ocs4 dist : 39
+Gat3 dist : 39
+Fiq4 dist : 39
+Twc2 dist : 40
+Rnk0 dist : 40
+Ab_2 dist : 40
+B__1 dist : 40
+M_a7 dist : 41
+Bkl2 dist : 41
+Eaj8 dist : 41
+Zud5 dist : 41
+Ftl8 dist : 42
+Wrt0 dist : 42
+Bzx0 dist : 42
+Jah7 dist : 42
+Wgg4 dist : 43
+Ilv5 dist : 43
+Bcn8 dist : 43
+Cqt9 dist : 43
+Jzz3 dist : 44
+Wn_7 dist : 44
+Xfe5 dist : 44
+Ivh1 dist : 44
+Wkt9 dist : 45
+Aqq0 dist : 45
+Qtx1 dist : 45
+Qsx0 dist : 45
+Fez6 dist : 46
+Ppx2 dist : 46
+Be_9 dist : 46
+Clb1 dist : 46
+Krf8 dist : 46
+Wo_9 dist : 47
+Sdh7 dist : 47
+Afz6 dist : 47
+Sua9 dist : 47
+Ipd3 dist : 47
+Jwx7 dist : 47
+Nfl5 dist : 47
+Fdt5 dist : 47
+Ml_8 dist : 48
+Euu7 dist : 48
+Jcn7 dist : 48
+I_q2 dist : 49
+Rpt1 dist : 49
+Jkz3 dist : 49
+Oxl4 dist : 50
+Gdf2 dist : 50
+Dfm6 dist : 50
+Bwo1 dist : 51
+Iuf8 dist : 51
+Mxw6 dist : 51
+Ogn1 dist : 52
+Ngp4 dist : 52
+Vqt3 dist : 52
+Win8 dist : 53
+Isr3 dist : 53
+E_n9 dist : 53
+Ire1 dist : 54
+Kqb0 dist : 54
+Bgn1 dist : 54
+Xqg8 dist : 54
+Jfm0 dist : 55
+Xkp5 dist : 55
+Sby1 dist : 55
+V__3 dist : 55
+Aye9 dist : 56
+Vig4 dist : 56
+Fzg8 dist : 56
+Vnn9 dist : 57
+Vzj1 dist : 57
+Cfr0 dist : 57
+Uod3 dist : 57
+Ukh6 dist : 57
+Pig9 dist : 57
+Qxw1 dist : 57
+D_r2 dist : 57
+Pvv4 dist : 57
+Npu7 dist : 57
+Okh1 dist : 58
+Ab_3 dist : 58
+Ggb5 dist : 58
+W_y1 dist : 59
+G_w1 dist : 59
+Ngp8 dist : 59
+Poz5 dist : 60
+Xls3 dist : 60
+Qrv4 dist : 60
+Jkc7 dist : 60
+Fil9 dist : 61
+Dfc2 dist : 61
+Oia3 dist : 62
+Kp_4 dist : 62
+Vcx6 dist : 63
+Z_l7 dist : 63
+Mgz1 dist : 64
+Vxz8 dist : 64
+Knk2 dist : 64
+Vgp8 dist : 65
+Fem5 dist : 65
+Xvl9 dist : 66
+Bzv8 dist : 66
+Ov_2 dist : 67
+Jam2 dist : 67
+Yzt4 dist : 68
+Xi_0 dist : 68
+Rxn7 dist : 69
+Rpp0 dist : 69
+Fqi2 dist : 70
+Swx1 dist : 70
+Tbd1 dist : 70
+D_z0 dist : 70
+Rmk3 dist : 70
+Ndm0 dist : 71
+Idr5 dist : 71
+Fxy1 dist : 72
+Jsp0 dist : 72
+Ybd3 dist : 73
+Ku_3 dist : 73
+Wsv6 dist : 74
+Dff7 dist : 74
+K_n7 dist : 75
+Efg5 dist : 75
+Ioo6 dist : 76
+Qvv0 dist : 76
+Peb0 dist : 77
+Sop6 dist : 77
+Bxx5 dist : 78
+Jow1 dist : 78
+Hld1 dist : 79
+D_w1 dist : 79
+Q__8 dist : 80
+Vuu6 dist : 80
+Gtz0 dist : 81
+Ixu7 dist : 81
+Imo2 dist : 82
+Eln8 dist : 82
+Aqd0 dist : 83
+O_c9 dist : 83
+Qva4 dist : 84
+Zjq3 dist : 84
+Ylp9 dist : 85
+Yam3 dist : 85
+Clu0 dist : 85
+Zrr2 dist : 86
+Bmu6 dist : 86
+Idc6 dist : 87
+F__5 dist : 87
+Nvf8 dist : 88
+Djn0 dist : 88
+Aql1 dist : 89
+Ydo1 dist : 89
+Kvv3 dist : 89
+Gvw0 dist : 89
+Ixt5 dist : 90
+Beb6 dist : 90
+Q_z3 dist : 90
+Xaq5 dist : 90
+Nbe6 dist : 90
+Ino6 dist : 90
+Vdj4 dist : 90
+Ehb1 dist : 90
+Qod7 dist : 91
+Cuc6 dist : 92
+Aat4 dist : 93
+No_7 dist : 94
+Avb9 dist : 95
+Hhn4 dist : 96
+Qbi8 dist : 97
+Q_e5 dist : 98
+Ryd9 dist : 99
+Icl8 dist : 100
+Nct7 dist : 101
+Xik7 dist : 102
+Ie_6 dist : 103
+Stx1 dist : 104
+Uow5 dist : 105
+M_g9 dist : 106
+M_d8 dist : 107
+Min4 dist : 108
+Ybt0 dist : 109
+Tne2 dist : 110
+Fzl0 dist : 111
+Rsh4 dist : 112
+Iom7 dist : 113
+Zrk4 dist : 114
+Cfl3 dist : 115
+Vqk4 dist : 116
+Pad7 dist : 117
+Ozl9 dist : 118
+Evi5 dist : 119
+Jfc1 dist : 120
+Knf6 dist : 121
+Nfe6 dist : 122
+Ksl3 dist : 123
+Qjv4 dist : 124
+B_t8 dist : 125
+Ofi8 dist : 126
+Psr5 dist : 127
+Fv_5 dist : 128
+Huz8 dist : 129
+M_j4 dist : 130
+G_e2 dist : 131
+C_f8 dist : 132
+Rwu2 dist : 133
+Wtk7 dist : 134
+Aij8 dist : 135
+Xnw6 dist : 135
+Niy2 dist : 136
+Jka2 dist : 137
+Jqd8 dist : 138
+Oec0 dist : 139
+Mjt2 dist : 140
+Mjw8 dist : 141
+G_n4 dist : 142
+Xff0 dist : 143
+Bp_1 dist : 144
+Grq2 dist : 145
+Pgw9 dist : 146
+Avt7 dist : 147
+Ppq6 dist : 147
+Tbw1 dist : 148
+Hbf5 dist : 149
+Wxc7 dist : 150
+Tcx9 dist : 151
+Vrd8 dist : 152
+Wvu3 dist : 153
+Hbp8 dist : 154
+Mzs6 dist : 155
+Pgb6 dist : 156
+Ng_3 dist : 157
+Nwm2 dist : 157
+Oyb6 dist : 158
+START dist : 159
+Oyb6     : 1500, dist = 158
+Ng_3     : 1501, dist = 157
+Pgb6     : 655 , dist = 156
+Mzs6     : 654 , dist = 155
+Hbp8     : 1502, dist = 154
+Wvu3     : 653 , dist = 153
+Vrd8     : 1503, dist = 152
+Tcx9     : 652 , dist = 151
+Wxc7     : 651 , dist = 150
+Hbf5     : 650 , dist = 149
+Tbw1     : 1504, dist = 148
+Avt7     : 1505, dist = 147
+Pgw9     : 1506, dist = 146
+Grq2     : 649 , dist = 145
+Bp_1     : 1507, dist = 144
+Xff0     : 648 , dist = 143
+G_n4     : 1508, dist = 142
+Mjw8     : 647 , dist = 141
+Mjt2     : 646 , dist = 140
+Oec0     : 645 , dist = 139
+Jqd8     : 1509, dist = 138
+Jka2     : 644 , dist = 137
+Niy2     : 643 , dist = 136
+Aij8     : 1510, dist = 135
+Wtk7     : 1511, dist = 134
+Rwu2     : 1512, dist = 133
+C_f8     : 642 , dist = 132
+G_e2     : 1513, dist = 131
+M_j4     : 1514, dist = 130
+Huz8     : 1515, dist = 129
+Fv_5     : 641 , dist = 128
+Psr5     : 1516, dist = 127
+Ofi8     : 640 , dist = 126
+B_t8     : 1517, dist = 125
+Qjv4     : 1518, dist = 124
+Ksl3     : 1519, dist = 123
+Nfe6     : 1520, dist = 122
+Knf6     : 1521, dist = 121
+Jfc1     : 639 , dist = 120
+Evi5     : 638 , dist = 119
+Ozl9     : 637 , dist = 118
+Pad7     : 1522, dist = 117
+Vqk4     : 636 , dist = 116
+Cfl3     : 1523, dist = 115
+Zrk4     : 1524, dist = 114
+Iom7     : 1525, dist = 113
+Rsh4     : 1526, dist = 112
+Fzl0     : 1527, dist = 111
+Tne2     : 635 , dist = 110
+Ybt0     : 634 , dist = 109
+Min4     : 633 , dist = 108
+M_d8     : 632 , dist = 107
+M_g9     : 631 , dist = 106
+Uow5     : 1528, dist = 105
+Stx1     : 630 , dist = 104
+Ie_6     : 629 , dist = 103
+Xik7     : 1529, dist = 102
+Nct7     : 628 , dist = 101
+Icl8     : 627 , dist = 100
+Ryd9     : 1530, dist = 99 
+Q_e5     : 1531, dist = 98 
+Qbi8     : 626 , dist = 97 
+Hhn4     : 1532, dist = 96 
+Avb9     : 1533, dist = 95 
+No_7     : 1534, dist = 94 
+Aat4     : 625 , dist = 93 
+Cuc6     : 624 , dist = 92 
+Qod7     : 623 , dist = 91 
+Ixt5     : 622 , dist = 90 
+Aql1     : 621 , dist = 89 
+Nvf8     : 620 , dist = 88 
+Idc6     : 619 , dist = 87 
+Zrr2     : 1535, dist = 86 
+Ylp9     : 1536, dist = 85 
+Qva4     : 618 , dist = 84 
+Aqd0     : 617 , dist = 83 
+Imo2     : 616 , dist = 82 
+Gtz0     : 615 , dist = 81 
+Q__8     : 1537, dist = 80 
+Hld1     : 614 , dist = 79 
+Bxx5     : 613 , dist = 78 
+Peb0     : 1538, dist = 77 
+Ioo6     : 1539, dist = 76 
+K_n7     : 612 , dist = 75 
+Wsv6     : 1540, dist = 74 
+Ybd3     : 611 , dist = 73 
+Fxy1     : 610 , dist = 72 
+Ndm0     : 1541, dist = 71 
+Fqi2     : 1542, dist = 70 
+ONPATH   : 1267, dist = -2 
+BACKONE  : 1087, dist = -1 
+Tps2     : 1071, dist = -1 
+Qws6     : 1061, dist = -1 
+Kcf9     : 1062, dist = -1 
+Yoz5     : 1070, dist = -1 
+Cey9     : 1063, dist = -1 
+Iht4     : 1481, dist = -1 
+Umh0     : 1480, dist = -1 
+Guu6     : 675 , dist = -1 
+Rsl5     : 1479, dist = -1 
+B__7     : 1478, dist = -1 
+Ddk1     : 676 , dist = -1 
+Iym8     : 1477, dist = -1 
+Ult8     : 1476, dist = -1 
+Vbg4     : 677 , dist = -1 
+V_q0     : 1475, dist = -1 
+Iai5     : 1474, dist = -1 
+Bqc4     : 678 , dist = -1 
+Nkj8     : 1473, dist = -1 
+Iih8     : 1472, dist = -1 
+Bkg3     : 1471, dist = -1 
+Own4     : 679 , dist = -1 
+Pq_6     : 680 , dist = -1 
+Qk_9     : 1470, dist = -1 
+Pis4     : 1469, dist = -1 
+O_y0     : 681 , dist = -1 
+Yrb0     : 682 , dist = -1 
+Puy4     : 683 , dist = -1 
+Tpd2     : 1468, dist = -1 
+Wko8     : 684 , dist = -1 
+Zya1     : 1467, dist = -1 
+Esu0     : 685 , dist = -1 
+Vtc9     : 1466, dist = -1 
+Wll0     : 686 , dist = -1 
+Dfk4     : 687 , dist = -1 
+R_m3     : 1465, dist = -1 
+Cyh8     : 1464, dist = -1 
+Dk_5     : 688 , dist = -1 
+Wxp7     : 1463, dist = -1 
+Fgx0     : 1462, dist = -1 
+Xnu7     : 689 , dist = -1 
+Rxf6     : 1461, dist = -1 
+Utc5     : 690 , dist = -1 
+Wvw8     : 1460, dist = -1 
+Scz1     : 1459, dist = -1 
+H_h9     : 691 , dist = -1 
+Hvx0     : 692 , dist = -1 
+Ulc8     : 693 , dist = -1 
+Drc4     : 1458, dist = -1 
+Cox7     : 694 , dist = -1 
+Acn0     : 1457, dist = -1 
+Bzd7     : 1456, dist = -1 
+X_m6     : 695 , dist = -1 
+Btj2     : 696 , dist = -1 
+M_c4     : 697 , dist = -1 
+Wqq9     : 1455, dist = -1 
+Vkb6     : 698 , dist = -1 
+E__3     : 699 , dist = -1 
+T_g4     : 700 , dist = -1 
+Dmv8     : 701 , dist = -1 
+Wwc3     : 702 , dist = -1 
+Mz_6     : 703 , dist = -1 
+B_s6     : 704 , dist = -1 
+Sal3     : 1454, dist = -1 
+Vrg9     : 1453, dist = -1 
+Wqx1     : 705 , dist = -1 
+Pfd9     : 1452, dist = -1 
+Icr5     : 1451, dist = -1 
+Xgs5     : 1450, dist = -1 
+Zdt9     : 706 , dist = -1 
+Opx7     : 707 , dist = -1 
+Zod3     : 1449, dist = -1 
+Cww9     : 1448, dist = -1 
+Zru8     : 708 , dist = -1 
+Vbv4     : 1447, dist = -1 
+Bcp2     : 709 , dist = -1 
+Orh3     : 710 , dist = -1 
+Woa2     : 1446, dist = -1 
+Itj5     : 711 , dist = -1 
+Uwb7     : 712 , dist = -1 
+Gvm2     : 1445, dist = -1 
+Umc4     : 713 , dist = -1 
+Qeb5     : 714 , dist = -1 
+Xkn8     : 715 , dist = -1 
+Qtd3     : 1444, dist = -1 
+Dga0     : 716 , dist = -1 
+Hiu5     : 717 , dist = -1 
+Ixu9     : 1443, dist = -1 
+Brd5     : 718 , dist = -1 
+START    : 0   , dist = 159

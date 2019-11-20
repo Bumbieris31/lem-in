@@ -94,7 +94,7 @@ typedef struct		s_lemin
 	t_room			*end;
 }					t_lemin;
 
-void				lemin(char *file);
+void				lemin();
 void				error_check(int error);
 void				free_paths(t_link *paths);
 void				reset_rooms(t_room **rooms);
