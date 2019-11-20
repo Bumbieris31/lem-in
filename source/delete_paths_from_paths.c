@@ -6,13 +6,13 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 22:28:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/18 17:12:17 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/20 12:23:44 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-static t_link	*delete_path(t_link *path, int path_id)
+t_link	*delete_path(t_link *path, int path_id)
 {
 	t_link *ret;
 

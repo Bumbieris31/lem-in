@@ -1,7 +1,7 @@
 #include "lem-in.h"
+void			activate_split_path_links(t_link *new_path, t_room **rooms, t_link **paths, int start);
 void			turn_all_links_on_off(t_room **rooms, int size, int on_off);
-void			path_links_on(t_link *path, t_lemin *lemin);
-void			turn_overlap_links_on(t_lemin *lemin);
+
 void			find_solution(t_lemin *lemin)
 {
 	int		**temp_path_ids;
@@ -12,15 +12,11 @@ void			find_solution(t_lemin *lemin)
 	new_path = get_path(lemin);
 	while (new_path)
 	{
-		if (lemin->del_links)
+		if (lemin->overlap)
 		{
 			turn_all_links_on_off(ROOMS, lemin->size, OFF);
-			path_links_on(new_path, lemin);
-			turn_overlap_links_on(lemin);
+			activate_split_path_links(new_path, ROOMS, &PATHS, START->id);
 			free_paths(new_path);
-			reset_overlap(ROOMS, PATHS, lemin->del_links);
-			add_delete_links(ROOMS, lemin->del_links, OFF);
-			delete_paths_from_paths(&PATHS, lemin->del_links);
 			new_path = get_path(lemin);
 			while (new_path)
 			{
@@ -29,9 +25,8 @@ void			find_solution(t_lemin *lemin)
 				path_id++;
 				new_path = get_path(lemin);
 			}
-			// add_delete_links(ROOMS, lemin->del_links, ON);
 			turn_all_links_on_off(ROOMS, lemin->size, ON);
-			free_del_links(&lemin->del_links);
+			lemin->overlap = 0;
 		}
 		else
 		{

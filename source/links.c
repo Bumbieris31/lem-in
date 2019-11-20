@@ -1,60 +1,17 @@
 #include "lem-in.h"
+void		reset_path(t_room **rooms, t_room *path);
+t_link		*delete_path(t_link *path, int path_id);
 
-void			switch_link_on_off(t_link *link, int connect, int on_off)
+void			switch_link_on_off(t_link *link, int connect)
 {
 	if (!link)
 		return ;
 	if (link->id == connect)
 	{
-		link->on = on_off;
+		link->on = link->on == ON ? OFF : ON;
 		return ;
 	}
-	switch_link_on_off(link->next, connect, on_off);
-}
-
-void			add_delete_links(t_room **rooms, t_del *del_links, int on_off)
-{
-	t_del	*deltmp;
-	int		id1;
-	int		id2;
-
-	deltmp = del_links;
-	while (deltmp)
-	{
-		id1 = deltmp->room1;
-		id2 = deltmp->room2;
-		switch_link_on_off(rooms[id1]->link, id2, on_off);
-		switch_link_on_off(rooms[id2]->link, id1, on_off);
-		deltmp = deltmp->next;
-	}
-}
-
-void			free_del_links(t_del **del_links)
-{
-	if (!*del_links)
-		return ;
-	free_del_links(&(*del_links)->next);
-	free(*del_links);
-	*del_links = NULL;
-}
-
-void			path_links_on(t_link *path, t_lemin *lemin)
-{
-	int		room1;
-	int		room2;
-	t_link	*link;
-	t_room	*room;
-
-	room = path->ptr;
-	room1 = START->id;
-	while (room)
-	{
-		room2 = room->id;
-		switch_link_on_off(ROOMS[room1]->link, room2, ON);
-		switch_link_on_off(ROOMS[room2]->link, room1, ON);
-		room = room->to;
-		room1 = room2;
-	}
+	switch_link_on_off(link->next, connect);
 }
 
 static t_link	*get_path_pointer(t_link *paths, int path_id)
@@ -66,23 +23,50 @@ static t_link	*get_path_pointer(t_link *paths, int path_id)
 	return (get_path_pointer(paths->next, path_id));
 }
 
-void			turn_overlap_links_on(t_lemin *lemin)
+static void		path_links_on(t_link *path, t_room **rooms, int start)
 {
-	t_link	*path;
-	t_del	*del_link;
-	int		prev_id;
+	int		room1;
+	int		room2;
+	t_link	*link;
+	t_room	*room;
 
-	del_link = lemin->del_links;
-	prev_id = 0;
-	while (del_link)
+	room = path->ptr;
+	room1 = start;
+	while (room)
 	{
-		if (prev_id != del_link->path_id)
+		room2 = room->id;
+		switch_link_on_off(rooms[room1]->link, room2);
+		switch_link_on_off(rooms[room2]->link, room1);
+		room = room->to;
+		room1 = room2;
+	}
+}
+
+void			activate_split_path_links(t_link *new_path, t_room **rooms, t_link **paths, int start)
+{
+	int		path_id;
+	int		room1;
+	int		room2;
+	t_link	*overlap_path;
+	t_room	*room;
+
+	room = new_path->ptr;
+	room1 = start;
+	while (room)
+	{
+		room2 = room->id;
+		if (rooms[room2]->path)
 		{
-			path = get_path_pointer(PATHS, del_link->path_id);
-			path_links_on(path, lemin);
-			prev_id = del_link->path_id;
+			path_id = rooms[room2]->path;
+			overlap_path = get_path_pointer(*paths, rooms[room2]->path);
+			path_links_on(overlap_path, rooms, start);
+			reset_path(rooms, overlap_path->ptr);
+			*paths = delete_path(*paths, path_id);
 		}
-		del_link = del_link->next;
+		switch_link_on_off(rooms[room1]->link, room2);
+		switch_link_on_off(rooms[room2]->link, room1);
+		room = room->to;
+		room1 = room2;
 	}
 }
 

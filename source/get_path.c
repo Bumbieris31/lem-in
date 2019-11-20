@@ -41,14 +41,12 @@ static t_room	*check_link(t_room *path, t_room **rms, int *dst, t_link *link)
 	return (link->ptr);
 }
 
-
 static void		go_back_one(t_room **path, t_lemin *lemin)
 {
 	t_room *room;
 
 	room = ROOMS[(*path)->id]->from;
 	(*path)->to = add_room_to_path(room->name, room->id, room->dist);
-	save_links_to_delete(lemin, *path);
 	*path = (*path)->to;
 }
 
@@ -56,13 +54,13 @@ static t_room	*on_existing_path(t_room *path, t_lemin *lemin, int *dist)
 {
 	t_link	*link;
 	t_room	*room;
-
+	
+	lemin->overlap = 1;
 	go_back_one(&path, lemin);
 	while (!ROOMS[path->id]->branch)
 	{
 		room = ROOMS[path->id]->from;
 		path->to = add_room_to_path(room->name, room->id, room->dist);
-		save_links_to_delete(lemin, path);
 		path = path->to;
 	}
 	room = ROOMS[path->id]->branch;

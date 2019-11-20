@@ -5,7 +5,7 @@ PLUS = $(GREEN)+$(WHITE)
 NAME = lem-in
 SOURCE = main lemin room map error print_map make_connect \
 get_path breadth_first reset check_paths_save_winner \
-find_solution links save_links_to_delete move_all_ants_in_paths \
+find_solution links move_all_ants_in_paths \
 delete_paths_from_paths free_lemin_struct count_lines debug
 
 INCLUDES = -Iincludes -Ilibft/includes
