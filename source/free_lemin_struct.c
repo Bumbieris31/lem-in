@@ -6,13 +6,13 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 15:24:15 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/20 18:46:29 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/21 11:49:59 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-static void	free_winner_ids(int **winner_ids)
+void	free_winner_ids(int **winner_ids)
 {
 	int	i;
 
@@ -22,8 +22,7 @@ static void	free_winner_ids(int **winner_ids)
 		free(winner_ids[i]);
 		i++;
 	}
-	if (winner_ids)
-		free(winner_ids);
+	free(winner_ids);
 }
 
 void		free_path_rooms(t_room *room)

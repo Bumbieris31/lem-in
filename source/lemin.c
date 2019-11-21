@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:08:59 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/20 18:56:22 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/21 12:08:39 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ static void		lemin(void)
 	count_lines(lemin);
 	if (lemin->ants > 1)
 		find_solution(lemin);
-	ft_printf("ANTS : %d\nLINES : %d\n", lemin->ants, lemin->lines);
+	ft_printf("TOTAL PATHS FOUND : %d, TOTAL PATHS USED : %d, ANTS : %d, LINES : %d\n", lemin->paths_found, lemin->paths_used, lemin->ants, lemin->lines);
+	print_winner_ids(ROOMS, lemin->winner_ids, START->id, END->id);
 }
 
 int				main(int argc, char **argv)

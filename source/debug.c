@@ -66,3 +66,22 @@ void		print_rooms(t_lemin *lemin)
 	for (int i = 0; i < lemin->size; i++)
 		ft_printf("%s : %d\n", ROOMS[i]->name, ROOMS[i]->path);
 }
+
+void		print_winner_ids(t_room **rooms, int **winner_ids, int start, int end)
+{
+	int i = 0;
+	int j;
+
+	while (winner_ids[i])
+	{
+		ft_printf("%s --> ", rooms[start]->name);
+		j = 0;
+		while (winner_ids[i][j] != end)
+		{
+			ft_printf("%s --> ", rooms[winner_ids[i][j]]->name);
+			j++;
+		}
+		ft_printf("%s\n\n", rooms[end]->name);
+		i++;
+	}
+}

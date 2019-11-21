@@ -77,6 +77,8 @@ typedef struct		s_lemin
 	int				**winner_ids;
 	int				overlap;
 	int				lines;
+	int				paths_found; /////////////
+	int				paths_used; /////////////
 	t_list			*map;
 	t_link			*paths;
 	t_room			**rooms;
@@ -92,6 +94,7 @@ void				count_lines(t_lemin *lemin);
 void				get_map_info(t_lemin *lemin);
 void				free_path_rooms(t_room *room);
 void				find_solution(t_lemin *lemin);
+void				free_winner_ids(int **winner_ids);
 void				print_map(t_list **map, int ants);
 void				free_del_links(t_del **del_links);
 void				free_lemin_struct(t_lemin	*lemin);
@@ -126,6 +129,7 @@ void		print_dist(t_lemin *lemin);
 void		print_path(t_link *path, t_room *end, char *start);
 void		print_all_paths(t_link *paths, t_room *end, char *start);
 void		print_rooms(t_lemin *lemin);
+void		print_winner_ids(t_room **rooms, int **winner_ids, int start, int end);
 
 /* ******************************* */
 #endif
