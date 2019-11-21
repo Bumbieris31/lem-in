@@ -96,18 +96,12 @@ void				free_path_rooms(t_room *room);
 void				find_solution(t_lemin *lemin);
 void				free_winner_ids(int **winner_ids);
 void				print_map(t_list **map, int ants);
-void				free_del_links(t_del **del_links);
-void				free_lemin_struct(t_lemin	*lemin);
-void				add_room(t_room **head, t_room *new);
+void				free_lemin_struct(t_lemin **lemin);
 void				reset_path(t_room **rooms, t_room *path);
 void				get_new_path(t_room **path, t_lemin *lemin);
-void				add_links(t_room **rooms, t_del *del_links);
-void				switch_link_on_off(t_link *link, int connect);
 void				split_links(t_link *new_path, t_lemin *lemin);
 void				init_conncections(t_lemin *lemin, t_list **con);
-void				save_links_to_delete(t_lemin *lemin, t_room *path);
 void				breadth_first(t_room **rooms, t_room *end, int start);
-void				delete_paths_from_paths(t_link **paths, t_del *del_links);
 void				turn_all_links_on_off(t_room **rooms, int size, int on_off);
 
 t_link				*get_path(t_lemin *lemin);
@@ -115,10 +109,9 @@ t_link				*delete_path(t_link *path, int path_id);
 
 t_room				*new_room(char *name, int id, int dist);
 t_room				*get_starting_room(t_link *link, int dist);
-t_room				*add_to_hastable(t_room **table, t_room *new, size_t index);
 
-int					**check_paths_save_winner(t_lemin *lemin);
-int					move_ants_in_all_paths(t_lemin *lemin, int print);
+// int					**check_paths_save_winner(t_lemin *lemin);
+// int					move_ants_in_all_paths(t_lemin *lemin, int print);
 int					duplicate_room(t_room **rooms, char *name, t_point coord, int size);
 
 

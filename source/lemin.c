@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:08:59 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/21 13:27:31 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/21 15:55:36 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ static void		lemin(void)
 
 	lemin = MEM(t_lemin);
 	get_map_info(lemin);
+	// print_map(&lemin->map, lemin->ants);
+	// free_lemin_struct(&lemin);
+
 	PATHS = get_path(lemin);
 	if (!PATHS)
 		error_check(NO_PATH_ERROR);
@@ -78,7 +81,7 @@ static void		lemin(void)
 	if (lemin->ants > 1)
 		find_solution(lemin);
 	ft_printf("TOTAL PATHS FOUND : %-2d, TOTAL PATHS USED : %-2d, ANTS : %-3d, LINES : %-2d\n", lemin->paths_found, lemin->paths_used, lemin->ants, lemin->lines);
-	// print_winner_ids(ROOMS, lemin->winner_ids, START->id, END->id);
+	print_winner_ids(ROOMS, lemin->winner_ids, START->id, END->id);
 }
 
 int				main(int argc, char **argv)

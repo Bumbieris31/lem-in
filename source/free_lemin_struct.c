@@ -6,17 +6,19 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 15:24:15 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/21 12:42:26 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/21 13:56:00 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void	free_winner_ids(int **winner_ids)
+void		free_winner_ids(int **winner_ids)
 {
 	int	i;
 
 	i = 0;
+	if (!winner_ids)
+		return ;
 	while (winner_ids[i])
 	{
 		free(winner_ids[i]);
@@ -51,22 +53,19 @@ void		free_paths(t_link *paths)
 	paths = NULL;
 }
 
-void		free_lemin_struct(t_lemin	*lemin)
+void		free_lemin_struct(t_lemin **lemin)
 {
 	int	i;
 
-	free_winner_ids(lemin->winner_ids);
-	free_paths(PATHS);
-	i = lemin->size;
-	while (i > 0)
+	free_winner_ids((*lemin)->winner_ids);
+	free_paths((*lemin)->paths);
+	i = 0;
+	while ((*lemin)->rooms[i])
 	{
-		if (ROOMS[i])
-		{
-			// free name and t_link links if there are any
-			free(ROOMS[i]);
-		}
-		i--;
+		free((*lemin)->rooms[i]->name);
+		free((*lemin)->rooms[i]);
+		i++;
 	}
-	free(ROOMS);
-	free(lemin);
+	free((*lemin)->rooms);
+	free(*lemin);
 }

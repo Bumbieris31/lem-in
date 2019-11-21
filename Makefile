@@ -17,7 +17,7 @@ FLAGS = -Wall -Wextra -Werror #ADD LATER
 all: $(NAME)
 
 $(NAME): $(LIB) .objects $(OFILES)
-	@$(CC) -o $(NAME) $(OFILES) $(LIB) $(INCLUDES) -O3 -funroll-loops
+	@$(CC) -o $(NAME) $(OFILES) $(LIB) $(INCLUDES) -O3 -funroll-loops -g
 	@echo "$(NAME) compiled successfully"
 
 .objects:
@@ -28,7 +28,7 @@ $(LIB):
 	@echo "$(PLUS) $(LIB)"
 
 .objects/%.o: source/%.c includes/lem-in.h
-	@$(CC) -o $@ -c $< $(INCLUDES) -O3 -funroll-loops
+	@$(CC) -o $@ -c $< $(INCLUDES) -O3 -funroll-loops -g
 	@echo "$(PLUS) $@"
 
 clean:
