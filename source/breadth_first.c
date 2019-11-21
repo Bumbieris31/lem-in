@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   breadth_first.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/20 16:02:22 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/20 16:30:19 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem-in.h"
 
 static void			add_to_queue(t_link **queue, t_room *room)
@@ -9,14 +21,6 @@ static void			add_to_queue(t_link **queue, t_room *room)
 	}
 	else
 		add_to_queue(&(*queue)->next, room);
-}
-
-static void			free_queue(t_link *queue)
-{
-	if (!queue)
-		return ;
-	free_queue(queue->next);
-	free(queue);
 }
 
 static int			against_path(t_room *from, t_room *towards)
@@ -46,7 +50,7 @@ static void			on_path(t_link **queue, t_room *path, int dist, int end)
 	}
 	if (path->visited)
 		return ;
-	path->visited = 1;
+	path->visited = ON;
 	path->dist = -2;
 	on_path(queue, path->to, dist, end);
 }
@@ -84,7 +88,7 @@ void				breadth_first(t_room **rooms, t_room *end, int start)
 	while (queue)
 	{
 		tmp = queue;
-		if (queue->ptr->to)
+		if (queue->ptr->path)
 			on_path(&queue, queue->ptr->to, queue->ptr->dist + 1, end->id);
 		else
 			add_links_to_queue(&queue);
@@ -92,7 +96,7 @@ void				breadth_first(t_room **rooms, t_room *end, int start)
 		free(tmp);
 		if (queue && queue->ptr->id == start)
 		{
-			free_queue(queue);
+			free_t_link(queue);
 			return ;
 		}
 	}

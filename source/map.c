@@ -1,8 +1,16 @@
-#include "lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   map.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/21 13:03:49 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/21 13:04:55 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-** Checks if it's a valid room
-*/
+#include "lem-in.h"
 
 static int			valid_room(char **room_info)
 {
@@ -10,7 +18,7 @@ static int			valid_room(char **room_info)
 	int i;
 
 	len = 0;
-	if (!room_info || !*room_info)
+	if (!room_info || !*room_info || room_info[0][0] == 'L')
 		return (ROOM_ERROR);
 	while (room_info[len])
 	{
@@ -28,10 +36,6 @@ static int			valid_room(char **room_info)
 	return (len != 3 ? ROOM_ERROR : 1);
 }
 
-/*
-** Gets room info and makes a room struct and puts it in the hashtable
-*/
-
 static t_room		*get_room(t_lemin *lemin, char *line)
 {
 	t_room		*room;
@@ -46,15 +50,11 @@ static t_room		*get_room(t_lemin *lemin, char *line)
 	coord = (t_point){ft_atoi(room_info[X]), ft_atoi(room_info[Y])};
 	if (duplicate_room(lemin->rooms, name, coord, id))
 		error_check(DUP_ERROR);
-	lemin->rooms[id] = new_room(name, coord, id);
+	lemin->rooms[id] = new_room(ft_strdup(name), id, -1);
 	id++;
 	ft_free_2darray((void**)room_info);
-	return(lemin->rooms[id - 1]);
+	return (lemin->rooms[id - 1]);
 }
-
-/*
-** Sets Start and End pointers to the correct rooms
-*/
 
 static void			set_start_end(t_lemin *lemin, char *cmnd, t_list **file)
 {
@@ -65,45 +65,16 @@ static void			set_start_end(t_lemin *lemin, char *cmnd, t_list **file)
 		lemin->end = get_room(lemin, (char*)(*file)->content);
 }
 
-/*
-** Gets the amount of ants
-*/
-
-static void			get_ants(t_lemin *lemin, int fd)
-{
-	char *line;
-
-	ft_get_next_line(fd, &line);
-	lemin->ants = ft_atoi(line);
-	if (!lemin->ants || ft_strlen(line) != ft_intlen(lemin->ants))
-		error_check(ANTS_ERROR);
-	free(line);
-}
-
-/*
-** Add connections to the rooms
-*/
-
-static void			init_conncections(t_lemin *lemin, t_list **con)
-{
-	char *tmp;
-	char **connections;
-
-	tmp = ft_lstfold(*con, " ");
-	connections = ft_strsplit(tmp, ' ');
-	free(tmp);
-	ft_lstdel(con, ft_bzero);
-	make_connect(connections, lemin->rooms);
-	ft_free_2darray((void**)connections);
-
-}
-
-static t_list			*copy_map(t_lemin *lemin, int *size)
+static t_list		*copy_map(t_lemin *lemin, int *size)
 {
 	char	*line;
 	t_list	*copy;
 
-	get_ants(lemin, 0);
+	ft_get_next_line(0, &line);
+	lemin->ants = ft_atoi(line);
+	if (!lemin->ants || ft_strlen(line) != ft_intlen(lemin->ants))
+		error_check(ANTS_ERROR);
+	free(line);
 	copy = NULL;
 	while (ft_get_next_line(0, &line))
 	{
@@ -114,10 +85,6 @@ static t_list			*copy_map(t_lemin *lemin, int *size)
 	}
 	return (copy);
 }
-
-/*
-** Reads the given file line by line and gets the room info
-*/
 
 void				get_map_info(t_lemin *lemin)
 {

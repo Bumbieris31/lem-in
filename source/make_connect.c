@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:26:31 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/20 19:05:29 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/21 16:39:03 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_room	*find_room(char *str, t_room *table[])
 ** @descr: Adds room2 to room1->link at the end of the list.
 */
 
-void			bind_rooms(t_room *room1, t_room *room2)
+static void			bind_rooms(t_room *room1, t_room *room2)
 {
 	t_link	*connection;
 
@@ -64,7 +64,7 @@ void			bind_rooms(t_room *room1, t_room *room2)
 ** in each rooms link member.
 */
 
-void			connect_two(char **room_names, t_room *table[])
+static void			connect_two(char **room_names, t_room *table[])
 {
 	t_room	*room1;
 	t_room	*room2;
@@ -81,7 +81,7 @@ void			connect_two(char **room_names, t_room *table[])
 ** @descr: For every connection calls functions to create that connection.
 */
 
-void			make_connect(char **connections, t_room *table[])
+static void		make_connect(char **connections, t_room *table[])
 {
 	int		i;
 	char	**rooms;
@@ -96,4 +96,18 @@ void			make_connect(char **connections, t_room *table[])
 		ft_free_2darray((void**)rooms);
 		i++;
 	}
+}
+
+
+void			init_conncections(t_lemin *lemin, t_list **con)
+{
+	char *tmp;
+	char **connections;
+
+	tmp = ft_lstfold(*con, " ");
+	connections = ft_strsplit(tmp, ' ');
+	free(tmp);
+	ft_lstdel(con, ft_bzero);
+	make_connect(connections, lemin->rooms);
+	ft_free_2darray((void**)connections);
 }

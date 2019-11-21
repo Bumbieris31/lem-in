@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   print_map.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/20 18:57:51 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/21 15:56:28 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem-in.h"
 
 void		print_map(t_list **map, int ants)
@@ -6,7 +18,7 @@ void		print_map(t_list **map, int ants)
 	t_list	*del;
 
 	ft_printf("%d\n", ants);
-	while(*map)
+	while (*map)
 	{
 		line = (char*)(*map)->content;
 		if (line[0] == '#' &&
