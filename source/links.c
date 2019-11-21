@@ -1,39 +1,89 @@
 #include "lem-in.h"
+void		reset_path(t_room **rooms, t_room *path);
+t_link		*delete_path(t_link *path, int path_id);
 
-void	switch_link_on_off(t_link *link, int del_link, int on_off)
+void			switch_link_on_off(t_link *link, int connect)
 {
 	if (!link)
 		return ;
-	if (link->id == del_link)
+	if (link->id == connect)
 	{
-		link->on = on_off;
+		link->on = link->on == ON ? OFF : ON;
 		return ;
 	}
-	switch_link_on_off(link->next, del_link, on_off);
+	switch_link_on_off(link->next, connect);
 }
 
-void			add_links_back(t_room **rooms, t_del *del_links)
+static t_link	*get_path_pointer(t_link *paths, int path_id)
 {
-	t_del	*deltmp;
-	int		id1;
-	int		id2;
+	if (!paths)
+		return (NULL);
+	if (paths->id == path_id)
+		return (paths);
+	return (get_path_pointer(paths->next, path_id));
+}
 
-	deltmp = del_links;
-	while (deltmp)
+static void		path_links_on(t_link *path, t_room **rooms, int start)
+{
+	int		room1;
+	int		room2;
+	t_link	*link;
+	t_room	*room;
+
+	room = path->ptr;
+	room1 = start;
+	while (room)
 	{
-		id1 = deltmp->room1;
-		id2 = deltmp->room2;
-		switch_link_on_off(rooms[id1]->link, id2, ON);
-		switch_link_on_off(rooms[id2]->link, id1, ON);
-		deltmp = deltmp->next;
+		room2 = room->id;
+		switch_link_on_off(rooms[room1]->link, room2);
+		switch_link_on_off(rooms[room2]->link, room1);
+		room = room->to;
+		room1 = room2;
 	}
 }
 
-void			free_del_links(t_del **del_links)
+void			activate_split_path_links(t_link *new_path, t_room **rooms, t_link **paths, int start)
 {
-	if (!*del_links)
-		return ;
-	free_del_links(&(*del_links)->next);
-	free(*del_links);
-	*del_links = NULL;
+	int		path_id;
+	int		room1;
+	int		room2;
+	t_link	*overlap_path;
+	t_room	*room;
+
+	room = new_path->ptr;
+	room1 = start;
+	while (room)
+	{
+		room2 = room->id;
+		if (rooms[room2]->path)
+		{
+			path_id = rooms[room2]->path;
+			overlap_path = get_path_pointer(*paths, rooms[room2]->path);
+			path_links_on(overlap_path, rooms, start);
+			reset_path(rooms, overlap_path->ptr);
+			*paths = delete_path(*paths, path_id);
+		}
+		switch_link_on_off(rooms[room1]->link, room2);
+		switch_link_on_off(rooms[room2]->link, room1);
+		room = room->to;
+		room1 = room2;
+	}
+}
+
+void			turn_all_links_on_off(t_room **rooms, int size, int on_off)
+{
+	int		i;
+	t_link	*link;
+
+	i = 0;
+	while (i < size)
+	{
+		link = rooms[i]->link;
+		while (link)
+		{
+			link->on = on_off;
+			link = link->next;
+		}
+		i++;
+	}
 }

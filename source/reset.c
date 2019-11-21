@@ -1,6 +1,6 @@
 #include "lem-in.h"
 
-static void		reset_path(t_room **rooms, t_room *path)
+void		reset_path(t_room **rooms, t_room *path)
 {
 	if (!path)
 		return ;

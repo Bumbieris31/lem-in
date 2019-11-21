@@ -4,9 +4,10 @@ PLUS = $(GREEN)+$(WHITE)
 
 NAME = lem-in
 SOURCE = main lemin room map error print_map make_connect \
-get_path breadth_first reset check_paths_save_winner \
-find_solution links save_links_to_delete move_all_ants_in_paths \
-delete_paths_from_paths free_lemin_struct count_lines save_path_ids debug
+get_path breadth_first reset free_old_ids \
+find_solution links move_all_ants_in_paths \
+delete_paths free_lemin_struct count_lines debug \
+save_path_ids create_best_paths_new
 
 INCLUDES = -Iincludes -Ilibft/includes
 CFILES = $(SOURCE:%=source/%.c)

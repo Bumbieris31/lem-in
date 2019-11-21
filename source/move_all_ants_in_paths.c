@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/18 14:58:04 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/20 18:45:58 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		incr_ants(t_room *path)
 	path->ant = -1;
 }
 
-void			move_one_position(t_lemin *lemin, int *ant, int *last_ant, int print)
+void			move_one_position(t_lemin *lemin, int *ant, int *last_ant, int count)
 {
 	t_link	*paths;
 
@@ -41,41 +41,37 @@ void			move_one_position(t_lemin *lemin, int *ant, int *last_ant, int print)
 	while (paths)
 	{
 		incr_ants(paths->ptr);
-		if (!*last_ant)
+		if (!*last_ant || paths->next->on <= (lemin->winner->lines - count))
 			paths->ptr->ant = *ant;
 		if (*ant == lemin->ants)
 			*last_ant = 1;
 		if (*ant < lemin->ants)
 			(*ant)++;
-		if (print)
-			print_movement(paths->ptr);
+		print_movement(paths->ptr);
 		if (!paths->next)	//if path is longer than amount of ants and shorter paths are available, skip it
 			break ;
 		paths = paths->next;
 	}
 }
-
+// 
 /*
 ** @descr: Moves ants through the paths saved in lemin->paths
 */
 
-int				move_ants_in_all_paths(t_lemin *lemin, int print)
+int				move_ants_in_all_paths(t_lemin *lemin)
 {
 	int		ant;
 	int		last_ant;
 	int		count;
-	int		i = 0;
 
 	ant = 1;
 	last_ant = 0;
 	count = 0;
-	while (lemin->end->ant != lemin->ants && i != 30)
+	while (lemin->end->ant != lemin->ants && count != WINNER->lines)
 	{
-		move_one_position(lemin, &ant, &last_ant, print);
+		move_one_position(lemin, &ant, &last_ant, count);
 		count++;
-		if (print)
-			ft_putchar('\n');
-		i++;
+		ft_putchar('\n');
 	}
 	return (count);
 }

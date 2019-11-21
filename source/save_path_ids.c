@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   save_path_ids.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/11/08 17:14:43 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/16 23:21:29 by flintlouis    ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   save_path_ids.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/08 17:14:43 by abumbier          #+#    #+#             */
+/*   Updated: 2019/11/21 16:26:31 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,30 @@ int		**save_path_ids(t_link *paths)
 	int	path_len;
 	int	path_count;
 	int	**path_ids;
+	// del this
+	int j = 0;
+	t_room *room;
 
 	i = 0;
 	path_count = path_counter(paths);
 	path_ids = (int**)ft_memalloc(sizeof(int*) * (path_count + 1));
 	while (paths)
 	{
-		path_len = path_length(paths->ptr);
+		path_len = paths->on;
 		path_ids[i] = (int*)ft_memalloc(sizeof(int) * path_len);
-		write_path(paths->ptr, path_ids[i], path_len);
+		room = paths->ptr;
+		// del here
+		while (j < path_len)
+		{
+			path_ids[i][j] = room->id;
+		//	ft_printf("%d ", path_ids[i][j]);
+			j++;
+			if (room->to)
+				room = room->to;
+		}
+		//ft_printf("\n--------------------------------------------------------\n");
+		j = 0;
+		//write_path(paths->ptr, path_ids[i], path_len);
 		i++;
 		if (!paths->next)
 			break ;

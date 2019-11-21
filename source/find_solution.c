@@ -1,4 +1,6 @@
 #include "lem-in.h"
+void			activate_split_path_links(t_link *new_path, t_room **rooms, t_link **paths, int start);
+void			turn_all_links_on_off(t_room **rooms, int size, int on_off);
 
 void			find_solution(t_lemin *lemin)
 {
@@ -7,14 +9,15 @@ void			find_solution(t_lemin *lemin)
 	t_link	*new_path;
 
 	path_id = 2;
+//	temp_path_ids = check_paths_save_winner(lemin);
 	new_path = get_path(lemin);
 	while (new_path)
 	{
-		if (lemin->del_links)
+		if (lemin->overlap)
 		{
+			turn_all_links_on_off(ROOMS, lemin->size, OFF);
+			activate_split_path_links(new_path, ROOMS, &PATHS, START->id);
 			free_paths(new_path);
-			reset_overlap(ROOMS, PATHS, lemin->del_links);
-			delete_paths_from_paths(&PATHS, lemin->del_links);
 			new_path = get_path(lemin);
 			while (new_path)
 			{
@@ -23,8 +26,8 @@ void			find_solution(t_lemin *lemin)
 				path_id++;
 				new_path = get_path(lemin);
 			}
-			add_links_back(ROOMS, lemin->del_links);
-			free_del_links(&lemin->del_links);
+			turn_all_links_on_off(ROOMS, lemin->size, ON);
+			lemin->overlap = OFF;
 		}
 		else
 		{
@@ -33,10 +36,9 @@ void			find_solution(t_lemin *lemin)
 			path_id++;
 		}
 		new_path = get_path(lemin);
-		temp_path_ids = check_paths_save_winner(lemin);
 	}
-	lemin->winner_ids = temp_path_ids;
-//	free_paths(lemin->paths);
-//	lemin->paths = create_best_paths(lemin);
-//	ft_printf("LINE COUNT: %d\n", move_ants_in_all_paths(lemin, PRINT));
+	free_paths(lemin->paths);
+	lemin->paths = create_best_paths_new(lemin);
+//	print_all_paths(PATHS, END, START->name);
+	ft_printf("LINE COUNT: %d\n", move_ants_in_all_paths(lemin));
 }

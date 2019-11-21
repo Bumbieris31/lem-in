@@ -64,6 +64,8 @@ static void			add_links_to_queue(t_link **queue)
 		{
 			link->ptr->dist = (*queue)->ptr->dist + 1;
 			link->ptr->visited = ON;
+			if (link->ptr->path)
+				link->ptr->branch = (*queue)->ptr;
 			add_to_queue(queue, link->ptr);
 		}
 		link = link->next;
