@@ -1,0 +1,5 @@
+./generator --flow-one > ant_farms/test.txt ; ./lem-in < ant_farms/test.txt && sort ant_farms/test.txt | uniq -d
+./generator --flow-ten > ant_farms/test.txt ; ./lem-in < ant_farms/test.txt && sort ant_farms/test.txt | uniq -d
+./generator --flow-thousand > ant_farms/test.txt ; ./lem-in < ant_farms/test.txt && sort ant_farms/test.txt | uniq -d
+./generator --big > ant_farms/test.txt ; ./lem-in < ant_farms/test.txt && sort ant_farms/test.txt | uniq -d
+./generator --big-superposition > ant_farms/test.txt ; ./lem-in < ant_farms/test.txt && sort ant_farms/test.txt | uniq -d

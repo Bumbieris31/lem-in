@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 15:24:15 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/21 11:49:59 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/21 12:42:26 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void		free_lemin_struct(t_lemin	*lemin)
 		}
 		i--;
 	}
+	free(ROOMS);
 	free(lemin);
 }
