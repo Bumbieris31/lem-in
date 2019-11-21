@@ -85,9 +85,8 @@ void	recreate_rooms(t_link **paths, t_lemin *lemin, int i)
 		room->to = make_room(lemin->winner_ids[i][j], ROOMS);
 		room = room->to;
 	}
-	print_path(node, END, START->name);
+//	print_path(node, END, START->name);
 	node->on = new_paths_len(node->ptr);
-	ft_printf("path len: %d\n", node->on);
 }
 
 t_link	*create_best_paths_new(t_lemin *lemin)
