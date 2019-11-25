@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/24 19:57:53 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/25 13:20:25 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			move_one_position(t_lemin *lemin, int *ant, int *last_ant, int count)
 	while (paths)
 	{
 		incr_ants(paths->ptr);
-		if (!*last_ant && (paths && paths->on <= (lemin->lines + 1 - count)))
+		if (!*last_ant && (paths && paths->on <= (lemin->lines - count)))
 		{
 			paths->ptr->ant = *ant;
 			next_ant = 1;
