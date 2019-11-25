@@ -49,5 +49,5 @@ void			find_solution(t_lemin *lemin)
 	}
 	free_paths(lemin->paths);
 	lemin->paths = create_best_paths_new(lemin);
-//	print_all_paths(PATHS, END, START->name);
+	print_all_paths(PATHS, END, START->name);
 }

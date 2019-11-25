@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/21 16:54:25 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/24 19:57:53 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,24 @@ static void		incr_ants(t_room *path)
 void			move_one_position(t_lemin *lemin, int *ant, int *last_ant, int count)
 {
 	t_link	*paths;
+	int		next_ant;
 
+	next_ant = 0;
 	paths = lemin->paths;
 	while (paths)
 	{
 		incr_ants(paths->ptr);
-		if (!*last_ant || (paths && paths->on <= (lemin->lines - count)))
+		if (!*last_ant && (paths && paths->on <= (lemin->lines + 1 - count)))
+		{
 			paths->ptr->ant = *ant;
+			next_ant = 1;
+		}
 		if (*ant == lemin->ants)
 			*last_ant = 1;
-		if (*ant < lemin->ants)
+		else if (next_ant)
 			(*ant)++;
+		next_ant = 0;
 		print_movement(paths->ptr);
-		if (!paths->next)	//if path is longer than amount of ants and shorter paths are available, skip it
-			break ;
 		paths = paths->next;
 	}
 }
@@ -67,7 +71,7 @@ int				move_ants_in_all_paths(t_lemin *lemin)
 	ant = 1;
 	last_ant = 0;
 	count = 0;
-	while (lemin->end->ant != lemin->ants && count != lemin->lines)
+	while (lemin->end->ant != lemin->ants && count != lemin->lines + 1)
 	{
 		move_one_position(lemin, &ant, &last_ant, count);
 		count++;
