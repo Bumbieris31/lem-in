@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 14:45:47 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/07 12:09:38 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/25 13:27:02 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_max(int a, int b);
 int					ft_min(int a, int b);
-int					ft_intlen(long long n);
 int					ft_power(int x, size_t n);
 int					ft_countwords(char const *s, char c);
 int					ft_atoi(const char *str);
@@ -107,6 +106,7 @@ int					ft_get_next_line(const int fd, char **line);
 
 long				ft_milsec(void);
 
+size_t				ft_intlen(long long n);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 

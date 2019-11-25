@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/29 17:36:25 by efrank         #+#    #+#                */
-/*   Updated: 2019/04/18 12:57:51 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/25 13:28:51 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ long long	get_int_type(t_arg arg)
 
 static void	print_it(long long nbr, t_arg arg, int *print_count, int *max_long)
 {
-	if (nbr < 0 && arg.precision >= ft_intlen(nbr))
+	if (nbr < 0 && arg.precision >= (int)ft_intlen(nbr))
 	{
 		ft_putchar('-');
 		nbr = ABS(nbr);

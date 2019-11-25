@@ -6,13 +6,15 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/30 16:05:18 by fhignett       #+#    #+#                */
-/*   Updated: 2019/04/09 16:55:13 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/25 13:26:32 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_intlen(long long n)
+#include "libft.h"
+
+size_t		ft_intlen(long long n)
 {
-	int len;
+	size_t len;
 
 	len = 0;
 	if (n == 0)

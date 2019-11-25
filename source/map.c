@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/21 13:03:49 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/25 11:31:33 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/25 13:25:28 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int			valid_room(char **room_info)
 
 static t_room		*get_room(t_lemin *lemin, char *line)
 {
-	t_room		*room;
 	char		**room_info;
 	char		*name;
 	t_point		coord;
