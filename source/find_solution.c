@@ -33,7 +33,6 @@ void			find_solution(t_lemin *lemin)
 	t_link	*new_path;
 
 	path_id = 2;
-//	temp_path_ids = check_paths_save_winner(lemin);
 	new_path = get_path(lemin);
 	while (new_path)
 	{
@@ -49,5 +48,4 @@ void			find_solution(t_lemin *lemin)
 	}
 	free_paths(lemin->paths);
 	lemin->paths = create_best_paths_new(lemin);
-	print_all_paths(PATHS, END, START->name);
 }
