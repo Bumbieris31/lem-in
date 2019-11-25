@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/21 13:03:49 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/21 13:04:55 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/25 11:31:33 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,12 @@ static t_list		*copy_map(t_lemin *lemin, int *size)
 void				get_map_info(t_lemin *lemin)
 {
 	t_list	*con;
-	t_list	*copied_map;
 	t_list	*tmp;
 	char	*line;
 
-	copied_map = copy_map(lemin, &lemin->size);
+	lemin->map = copy_map(lemin, &lemin->size);
 	con = NULL;
-	tmp = copied_map;
+	tmp = lemin->map;
 	lemin->rooms = (t_room**)ft_memalloc(sizeof(t_room*) * (lemin->size + 1));
 	while (tmp)
 	{
@@ -111,5 +110,4 @@ void				get_map_info(t_lemin *lemin)
 		tmp = tmp->next;
 	}
 	init_conncections(lemin, &con);
-	lemin->map = copied_map;
 }

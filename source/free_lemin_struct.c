@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   free_lemin_struct.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/14 15:24:15 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/21 16:39:18 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   free_lemin_struct.c                                :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/14 15:24:15 by abumbier       #+#    #+#                */
+/*   Updated: 2019/11/25 11:47:11 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,17 @@ void		free_lemin_struct(t_lemin **lemin)
 
 	free_winner_ids((*lemin)->winner_ids);
 	free_paths((*lemin)->paths);
-	i = 0;
-	while ((*lemin)->rooms[i])
+	if ((*lemin)->rooms)
 	{
-		free((*lemin)->rooms[i]->name);
-		free((*lemin)->rooms[i]);
-		i++;
+		i = 0;
+		while ((*lemin)->rooms[i])
+		{
+			free_t_link((*lemin)->rooms[i]->link);
+			free((*lemin)->rooms[i]->name);
+			free((*lemin)->rooms[i]);
+			i++;
+		}
+		free((*lemin)->rooms);
 	}
-	free((*lemin)->rooms);
 	free(*lemin);
 }

@@ -1,5 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
+<<<<<<< HEAD
 /*                                                        :::      ::::::::   */
 /*   lemin.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -7,6 +8,15 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 18:08:59 by fhignett          #+#    #+#             */
 /*   Updated: 2019/11/24 19:33:43 by abumbier         ###   ########.fr       */
+=======
+/*                                                        ::::::::            */
+/*   lemin.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/20 18:08:59 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/25 13:07:58 by fhignett      ########   odam.nl         */
+>>>>>>> f95282176dd6a67e7ab0478c310295f553205c19
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +75,6 @@ static void		lemin(void)
 
 	lemin = MEM(t_lemin);
 	get_map_info(lemin);
-//	print_map(&lemin->map, lemin->ants);
-
 	PATHS = get_path(lemin);
 	if (!PATHS)
 		error_check(NO_PATH_ERROR);
@@ -79,16 +87,18 @@ static void		lemin(void)
 	count_lines(lemin);
 	if (lemin->ants > 1)
 		find_solution(lemin);
-	ft_printf("TOTAL PATHS FOUND : %-2d, TOTAL PATHS USED : %-2d, ANTS : %-3d, LINES : %-2d\n", lemin->paths_found, lemin->paths_used, lemin->ants, lemin->lines);
-	ft_printf("LINE COUNT: %d\n", move_ants_in_all_paths(lemin));
+	print_map(&lemin->map, lemin->ants);
+	move_ants_in_all_paths(lemin);
+	// ft_printf("TOTAL PATHS FOUND : %-2d, TOTAL PATHS USED : %-2d, ANTS : %-3d, LINES : %-2d\n", lemin->paths_found, lemin->paths_used, lemin->ants, lemin->lines);
 	free_lemin_struct(&lemin);
+	// print_winner_ids(ROOMS, lemin->winner_ids, START->id, END->id);
 }
 
 int				main(int argc, char **argv)
 {
 	if (argc == 2 && ft_strequ("--help", argv[1]))
 		ft_putendl("Print help");
-	lemin();
-//	while (1);
+	else
+		lemin();
 	return (0);
 }
