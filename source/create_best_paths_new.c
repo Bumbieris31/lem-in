@@ -13,16 +13,17 @@ int		new_paths_len(t_room *room)
 	return (i);
 }
 
-void	recreate_path(t_link **paths, int id)
+void	recreate_path(t_link **paths, int id, int len)
 {
 	if (!*paths)
 	{
 		(*paths) = MEM(t_link);
 		(*paths)->id = id;
+		(*paths)->on = len;
 		return ;
 	}
 	else
-		recreate_path(&(*paths)->next, id);
+		recreate_path(&(*paths)->next, id, len);
 }
 
 void	recreate_rooms(t_link **paths, t_lemin *lemin, int i)
@@ -32,7 +33,7 @@ void	recreate_rooms(t_link **paths, t_lemin *lemin, int i)
 	int j;
 	int id;
 
-	j = 0;
+	j = 1;
 	node = *paths;
 	while (node->next)
 		node = node->next;
@@ -58,7 +59,7 @@ t_link	*create_best_paths_new(t_lemin *lemin)
 	paths = 0;
 	while (lemin->winner_ids[i])
 	{
-		recreate_path(&paths, i);
+		recreate_path(&paths, i, lemin->winner_ids[i][0]);
 		recreate_rooms(&paths, lemin, i);
 		i++;
 	}

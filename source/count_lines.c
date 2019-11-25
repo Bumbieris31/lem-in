@@ -4,8 +4,9 @@ void	write_path(t_room *room, int *path_ids, int len)
 {
 	int	i;
 
-	i = 0;
-	while (i < len)
+	path_ids[0] = len;
+	i = 1;
+	while (i <= len)
 	{
 		path_ids[i] = room->id;
 		i++;
@@ -26,7 +27,7 @@ static int	**save_path_ids(t_link *paths, int path_count)
 	path_ids = (int**)ft_memalloc(sizeof(int*) * (path_count + 1));
 	while (paths)
 	{
-		path_ids[i] = (int*)ft_memalloc(sizeof(int) * paths->on);
+		path_ids[i] = (int*)ft_memalloc(sizeof(int) * (paths->on + 1));
 		write_path(paths->ptr, path_ids[i], paths->on);
 		i++;
 		paths = paths->next;
