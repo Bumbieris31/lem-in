@@ -75,7 +75,7 @@ void		print_winner_ids(t_room **rooms, int **winner_ids, int start, int end)
 	while (winner_ids[i])
 	{
 		ft_printf("%s --> ", rooms[start]->name);
-		j = 0;
+		j = 1;
 		while (winner_ids[i][j] != end)
 		{
 			ft_printf("%s --> ", rooms[winner_ids[i][j]]->name);

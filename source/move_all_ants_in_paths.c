@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   move_all_ants_in_paths.c                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/25 13:20:25 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   move_all_ants_in_paths.c                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/08 13:49:59 by abumbier       #+#    #+#                */
+/*   Updated: 2019/11/25 19:09:29 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int				move_ants_in_all_paths(t_lemin *lemin)
 	{
 		move_one_position(lemin, &ant, &last_ant, count);
 		count++;
-		ft_putchar('\n');
+		if (count != lemin->lines + 1)
+			ft_putchar('\n');
 	}
 	return (count);
 }
