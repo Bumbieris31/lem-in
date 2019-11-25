@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:08:59 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/25 13:49:39 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/25 17:14:25 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void		lemin(void)
 	if (lemin->ants > 1)
 		find_solution(lemin);
 	print_map(&lemin->map, lemin->ants);
-	move_ants_in_all_paths(lemin);
+	// move_ants_in_all_paths(lemin);
 	// ft_printf("TOTAL PATHS FOUND : %-2d, TOTAL PATHS USED : %-2d, ANTS : %-3d, LINES : %-2d\n", lemin->paths_found, lemin->paths_used, lemin->ants, lemin->lines);
 	free_lemin_struct(&lemin);
 	// print_winner_ids(ROOMS, lemin->winner_ids, START->id, END->id);

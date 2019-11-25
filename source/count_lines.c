@@ -51,6 +51,7 @@ void		count_lines(t_lemin *lemin)
 		lines += path->on - 1;
 		path = path->next;
 	}
+	// lines = lines / path_count;
 	lines = ((double)lines / path_count) + 0.5;
 	if (lemin->lines == 0 || lines < lemin->lines)
 	{
