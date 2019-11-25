@@ -1,19 +1,18 @@
-GREEN = $(shell printf "\e[38;5;10m")
-WHITE = $(shell printf "\e[39m")
-PLUS = $(GREEN)+$(WHITE)
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: fhignett <fhignett@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2019/11/25 13:29:28 by fhignett       #+#    #+#                 #
+#    Updated: 2019/11/25 13:29:29 by fhignett      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
 
-NAME = lem-in
-SOURCE = lemin room map error print_map make_connect \
-get_path breadth_first reset free_old_ids \
-find_solution links move_all_ants_in_paths \
-free_lemin_struct count_lines debug \
-create_best_paths_new
-
-INCLUDES = -Iincludes -Ilibft/includes
-CFILES = $(SOURCE:%=source/%.c)
-OFILES = $(SOURCE:%=.objects/%.o)
-LIB = libft/printflibft.a
-FLAGS = -Wall -Wextra -Werror #ADD LATER
+include makefilesrc/clrs.mk
+include makefilesrc/src.mk
+include makefilesrc/var.mk
 
 all: $(NAME)
 

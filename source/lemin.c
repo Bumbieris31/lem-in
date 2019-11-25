@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:08:59 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/25 13:07:58 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/25 13:21:45 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static void		set_path_id(t_link *paths, t_room **rooms, int end, int start)
 t_link			*get_path(t_lemin *lemin)
 {
 	t_link		*path;
-	int			cur;
-	int			nxt;
 
 	set_path_id(PATHS, ROOMS, END->id, START->id);
 	breadth_first(ROOMS, END, START->id);
