@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   lemin.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/11/20 18:08:59 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/25 19:18:01 by fhignett      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "lem-in.h"
 
 static void		set_path_id(t_link *paths, t_room **rooms, int end, int start)
