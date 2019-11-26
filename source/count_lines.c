@@ -35,6 +35,30 @@ static int	**save_path_ids(t_link *paths, int path_count)
 	return (path_ids);
 }
 
+/*
+** @descr: Bubble sort.
+*/
+
+static int	**sort_winner_ids(int **winner_ids)
+{
+	int i;
+	int	*swap;
+
+	i = 0;
+	while (winner_ids[i + 1])
+	{
+		if (winner_ids[i][0] > winner_ids[i + 1][0])
+		{
+			swap =  winner_ids[i + 1];
+			winner_ids[i + 1] = winner_ids[i];
+			winner_ids[i] = swap;
+			i = 0;
+		}
+		else
+			i++;
+	}
+	return (winner_ids);
+}
 
 void		count_lines(t_lemin *lemin)
 {
@@ -51,7 +75,6 @@ void		count_lines(t_lemin *lemin)
 		lines += path->on - 1;
 		path = path->next;
 	}
-	// lines = lines / path_count;
 	lines = ((double)lines / path_count) + 0.5;
 	if (lemin->lines == 0 || lines < lemin->lines)
 	{
@@ -59,7 +82,8 @@ void		count_lines(t_lemin *lemin)
 		if (lemin->winner_ids)
 			free_winner_ids(lemin->winner_ids);
 		lemin->winner_ids = save_path_ids(PATHS, path_count);
-		lemin->paths_used = path_count;
+		lemin->paths_used = path_count; //////////
 	}
-	lemin->paths_found = path_count;
+	lemin->paths_found = path_count; //////////
+	lemin->winner_ids = sort_winner_ids(lemin->winner_ids);
 }
