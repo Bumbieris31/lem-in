@@ -51,11 +51,7 @@ void		count_lines(t_lemin *lemin)
 		lines += path->on - 1;
 		path = path->next;
 	}
-<<<<<<< HEAD
-	//lines = (lines / path_count);
-=======
 	// lines = lines / path_count;
->>>>>>> aeaae0def9240c36c79708ede5d037958292f216
 	lines = ((double)lines / path_count) + 0.5;
 	if (lemin->lines == 0 || lines < lemin->lines)
 	{
