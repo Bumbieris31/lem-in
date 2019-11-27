@@ -27,7 +27,8 @@ typedef enum		e_value
 	DUP_ERROR =		-2,
 	ANTS_ERROR =	-3,
 	CONN_ERROR =	-4,
-	NO_PATH_ERROR =	-5
+	NO_PATH_ERROR =	-5,
+	FILE_ERROR =	-6
 }					t_value;
 
 typedef struct		s_point

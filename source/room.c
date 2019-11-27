@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:47:07 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/20 18:53:19 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 14:07:42 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ int			duplicate_room(t_room **rooms, char *name, t_point coord, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (compare_coord(coord, rooms[i]->coord)
-		|| ft_strequ(name, rooms[i]->name))
+		if (compare_coord(coord, rooms[i]->coord))
+			return (1);
+		if (ft_strequ(name, rooms[i]->name))
 			return (1);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/25 11:33:25 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 14:29:34 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void			init_conncections(t_lemin *lemin, t_list **con)
 	char *tmp;
 	char **connections;
 
+	if (!(*con))
+		error_check(FILE_ERROR);
 	tmp = ft_lstfold(*con, " ");
 	connections = ft_strsplit(tmp, ' ');
 	free(tmp);

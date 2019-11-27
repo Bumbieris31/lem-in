@@ -1,7 +1,9 @@
 10
 ##start
+#comment
 START 0 0
 ##end
+#comment
 END 0 1
 A 1 0
 B 1 1
