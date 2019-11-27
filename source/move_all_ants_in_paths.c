@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   move_all_ants_in_paths.c                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/26 19:00:24 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   move_all_ants_in_paths.c                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/08 13:49:59 by abumbier       #+#    #+#                */
+/*   Updated: 2019/11/27 12:54:53 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int				move_ants_in_all_paths(t_lemin *lemin)
 	last_ant = 0;
 	finished = 0;
 		int i = 0;
-	ft_printf("MIN LINE COUNT: %d\n", lemin->lines);
+	// ft_printf("MIN LINE COUNT: %d\n", lemin->lines);
 	while (!finished)// && count != lemin->lines + 1
 	{
 		if (!move_one_position(lemin, &ant, &last_ant, count))
@@ -109,6 +109,6 @@ int				move_ants_in_all_paths(t_lemin *lemin)
 		// if (i > lemin->lines)
 			// break ;
 	}
-	ft_printf("OUR LINE COUNT: %d\n", count);
+	// ft_printf("OUR LINE COUNT: %d\n", count);
 	return (count);
 }

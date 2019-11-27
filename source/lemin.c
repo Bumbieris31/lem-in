@@ -63,11 +63,9 @@ static void		lemin(void)
 	count_lines(lemin);
 	if (lemin->ants > 1)
 		find_solution(lemin);
-//	print_map(&lemin->map, lemin->ants);
-	print_all_paths(PATHS, END, START->name);
+	// print_map(&lemin->map, lemin->ants);
 	move_ants_in_all_paths(lemin);
 	free_lemin_struct(&lemin);
-//	ft_printf("TOTAL PATHS FOUND : %-2d, TOTAL PATHS USED : %-2d, ANTS : %-3d, LINES : %-2d\n", lemin->paths_found, lemin->paths_used, lemin->ants, lemin->lines);
 }
 
 int				main(int argc, char **argv)
