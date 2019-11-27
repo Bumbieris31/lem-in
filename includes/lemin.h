@@ -1,5 +1,17 @@
-#ifndef LEM_IN_H
-# define LEM_IN_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   lemin.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/27 16:06:43 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/27 16:09:45 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LEMIN_H
+# define LEMIN_H
 
 # define MEM(x)			(x*)ft_memalloc(sizeof(x))
 # define START			lemin->start
@@ -16,19 +28,19 @@
 
 typedef enum		e_value
 {
-	NAME =			0,
-	X =				1,
-	Y =				2,
-	ROOM1 =			0,
-	ROOM2 =			1,
-	ON =			1,
-	OFF =			0,
-	ROOM_ERROR =	-1,
-	DUP_ERROR =		-2,
-	ANTS_ERROR =	-3,
-	CONN_ERROR =	-4,
-	NO_PATH_ERROR =	-5,
-	FILE_ERROR =	-6
+	NAME = 0,
+	X = 1,
+	Y = 2,
+	ROOM1 = 0,
+	ROOM2 = 1,
+	ON = 1,
+	OFF = 0,
+	ROOM_ERROR = -1,
+	DUP_ERROR = -2,
+	ANTS_ERROR = -3,
+	CONN_ERROR = -4,
+	NO_PATH_ERROR = -5,
+	FILE_ERROR = -6
 }					t_value;
 
 typedef struct		s_point
@@ -71,13 +83,13 @@ typedef struct		s_link
 
 typedef struct		s_lemin
 {
-	int 			ants;
+	int				ants;
 	int				size;
 	int				**winner_ids;
 	int				overlap;
 	int				lines;
-	int				paths_found; /////////////
-	int				paths_used; /////////////
+	int				paths_found;
+	int				paths_used;
 	t_list			*map;
 	t_link			*paths;
 	t_room			**rooms;
@@ -96,13 +108,12 @@ void				find_solution(t_lemin *lemin);
 void				free_winner_ids(int **winner_ids);
 void				print_map(t_list **map, int ants);
 void				free_lemin_struct(t_lemin **lemin);
+void				breadth_first(t_room *end, int start);
 void				reset_path(t_room **rooms, t_room *path);
 void				get_new_path(t_room **path, t_lemin *lemin);
 void				split_links(t_link *new_path, t_lemin *lemin);
 void				init_conncections(t_lemin *lemin, t_list **con);
-void				breadth_first(t_room **rooms, t_room *end, int start);
 void				turn_all_links_on_off(t_room **rooms, int size, int on_off);
-
 
 t_link				*get_path(t_lemin *lemin);
 t_link				*create_best_paths_new(t_lemin *lemin);
@@ -113,16 +124,7 @@ t_room				*get_starting_room(t_link *link, int dist);
 
 int					move_ants_in_all_paths(t_lemin *lemin);
 int					**check_paths_save_winner(t_lemin *lemin);
-int					duplicate_room(t_room **rooms, char *name, t_point coord, int size);
+int					duplicate_room(t_room **rooms, char *name,
+					t_point coord, int size);
 
-/* ************ DEBUG ************ */
-
-void		print_links(t_lemin *lemin);
-void		print_dist(t_lemin *lemin);
-void		print_path(t_link *path, t_room *end, char *start);
-void		print_all_paths(t_link *paths, t_room *end, char *start);
-void		print_rooms(t_lemin *lemin);
-void		print_winner_ids(t_room **rooms, int **winner_ids, int start, int end);
-
-/* ******************************* */
 #endif

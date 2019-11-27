@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_path.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 18:17:51 by fhignett          #+#    #+#             */
-/*   Updated: 2019/11/21 16:39:18 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   get_path.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/20 18:17:51 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/27 16:10:46 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 t_room			*get_starting_room(t_link *link, int dist)
 {
 	t_room	*room;
 	t_room	*ptr;
 
+	room = NULL;
 	while (link)
 	{
 		ptr = link->ptr;
@@ -43,7 +44,6 @@ static void		go_back_one(t_room **path, t_lemin *lemin)
 
 static t_room	*on_existing_path(t_room *path, t_lemin *lemin, int *dist)
 {
-	t_link	*link;
 	t_room	*room;
 
 	lemin->overlap = ON;

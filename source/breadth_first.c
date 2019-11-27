@@ -6,11 +6,11 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 16:02:22 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/20 16:30:19 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:10:02 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static void			add_to_queue(t_link **queue, t_room *room)
 {
@@ -76,7 +76,7 @@ static void			add_links_to_queue(t_link **queue)
 	}
 }
 
-void				breadth_first(t_room **rooms, t_room *end, int start)
+void				breadth_first(t_room *end, int start)
 {
 	t_link	*queue;
 	t_link	*tmp;

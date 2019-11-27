@@ -1,4 +1,16 @@
-#include "lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   create_best_paths_new.c                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/27 15:49:16 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/27 16:10:17 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "lemin.h"
 
 int		new_paths_len(t_room *room)
 {
@@ -30,8 +42,8 @@ void	recreate_rooms(t_link **paths, t_lemin *lemin, int i)
 {
 	t_link	*node;
 	t_room	*room;
-	int j;
-	int id;
+	int		j;
+	int		id;
 
 	j = 1;
 	node = *paths;

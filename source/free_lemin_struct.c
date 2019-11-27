@@ -6,11 +6,11 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 15:24:15 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/25 11:47:11 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:10:40 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void		free_winner_ids(int **winner_ids)
 {

@@ -6,11 +6,11 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:57:51 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/25 19:06:28 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:11:10 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void		print_map(t_list **map, int ants)
 {

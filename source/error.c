@@ -6,11 +6,11 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:56:59 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 14:10:05 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:10:27 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void			error_check(int error)
 {

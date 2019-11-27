@@ -6,11 +6,11 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:47:07 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 14:07:42 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:11:18 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 t_room		*new_room(char *name, int id, int dist)
 {

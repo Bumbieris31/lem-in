@@ -1,4 +1,16 @@
-#include "lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   find_solution.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/27 15:42:14 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/27 16:10:35 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "lemin.h"
 
 static void		add_to_paths(t_link **paths, t_link *new_path, int path_id)
 {
@@ -28,7 +40,6 @@ static void		split_paths(t_link *new_path, t_lemin *lemin, int *path_id)
 
 void			find_solution(t_lemin *lemin)
 {
-	int		**temp_path_ids;
 	int		path_id;
 	t_link	*new_path;
 

@@ -6,11 +6,11 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/08 13:49:59 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/27 12:54:53 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:11:07 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static int		print_movement(t_room *path, t_room *end)
 {

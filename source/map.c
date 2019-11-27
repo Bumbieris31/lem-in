@@ -6,11 +6,11 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/21 13:03:49 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 14:32:19 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:11:03 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static int			valid_room(char **room_info)
 {
@@ -123,7 +123,5 @@ void				get_map_info(t_lemin *lemin)
 			get_room(lemin, line);
 		tmp = tmp->next;
 	}
-	if (!START || !END)
-		error_check(ROOM_ERROR);
 	init_conncections(lemin, &con);
 }

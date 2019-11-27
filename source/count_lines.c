@@ -1,6 +1,18 @@
-#include "lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   count_lines.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/27 15:49:58 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/27 16:10:13 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	write_path(t_room *room, int *path_ids, int len)
+#include "lemin.h"
+
+static void	write_path(t_room *room, int *path_ids, int len)
 {
 	int	i;
 
@@ -49,7 +61,7 @@ static int	**sort_winner_ids(int **winner_ids)
 	{
 		if (winner_ids[i][0] > winner_ids[i + 1][0])
 		{
-			swap =  winner_ids[i + 1];
+			swap = winner_ids[i + 1];
 			winner_ids[i + 1] = winner_ids[i];
 			winner_ids[i] = swap;
 			i = 0;
@@ -82,8 +94,8 @@ void		count_lines(t_lemin *lemin)
 		if (lemin->winner_ids)
 			free_winner_ids(lemin->winner_ids);
 		lemin->winner_ids = save_path_ids(PATHS, path_count);
-		lemin->paths_used = path_count; //////////
+		lemin->paths_used = path_count;
 	}
-	lemin->paths_found = path_count; //////////
+	lemin->paths_found = path_count;
 	lemin->winner_ids = sort_winner_ids(lemin->winner_ids);
 }
