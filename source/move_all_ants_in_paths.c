@@ -6,11 +6,11 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/27 17:35:44 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/27 17:37:35 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static int		print_movement(t_room *path, t_room *end)
 {
@@ -87,6 +87,7 @@ int				move_ants_in_all_paths(t_lemin *lemin)
 	int		count;
 	int		finished;
 	int		last_ant;
+	int		i;
 
 	ant = 1;
 	count = 0;
@@ -100,6 +101,5 @@ int				move_ants_in_all_paths(t_lemin *lemin)
 		count++;
 		ft_putchar('\n');
 	}
-	ft_printf("OUR LINE COUNT: %d\n", count);
 	return (count);
 }

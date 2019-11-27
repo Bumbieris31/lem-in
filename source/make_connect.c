@@ -6,11 +6,11 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/25 11:33:25 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:10:58 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 /*
 ** @descr: Returns the room that matches the name passed in str parameter.
@@ -35,7 +35,7 @@ static t_room	*find_room(char *str, t_room *table[])
 ** @descr: Adds room2 to room1->link at the end of the list.
 */
 
-static void			bind_rooms(t_room *room1, t_room *room2)
+static void		bind_rooms(t_room *room1, t_room *room2)
 {
 	t_link	*connection;
 
@@ -64,7 +64,7 @@ static void			bind_rooms(t_room *room1, t_room *room2)
 ** in each rooms link member.
 */
 
-static void			connect_two(char **room_names, t_room *table[])
+static void		connect_two(char **room_names, t_room *table[])
 {
 	t_room	*room1;
 	t_room	*room2;
@@ -98,12 +98,15 @@ static void		make_connect(char **connections, t_room *table[])
 	}
 }
 
-
 void			init_conncections(t_lemin *lemin, t_list **con)
 {
 	char *tmp;
 	char **connections;
 
+	if (!START || !END)
+		error_check(ROOM_ERROR);
+	if (!(*con))
+		error_check(FILE_ERROR);
 	tmp = ft_lstfold(*con, " ");
 	connections = ft_strsplit(tmp, ' ');
 	free(tmp);

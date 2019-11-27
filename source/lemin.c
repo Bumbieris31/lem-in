@@ -1,4 +1,16 @@
-#include "lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   lemin.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/27 15:51:22 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/27 16:43:26 by fhignett      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "lemin.h"
 
 static void		set_path_id(t_link *paths, t_room **rooms, int end, int start)
 {
@@ -34,7 +46,7 @@ t_link			*get_path(t_lemin *lemin)
 	t_link		*path;
 
 	set_path_id(PATHS, ROOMS, END->id, START->id);
-	breadth_first(ROOMS, END, START->id);
+	breadth_first(END, START->id);
 	if (START->dist == -1)
 		return (NULL);
 	path = MEM(t_link);
@@ -63,17 +75,15 @@ static void		lemin(void)
 	count_lines(lemin);
 	if (lemin->ants > 1)
 		find_solution(lemin);
-//	print_map(&lemin->map, lemin->ants);
-	print_all_paths(PATHS, END, START->name);
+	print_map(&lemin->map, lemin->ants);
 	move_ants_in_all_paths(lemin);
 	free_lemin_struct(&lemin);
-//	ft_printf("TOTAL PATHS FOUND : %-2d, TOTAL PATHS USED : %-2d, ANTS : %-3d, LINES : %-2d\n", lemin->paths_found, lemin->paths_used, lemin->ants, lemin->lines);
 }
 
 int				main(int argc, char **argv)
 {
-	if (argc == 2 && ft_strequ("--help", argv[1]))
-		ft_putendl("Print help");
+	if (argc == 2)
+		ft_printf("%s < [file]\n", argv[0]);
 	else
 		lemin();
 	return (0);

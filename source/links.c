@@ -6,11 +6,11 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 17:57:40 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/20 17:59:35 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:10:54 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static t_link	*get_path_pointer(t_link *paths, int path_id)
 {
@@ -37,7 +37,6 @@ static void		path_links_on(t_link *path, t_room **rooms, int start)
 {
 	int		room1;
 	int		room2;
-	t_link	*link;
 	t_room	*room;
 
 	room = path->ptr;
