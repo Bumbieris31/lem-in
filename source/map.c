@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/21 13:03:49 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 17:04:41 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 18:46:07 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,18 @@ static t_list	*copy_map(t_lemin *lemin, int *size)
 	return (copy);
 }
 
+static void		check_con(t_list **con, char *line)
+{
+	int i;
+	int j;
+
+	i = ft_strchr_i(line, '-');
+	j = ft_strrchr_i(line, '-');
+	if (i != j)
+		error_check(CONN_ERROR);
+	ft_lstadd(con, ft_lstnew(line, ft_strlen(line) + 1));
+}
+
 void			get_map_info(t_lemin *lemin)
 {
 	t_list	*con;
@@ -100,7 +112,7 @@ void			get_map_info(t_lemin *lemin)
 		if (ft_strequ(line, "##start") || ft_strequ(line, "##end"))
 			set_startend(lemin, line, &tmp, con);
 		else if (ft_strchr(line, '-'))
-			ft_lstadd(&con, ft_lstnew(line, ft_strlen(line) + 1));
+			check_con(&con, line);
 		else if (line[0] != '#')
 			get_room(lemin, line, con);
 		tmp = tmp->next;
