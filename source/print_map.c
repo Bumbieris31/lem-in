@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   print_map.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/11/20 18:57:51 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 16:36:26 by fhignett      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   print_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/20 18:57:51 by fhignett          #+#    #+#             */
+/*   Updated: 2019/11/27 20:50:03 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void		print_map(t_list **map, int ants)
+void		print_map(t_list **map)
 {
 	char	*line;
 	t_list	*del;
 
-	ft_printf("%d\n", ants);
 	while (*map)
 	{
 		line = (char*)(*map)->content;

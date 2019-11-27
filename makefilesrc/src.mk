@@ -12,4 +12,5 @@ SOURCE =	lemin \
 			move_all_ants_in_paths \
 			free_lemin_struct \
 			count_lines \
-			create_best_paths_new
+			create_best_paths_new \
+			only_digits

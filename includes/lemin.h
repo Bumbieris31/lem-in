@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   lemin.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/11/27 16:06:43 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 17:11:53 by fhignett      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   lemin.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/27 16:06:43 by fhignett          #+#    #+#             */
+/*   Updated: 2019/11/27 20:50:14 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void				get_map_info(t_lemin *lemin);
 void				free_path_rooms(t_room *room);
 void				find_solution(t_lemin *lemin);
 void				free_winner_ids(int **winner_ids);
-void				print_map(t_list **map, int ants);
+void				print_map(t_list **map);
 void				free_lemin_struct(t_lemin **lemin);
 void				breadth_first(t_room *end, int start);
 void				reset_path(t_room **rooms, t_room *path);
@@ -122,6 +122,7 @@ t_link				*delete_path(t_link *path, int path_id);
 t_room				*new_room(char *name, int id, int dist);
 t_room				*get_starting_room(t_link *link, int dist);
 
+int					only_digits(char *str);
 int					valid_room(char **room_info);
 int					move_ants_in_all_paths(t_lemin *lemin);
 int					duplicate_room(t_room **rooms, char *name,

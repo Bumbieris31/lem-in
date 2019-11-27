@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   lemin.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/11/27 15:51:22 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 16:43:26 by fhignett      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   lemin.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/27 15:51:22 by fhignett          #+#    #+#             */
+/*   Updated: 2019/11/27 20:50:36 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void		lemin(void)
 	count_lines(lemin);
 	if (lemin->ants > 1)
 		find_solution(lemin);
-	print_map(&lemin->map, lemin->ants);
+	print_map(&lemin->map);
 	move_ants_in_all_paths(lemin);
 	free_lemin_struct(&lemin);
 }

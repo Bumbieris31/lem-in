@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   map.c                                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/11/21 13:03:49 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 18:46:07 by fhignett      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/21 13:03:49 by fhignett          #+#    #+#             */
+/*   Updated: 2019/11/27 20:53:33 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,24 @@ static void		set_startend(t_lemin *lemin, char *cmnd,
 	}
 }
 
-static t_list	*copy_map(t_lemin *lemin, int *size)
+static t_list	*copy_map(t_lemin *lemin, int *size, t_list *copy)
 {
 	char	*line;
-	t_list	*copy;
 
 	ft_get_next_line(0, &line);
 	if (!line)
 		error_check(FILE_ERROR);
 	while (line[0] == '#')
 	{
+		ft_lstadd_back(&copy, ft_lstnew(line, ft_strlen(line) + 1));
 		free(line);
 		ft_get_next_line(0, &line);
 	}
 	lemin->ants = ft_atoi(line);
 	if (lemin->ants <= 0 || ft_strlen(line) != ft_intlen(lemin->ants))
 		error_check(ANTS_ERROR);
+	ft_lstadd_back(&copy, ft_lstnew(line, ft_strlen(line) + 1));
 	free(line);
-	copy = NULL;
 	while (ft_get_next_line(0, &line))
 	{
 		if (line[0] != '#' && !ft_strchr(line, '-'))
@@ -100,7 +100,7 @@ void			get_map_info(t_lemin *lemin)
 	t_list	*tmp;
 	char	*line;
 
-	lemin->map = copy_map(lemin, &lemin->size);
+	lemin->map = copy_map(lemin, &lemin->size, NULL);
 	if (!lemin->size)
 		error_check(FILE_ERROR);
 	con = NULL;
@@ -111,6 +111,8 @@ void			get_map_info(t_lemin *lemin)
 		line = (char*)tmp->content;
 		if (ft_strequ(line, "##start") || ft_strequ(line, "##end"))
 			set_startend(lemin, line, &tmp, con);
+		else if (only_digits(line))
+			;
 		else if (ft_strchr(line, '-'))
 			check_con(&con, line);
 		else if (line[0] != '#')
