@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/27 16:06:43 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 16:48:25 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 17:11:53 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ t_room				*get_starting_room(t_link *link, int dist);
 
 int					valid_room(char **room_info);
 int					move_ants_in_all_paths(t_lemin *lemin);
-int					**check_paths_save_winner(t_lemin *lemin);
 int					duplicate_room(t_room **rooms, char *name,
 					t_point coord, int size);
 
