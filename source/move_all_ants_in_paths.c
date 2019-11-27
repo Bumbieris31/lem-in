@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/27 17:37:35 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/27 17:46:16 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,11 @@ int				move_ants_in_all_paths(t_lemin *lemin)
 	int		count;
 	int		finished;
 	int		last_ant;
-	int		i;
 
 	ant = 1;
 	count = 0;
 	last_ant = 0;
 	finished = 0;
-	ft_printf("MIN LINE COUNT: %d\n", lemin->lines);
 	while (!finished)
 	{
 		if (!move_one_position(lemin, &ant, &last_ant, count))
