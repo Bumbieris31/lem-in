@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:57:51 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 16:11:10 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/27 16:36:26 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ void		print_map(t_list **map, int ants)
 	while (*map)
 	{
 		line = (char*)(*map)->content;
-		if (line[0] == '#' &&
-		(!ft_strequ("##start", line) && !ft_strequ("##end", line)))
-			;
-		else
-			ft_putendl(line);
+		ft_putendl(line);
 		del = *map;
 		(*map) = (*map)->next;
 		free(del->content);
