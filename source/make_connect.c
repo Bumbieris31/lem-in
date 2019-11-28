@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/28 15:39:22 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/28 15:45:12 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ static void		make_connect(char **connections, t_room *table[])
 	while (connections[i])
 	{
 		rooms = ft_strsplit(connections[i], '-');
-		if (!rooms[ROOM1] || !rooms[ROOM2] || ft_strequ(rooms[ROOM1], rooms[ROOM2]))
+		if (!rooms[ROOM1] || !rooms[ROOM2] ||
+		ft_strequ(rooms[ROOM1], rooms[ROOM2]))
 			error_check(CONN_ERROR);
 		connect_two(rooms, table);
 		ft_free_2darray((void**)rooms);
