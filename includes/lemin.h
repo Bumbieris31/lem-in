@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lemin.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 16:06:43 by fhignett          #+#    #+#             */
-/*   Updated: 2019/11/27 20:50:14 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   lemin.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/27 16:06:43 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/28 15:39:54 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ t_link				*get_path(t_lemin *lemin);
 t_link				*create_best_paths_new(t_lemin *lemin);
 t_link				*delete_path(t_link *path, int path_id);
 
+t_room				*find_room(char *str, t_room *table[]);
 t_room				*new_room(char *name, int id, int dist);
 t_room				*get_starting_room(t_link *link, int dist);
 

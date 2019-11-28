@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/20 18:47:07 by fhignett       #+#    #+#                */
-/*   Updated: 2019/11/27 16:48:11 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/28 15:39:36 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,23 @@ int			valid_room(char **room_info)
 		}
 	}
 	return (len != 3 ? ROOM_ERROR : 1);
+}
+
+/*
+** @descr: Returns the room that matches the name passed in str parameter.
+** If such name doesn't exist, return the first node.
+*/
+
+t_room		*find_room(char *str, t_room *table[])
+{
+	int		i;
+
+	i = 0;
+	while (table[i])
+	{
+		if (ft_strequ(table[i]->name, str))
+			return (table[i]);
+		i++;
+	}
+	return (NULL);
 }

@@ -6,30 +6,11 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/27 16:10:58 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/28 15:39:22 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-/*
-** @descr: Returns the room that matches the name passed in str parameter.
-** If such name doesn't exist, return the first node.
-*/
-
-static t_room	*find_room(char *str, t_room *table[])
-{
-	int		i;
-
-	i = 0;
-	while (table[i])
-	{
-		if (ft_strequ(table[i]->name, str))
-			return (table[i]);
-		i++;
-	}
-	return (NULL);
-}
 
 /*
 ** @descr: Adds room2 to room1->link at the end of the list.
@@ -59,6 +40,15 @@ static void		bind_rooms(t_room *room1, t_room *room2)
 	connection->on = ON;
 }
 
+static int		check_duplicate_links(t_link *link, int id)
+{
+	if (!link)
+		return (0);
+	if (link->id == id)
+		return (CONN_ERROR);
+	return (check_duplicate_links(link->next, id));
+}
+
 /*
 ** @descr: Finds the correct rooms from table and writes connection \
 ** in each rooms link member.
@@ -71,6 +61,8 @@ static void		connect_two(char **room_names, t_room *table[])
 
 	room1 = find_room(room_names[ROOM1], table);
 	room2 = find_room(room_names[ROOM2], table);
+	error_check(check_duplicate_links(room1->link, room2->id));
+	error_check(check_duplicate_links(room2->link, room1->id));
 	if (!room1 || !room2)
 		error_check(CONN_ERROR);
 	bind_rooms(room1, room2);
@@ -90,7 +82,7 @@ static void		make_connect(char **connections, t_room *table[])
 	while (connections[i])
 	{
 		rooms = ft_strsplit(connections[i], '-');
-		if (!rooms[ROOM1] || !rooms[ROOM2])
+		if (!rooms[ROOM1] || !rooms[ROOM2] || ft_strequ(rooms[ROOM1], rooms[ROOM2]))
 			error_check(CONN_ERROR);
 		connect_two(rooms, table);
 		ft_free_2darray((void**)rooms);
