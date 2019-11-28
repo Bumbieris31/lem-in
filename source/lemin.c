@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lemin.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 15:51:22 by fhignett          #+#    #+#             */
-/*   Updated: 2019/11/27 20:50:36 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   lemin.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/27 15:51:22 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/28 16:04:59 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void		lemin(void)
 int				main(int argc, char **argv)
 {
 	if (argc == 2)
-		ft_printf("%s < [file]\n", argv[0]);
+		ft_printf("Usage : %s < [file]\n", argv[0]);
 	else
 		lemin();
 	return (0);

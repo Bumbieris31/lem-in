@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 13:03:49 by fhignett          #+#    #+#             */
-/*   Updated: 2019/11/27 20:53:33 by abumbier         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/21 13:03:49 by fhignett       #+#    #+#                */
+/*   Updated: 2019/11/28 16:07:20 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void			get_map_info(t_lemin *lemin)
 		line = (char*)tmp->content;
 		if (ft_strequ(line, "##start") || ft_strequ(line, "##end"))
 			set_startend(lemin, line, &tmp, con);
-		else if (only_digits(line))
+		else if (only_digits(line) || line[0] == '#')
 			;
 		else if (ft_strchr(line, '-'))
 			check_con(&con, line);
