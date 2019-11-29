@@ -1,4 +1,4 @@
-5
+1
 ##start
 START 0 0
 ##end
@@ -11,3 +11,4 @@ START-a
 a-b
 b-c
 c-END
+#setting set target.input-path ant_farms/SE.txt

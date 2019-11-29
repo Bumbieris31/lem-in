@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 11:18:07 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/29 12:07:11 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/29 13:34:16 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int		print_movement(t_room *path, t_room *end, int max_ant)
 {
 	static int	stop;
+	static int	last;
 	static int	count;
 
 	if (!path)
@@ -22,14 +23,16 @@ static int		print_movement(t_room *path, t_room *end, int max_ant)
 	print_movement(path->to, end, max_ant);
 	if (path->ant > 0)
 	{
-		if (!stop || path->ant != max_ant)
+		if ((!stop || path->ant != max_ant) && last != path->ant)
 			ft_printf("L%d-%s ", path->ant, path->name);
 		if (ft_strequ(path->name, end->name))
 		{
-			if (!stop || path->ant != max_ant)
+			if ((!stop || path->ant != max_ant) && last != path->ant)
 				count++;
 			if (path->ant == max_ant)
 				stop = 1;
+			if (path->ant > last)
+				last = path->ant;
 		}
 	}
 	return (count);
