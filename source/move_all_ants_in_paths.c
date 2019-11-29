@@ -5,25 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 13:49:59 by abumbier          #+#    #+#             */
-/*   Updated: 2019/11/27 17:46:16 by abumbier         ###   ########.fr       */
+/*   Created: 2019/11/29 11:18:07 by abumbier          #+#    #+#             */
+/*   Updated: 2019/11/29 12:07:11 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		print_movement(t_room *path, t_room *end)
+static int		print_movement(t_room *path, t_room *end, int max_ant)
 {
+	static int	stop;
 	static int	count;
 
 	if (!path)
 		return (count);
-	print_movement(path->to, end);
+	print_movement(path->to, end, max_ant);
 	if (path->ant > 0)
 	{
-		ft_printf("L%d-%s ", path->ant, path->name);
+		if (!stop || path->ant != max_ant)
+			ft_printf("L%d-%s ", path->ant, path->name);
 		if (ft_strequ(path->name, end->name))
-			count++;
+		{
+			if (!stop || path->ant != max_ant)
+				count++;
+			if (path->ant == max_ant)
+				stop = 1;
+		}
 	}
 	return (count);
 }
@@ -41,9 +48,9 @@ static void		incr_ants(t_room *path)
 }
 
 void			choose_path_flow(int *ant, int *last_ant, int next_ant, \
-int ant_count)
+int max_ant)
 {
-	if (*ant == ant_count)
+	if (*ant == max_ant)
 	{
 		if (next_ant)
 			*last_ant = 1;
@@ -70,7 +77,7 @@ int count)
 		}
 		choose_path_flow(ant, last_ant, next_ant, lemin->ants);
 		next_ant = 0;
-		if (lemin->ants == print_movement(paths->ptr, END))
+		if (lemin->ants == print_movement(paths->ptr, END, lemin->ants))
 			return (0);
 		paths = paths->next;
 	}
