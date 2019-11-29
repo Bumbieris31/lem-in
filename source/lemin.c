@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:51:22 by fhignett          #+#    #+#             */
-/*   Updated: 2019/11/28 13:59:11 by abumbier         ###   ########.fr       */
+/*   Updated: 2019/11/29 12:14:54 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void		lemin(void)
 int				main(int argc, char **argv)
 {
 	if (argc == 2)
-		ft_printf("%s < [file]\n", argv[0]);
+		ft_printf("Usage : %s < [file]\n", argv[0]);
 	else
 		lemin();
 	return (0);
