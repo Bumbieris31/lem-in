@@ -6,7 +6,7 @@
 /*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/30 15:26:31 by abumbier       #+#    #+#                */
-/*   Updated: 2019/11/28 16:08:17 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/11/29 13:21:00 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ static void		connect_two(char **room_names, t_room *table[])
 
 	room1 = find_room(room_names[ROOM1], table);
 	room2 = find_room(room_names[ROOM2], table);
-	error_check(check_duplicate_links(room1->link, room2->id));
-	error_check(check_duplicate_links(room2->link, room1->id));
 	if (!room1 || !room2)
 		error_check(CONN_ERROR);
+	error_check(check_duplicate_links(room1->link, room2->id));
+	error_check(check_duplicate_links(room2->link, room1->id));
 	bind_rooms(room1, room2);
 	bind_rooms(room2, room1);
 }

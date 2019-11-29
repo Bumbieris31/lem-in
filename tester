@@ -1,0 +1,41 @@
+./lem-in < ant_farms/error_maps/err_3_coordinates.map
+./lem-in < ant_farms/error_maps/err_duplicate.map
+./lem-in < ant_farms/error_maps/err_empty.map
+./lem-in < ant_farms/error_maps/err_letter_in_coordinate.map
+./lem-in < ant_farms/error_maps/err_link_to_unknown.map
+./lem-in < ant_farms/error_maps/err_no_ants.map
+./lem-in < ant_farms/error_maps/err_no_ants2.map
+./lem-in < ant_farms/error_maps/err_no_ants3.map
+./lem-in < ant_farms/error_maps/err_no_end.map
+./lem-in < ant_farms/error_maps/err_no_end2.map
+./lem-in < ant_farms/error_maps/err_no_links.map
+./lem-in < ant_farms/error_maps/err_no_path.map
+./lem-in < ant_farms/error_maps/err_no_rooms.map
+./lem-in < ant_farms/error_maps/err_no_start.map
+./lem-in < ant_farms/error_maps/err_no_start2.map
+./lem-in < ant_farms/error_maps/err_start_end_same.map
+./lem-in < ant_farms/error_maps/err_too_few_ants.map
+./lem-in < ant_farms/error_maps/err_too_many_ants.map
+
+./lem-in < ant_farms/2paths.txt | ./resources/verifier
+./lem-in < ant_farms/2paths2.txt | ./resources/verifier
+./lem-in < ant_farms/2paths3.txt | ./resources/verifier
+./lem-in < ant_farms/3paths.txt | ./resources/verifier
+./lem-in < ant_farms/big.txt | ./resources/verifier
+./lem-in < ant_farms/big2.txt | ./resources/verifier
+./lem-in < ant_farms/big3.txt | ./resources/verifier
+./lem-in < ant_farms/big4.txt | ./resources/verifier
+./lem-in < ant_farms/flow-one.txt | ./resources/verifier
+./lem-in < ant_farms/flow-ten.txt | ./resources/verifier
+./lem-in < ant_farms/no_overlap5.txt | ./resources/verifier
+./lem-in < ant_farms/SE.txt | ./resources/verifier
+./lem-in < ant_farms/subject_map.1.txt | ./resources/verifier
+./lem-in < ant_farms/subject_map.2.txt | ./resources/verifier
+./lem-in < ant_farms/subject_map.3.txt | ./resources/verifier
+./lem-in < ant_farms/sup_pos.txt | ./resources/verifier
+./lem-in < ant_farms/sup_pos2.txt | ./resources/verifier
+./lem-in < ant_farms/sup_pos3.txt | ./resources/verifier
+./lem-in < ant_farms/sup_pos4.txt | ./resources/verifier
+./lem-in < ant_farms/sup_pos5.txt | ./resources/verifier
+./lem-in < ant_farms/thousand.txt | ./resources/verifier
+./lem-in < ant_farms/thousand2.txt | ./resources/verifier
